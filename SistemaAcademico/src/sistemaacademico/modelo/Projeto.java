@@ -9,17 +9,28 @@ public class Projeto {
     private String objetivo;
     private String recursos;
     private ArrayList<Colaborador> colaboradores;
+    private ArrayList<Atividade> atividades;
 
     public Projeto() {
     }
 
     public Projeto(int codigo, String nome, String objetivo, String recursos,
-            ArrayList<Colaborador> colaboradores) {
+            ArrayList<Colaborador> colaboradores,
+            ArrayList<Atividade> atividades) {
         this.codigo = codigo;
         this.nome = nome;
         this.objetivo = objetivo;
         this.recursos = recursos;
         this.colaboradores = colaboradores;
+        this.atividades = atividades;
+    }
+
+    public ArrayList<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(ArrayList<Atividade> atividades) {
+        this.atividades = atividades;
     }
 
     public int getCodigo() {
