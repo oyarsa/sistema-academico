@@ -10,17 +10,27 @@ public class Atividade {
     private Date dataTermino;
     private Date duracaoEstimada;
     private ArrayList<Atividade> dependencias;
+    private ArrayList<Tarefa> tarefas;
 
     public Atividade() {
     }
 
     public Atividade(int codigo, Date dataInicio, Date dataTermino, Date duracaoEstimada,
-            ArrayList<Atividade> dependencias) {
+            ArrayList<Atividade> dependencias, ArrayList<Tarefa> tarefas) {
         this.codigo = codigo;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
         this.duracaoEstimada = duracaoEstimada;
         this.dependencias = dependencias;
+        this.tarefas = tarefas;
+    }
+
+    public ArrayList<Tarefa> getTarefas() {
+        return tarefas;
+    }
+
+    public void setTarefas(ArrayList<Tarefa> tarefas) {
+        this.tarefas = tarefas;
     }
 
     public int getCodigo() {
