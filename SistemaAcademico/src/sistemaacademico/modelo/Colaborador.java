@@ -17,6 +17,7 @@ public class Colaborador {
     private Telefone telefone;
     private RegistroAcademico registroAcad;
     private ArrayList<Projeto> projetos;
+    private ArrayList<Estado> historico;
 
     public Colaborador() {
     }
@@ -24,7 +25,8 @@ public class Colaborador {
     public Colaborador(String nome, String cpf, String rg, boolean ativo,
             String email, String nomeMae, String nomePai, String categoria,
             String login, String senha, Telefone telefone,
-            RegistroAcademico registroAcad, ArrayList<Projeto> projetos) {
+            RegistroAcademico registroAcad, ArrayList<Projeto> projetos,
+            ArrayList<Estado> historico) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -38,6 +40,7 @@ public class Colaborador {
         this.telefone = telefone;
         this.registroAcad = registroAcad;
         this.projetos = projetos;
+        this.historico = historico;
     }
 
     public ArrayList<Projeto> getProjetos() {
@@ -142,6 +145,14 @@ public class Colaborador {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public ArrayList<Estado> getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(ArrayList<Estado> historico) {
+        this.historico = historico;
     }
 
 }
