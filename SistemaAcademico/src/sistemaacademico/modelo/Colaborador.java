@@ -45,6 +45,26 @@ public class Colaborador {
         this.historico = historico;
     }
 
+    public long calculaHorasTrabalhadas(Projeto p) {
+        long tempoTrabalho = 0;
+
+        ArrayList<Atividade> atividades = p.getAtividades();
+
+        for (Atividade a : atividades) {
+            ArrayList<Tarefa> tarefas = a.getTarefas();
+
+            for (Tarefa t : tarefas) {
+                if (t.getResponsavel().getCodigo() == this.codigo) {
+                    long inicio = t.getHoraInicio().getTime();
+                    long fim = t.getHoraTermino().getTime();
+                    tempoTrabalho += fim - inicio;
+                }
+            }
+        }
+
+        return tempoTrabalho;
+    }
+
     public int getCodigo() {
         return codigo;
     }
