@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Tarefa {
 
+    private int codigo;
     private String descricao;
     private Date horaInicio;
     private Date horaTermino;
@@ -15,9 +16,10 @@ public class Tarefa {
     public Tarefa() {
     }
 
-    public Tarefa(String descricao, Date horaInicio, Date horaTermino,
+    public Tarefa(int codigo, String descricao, Date horaInicio, Date horaTermino,
             String observacao, TipoTrabalho tipo, Colaborador responsavel,
             Atividade atividadeOrigem) {
+        this.codigo = codigo;
         this.descricao = descricao;
         this.horaInicio = horaInicio;
         this.horaTermino = horaTermino;
@@ -25,6 +27,14 @@ public class Tarefa {
         this.tipo = tipo;
         this.responsavel = responsavel;
         this.atividadeOrigem = atividadeOrigem;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public Colaborador getResponsavel() {

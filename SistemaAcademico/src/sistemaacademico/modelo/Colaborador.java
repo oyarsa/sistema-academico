@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Colaborador {
 
+    private int codigo;
     private String nome;
     private String cpf;
     private String rg;
@@ -22,11 +23,12 @@ public class Colaborador {
     public Colaborador() {
     }
 
-    public Colaborador(String nome, String cpf, String rg, boolean ativo,
+    public Colaborador(int codigo, String nome, String cpf, String rg, boolean ativo,
             String email, String nomeMae, String nomePai, String categoria,
             String login, String senha, Telefone telefone,
             RegistroAcademico registroAcad, ArrayList<Projeto> projetos,
             ArrayList<Estado> historico) {
+        this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -41,6 +43,14 @@ public class Colaborador {
         this.registroAcad = registroAcad;
         this.projetos = projetos;
         this.historico = historico;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public ArrayList<Projeto> getProjetos() {

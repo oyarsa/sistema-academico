@@ -2,6 +2,7 @@ package sistemaacademico.modelo;
 
 public class Telefone {
 
+    private int codigo;
     private String ddi;
     private String ddd;
     private String numero;
@@ -10,11 +11,20 @@ public class Telefone {
     public Telefone() {
     }
 
-    public Telefone(String ddi, String ddd, String numero, String operadora) {
+    public Telefone(int codigo, String ddi, String ddd, String numero, String operadora) {
+        this.codigo = codigo;
         this.ddi = ddi;
         this.ddd = ddd;
         this.numero = numero;
         this.operadora = operadora;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getDdi() {

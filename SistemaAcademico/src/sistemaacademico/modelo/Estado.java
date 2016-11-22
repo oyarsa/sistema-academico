@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Estado {
 
+    private int codigo;
     private String nome;
     private Date dataInicio;
     private Date dataTermino;
@@ -11,10 +12,19 @@ public class Estado {
     public Estado() {
     }
 
-    public Estado(String nome, Date dataInicio, Date dataTermino) {
+    public Estado(int codigo, String nome, Date dataInicio, Date dataTermino) {
+        this.codigo = codigo;
         this.nome = nome;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
