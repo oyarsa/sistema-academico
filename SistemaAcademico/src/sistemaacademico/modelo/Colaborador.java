@@ -1,6 +1,7 @@
 package sistemaacademico.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Colaborador {
 
@@ -195,4 +196,19 @@ public class Colaborador {
         this.historico = historico;
     }
 
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("nome", nome);
+        rv.put("cpf", cpf);
+        rv.put("rg", rg);
+        rv.put("ativo", ativo);
+        rv.put("academico", registroAcad != null);
+        rv.put("email", email);
+        rv.put("nomePai", nomePai);
+        rv.put("nomeMae", nomeMae);
+
+        return rv;
+    }
 }
