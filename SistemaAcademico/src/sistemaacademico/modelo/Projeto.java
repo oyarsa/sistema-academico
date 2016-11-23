@@ -10,19 +10,29 @@ public class Projeto {
     private String recursos;
     private ArrayList<Colaborador> colaboradores;
     private ArrayList<Atividade> atividades;
+    private Colaborador gerente;
 
     public Projeto() {
     }
 
     public Projeto(int codigo, String nome, String objetivo, String recursos,
             ArrayList<Colaborador> colaboradores,
-            ArrayList<Atividade> atividades) {
+            ArrayList<Atividade> atividades, Colaborador gerente) {
         this.codigo = codigo;
         this.nome = nome;
         this.objetivo = objetivo;
         this.recursos = recursos;
         this.colaboradores = colaboradores;
         this.atividades = atividades;
+        this.gerente = gerente;
+    }
+
+    public Colaborador getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Colaborador gerente) {
+        this.gerente = gerente;
     }
 
     public ArrayList<Atividade> getAtividades() {
