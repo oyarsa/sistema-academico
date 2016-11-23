@@ -1,6 +1,7 @@
 package sistemaacademico.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Projeto {
 
@@ -81,6 +82,17 @@ public class Projeto {
 
     public void setRecursos(String recursos) {
         this.recursos = recursos;
+    }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("nome", nome);
+        rv.put("objetivo", objetivo);
+        rv.put("recursos", recursos);
+
+        return rv;
     }
 
 }

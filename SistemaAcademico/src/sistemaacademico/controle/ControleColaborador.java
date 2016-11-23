@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoColaborador;
+import sistemaacademico.dao.DaoColaboradorProjeto;
+import sistemaacademico.dao.DaoProjeto;
 import sistemaacademico.modelo.Colaborador;
+import sistemaacademico.modelo.Projeto;
 
 public class ControleColaborador {
 
@@ -65,6 +68,34 @@ public class ControleColaborador {
             return DaoColaborador.atualizar(c);
         }
 
+    }
+
+    public static ArrayList<HashMap<String, Object>> carregarProjetos(HashMap<String, Object> dados) {
+        ArrayList<Projeto> projetos
+                = DaoColaboradorProjeto.recuperarProjetos(
+                        Integer.parseInt(dados.get("codigo").toString()));
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+
+        for (Projeto p : projetos) {
+            result.add(p.toHashMap());
+        }
+
+        return result;
+    }
+
+    public static ArrayList<HashMap<String, Object>> carregarProjetosGerenciados(
+            HashMap<String, Object> dados) {
+
+        ArrayList<Projeto> projetos
+                = DaoProjeto.recuperarProjetosDoGerente(
+                        Integer.parseInt(dados.get("codigo").toString()));
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+
+        for (Projeto p : projetos) {
+            result.add(p.toHashMap());
+        }
+
+        return result;
     }
 
 }

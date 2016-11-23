@@ -149,6 +149,12 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        painelAbas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                painelAbasStateChanged(evt);
+            }
+        });
+
         labelNome.setText("Nome");
 
         labelCPF.setText("CPF");
@@ -586,6 +592,15 @@ public class VisaoColaborador extends javax.swing.JFrame {
         checkAtivo.setSelected((Boolean) c.get("ativo"));
     }//GEN-LAST:event_tabelaColaboradoresMouseClicked
 
+    private void painelAbasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_painelAbasStateChanged
+        String aba = painelAbas.getTitleAt(painelAbas.getSelectedIndex());
+        if (aba.equals("Projetos")) {
+            carregarProjetos();
+        } else if (aba.equals("Projetos Gerenciados")) {
+            carregarProjetosGerenciados();
+        }
+    }//GEN-LAST:event_painelAbasStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -674,6 +689,32 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 c.get("categoria"),
                 c.get("academico"),
                 c.get("ativo")});
+        }
+    }
+
+    private void carregarProjetos() {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", textCodigo.getText());
+
+        ArrayList<HashMap<String, Object>> projetos = ControleColaborador.carregarProjetos(dados);
+        DefaultTableModel m = (DefaultTableModel) tabelaProjetos.getModel();
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> p : projetos) {
+            m.addRow(new Object[]{p.get("codigo"), p.get("nome")});
+        }
+    }
+
+    private void carregarProjetosGerenciados() {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", textCodigo.getText());
+
+        ArrayList<HashMap<String, Object>> projetos = ControleColaborador.carregarProjetosGerenciados(dados);
+        DefaultTableModel m = (DefaultTableModel) tabelaProjetosGerenciados.getModel();
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> p : projetos) {
+            m.addRow(new Object[]{p.get("codigo"), p.get("nome")});
         }
     }
 
