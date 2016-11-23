@@ -98,6 +98,12 @@ public class DaoProjeto {
         }
     }
 
+    // TODO: É necessário introduzir o campo 'gerente_proj' na tabela 'projeto',
+    // que é uma FK para o Colaborador que é gerente do projeto.
+    public static ArrayList<Projeto> recuperarProjetosDoGerente(int codigoGerente) {
+        return recuperarQuery("WHERE gerente_proj = " + codigoGerente);
+    }
+
     public static Projeto recuperar(int codigo) {
         ArrayList<Projeto> result = recuperarQuery("where cod_proj = " + codigo);
         if (!result.isEmpty()) {
