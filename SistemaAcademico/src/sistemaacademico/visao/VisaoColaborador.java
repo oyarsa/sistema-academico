@@ -5,11 +5,62 @@
  */
 package sistemaacademico.visao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
+import sistemaacademico.controle.ControleColaborador;
+
 /**
  *
  * @author Italo Silva
  */
 public class VisaoColaborador extends javax.swing.JFrame {
+
+    private void limparComponentesColaborador() {
+        checkAcademico.setSelected(false);
+        checkAtivo.setSelected(false);
+        textCPF.setText("");
+        textCategoria.setText("");
+        textCodigo.setText("");
+        textEmail.setText("");
+        textNome.setText("");
+        textNomeMae.setText("");
+        textNomePai.setText("");
+        textRG.setText("");
+    }
+
+    private void toggleComponentesColaborador(boolean ativo) {
+        // Ativo será verdadeiro quando o formulário aceitar entradas
+        btnCancelar.setEnabled(ativo);
+        btnGravar.setEnabled(ativo);
+        btnEditar.setEnabled(!ativo);
+        btnExcluir.setEnabled(!ativo);
+        btnNovo.setEnabled(!ativo);
+
+        checkAcademico.setEnabled(ativo);
+        checkAtivo.setEnabled(ativo);
+        textCPF.setEnabled(ativo);
+        textCategoria.setEnabled(ativo);
+        textCodigo.setEnabled(ativo);
+        textEmail.setEnabled(ativo);
+        textNome.setEnabled(ativo);
+        textNomeMae.setEnabled(ativo);
+        textNomePai.setEnabled(ativo);
+        textRG.setEnabled(ativo);
+    }
+
+    private void habilitarControlesColaborador() {
+        toggleComponentesColaborador(true);
+    }
+
+    private void desabilitarControlesColaborador() {
+        toggleComponentesColaborador(false);
+    }
+
+    private void inicializarColaboradores() {
+        desabilitarControlesColaborador();
+        carregarTabela();
+    }
 
     /**
      * Creates new form VisaoColaborador
@@ -67,6 +118,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
         tabelaProjetosGerenciados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panelTitulo.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -404,6 +460,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        inicializarColaboradores();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -479,4 +539,19 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JTextField textNomePai;
     private javax.swing.JTextField textRG;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarTabela() {
+        ArrayList<HashMap<String, Object>> colaboradores = ControleColaborador.recuperarTodos();
+        DefaultTableModel m = (DefaultTableModel) tabelaColaboradores.getModel();
+
+        for (HashMap<String, Object> c : colaboradores) {
+            m.addRow(new Object[]{
+                c.get("codigo"),
+                c.get("nome"),
+                c.get("email"),
+                c.get("categoria"),
+                c.get("academico"),
+                c.get("ativo")});
+        }
+    }
 }
