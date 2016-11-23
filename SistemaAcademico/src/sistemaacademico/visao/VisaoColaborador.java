@@ -7,7 +7,9 @@ package sistemaacademico.visao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sistemaacademico.Util.Mensagens;
 import sistemaacademico.controle.ControleColaborador;
 
 /**
@@ -188,6 +190,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaColaboradores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaColaboradoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaColaboradores);
         if (tabelaColaboradores.getColumnModel().getColumnCount() > 0) {
             tabelaColaboradores.getColumnModel().getColumn(0).setMinWidth(40);
@@ -201,14 +208,39 @@ public class VisaoColaborador extends javax.swing.JFrame {
         }
 
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnGravar.setText("Gravar");
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         labelCodigo.setText("Código");
 
@@ -464,6 +496,96 @@ public class VisaoColaborador extends javax.swing.JFrame {
         inicializarColaboradores();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limparComponentesColaborador();
+        desabilitarControlesColaborador();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        limparComponentesColaborador();
+
+        DefaultTableModel m = (DefaultTableModel) tabelaColaboradores.getModel();
+        int linha = tabelaColaboradores.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int codigo = (Integer) m.getValueAt(linha, 0);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", codigo);
+
+        String msg = ControleColaborador.remover(dados);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO))
+            m.removeRow(linha);
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        limparComponentesColaborador();
+        textCodigo.setText("");
+        habilitarControlesColaborador();
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if (tabelaColaboradores.getSelectedRow() != -1)
+            habilitarControlesColaborador();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+        desabilitarControlesColaborador();
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("codigo", textCodigo.getText());
+        dados.put("cpf", textCPF.getText());
+        dados.put("categoria", textCategoria.getText());
+        dados.put("email", textEmail.getText());
+        dados.put("nome", textNome.getText());
+        dados.put("nomeMae", textNomeMae.getText());
+        dados.put("nomePai", textNomePai.getText());
+        dados.put("rg", textRG.getText());
+        dados.put("academico", checkAcademico.isSelected());
+        dados.put("ativo", checkAtivo.isSelected());
+
+        String msg = ControleColaborador.salvar(dados);
+        JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO)) {
+            limparComponentesColaborador();
+        } else {
+            habilitarControlesColaborador();
+        }
+    }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void tabelaColaboradoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaColaboradoresMouseClicked
+        DefaultTableModel m = (DefaultTableModel) tabelaColaboradores.getModel();
+        int linha = tabelaColaboradores.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int codigo = (Integer) m.getValueAt(linha, 0);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", codigo);
+
+        HashMap<String, Object> c = ControleColaborador.carregarColaborador(dados);
+        if (c == null) {
+            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        textCodigo.setText(c.get("codigo").toString());
+        textCPF.setText(c.get("cpf").toString());
+        textCategoria.setText(c.get("categoria").toString());
+        textEmail.setText(c.get("email").toString());
+        textNome.setText(c.get("nome").toString());
+        textNomeMae.setText(c.get("nomeMae").toString());
+        textNomePai.setText(c.get("nomePai").toString());
+        textRG.setText(c.get("rg").toString());
+
+        checkAcademico.setSelected((Boolean) c.get("academico"));
+        checkAtivo.setSelected((Boolean) c.get("ativo"));
+    }//GEN-LAST:event_tabelaColaboradoresMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -554,4 +676,5 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 c.get("ativo")});
         }
     }
+
 }
