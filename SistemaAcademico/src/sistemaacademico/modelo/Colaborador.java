@@ -19,6 +19,7 @@ public class Colaborador {
     private RegistroAcademico registroAcad;
     private ArrayList<Projeto> projetos;
     private ArrayList<Estado> historico;
+    private ArrayList<Projeto> projetosGerenciados;
 
     public Colaborador() {
     }
@@ -27,7 +28,7 @@ public class Colaborador {
             String email, String nomeMae, String nomePai, String categoria,
             String login, String senha, Telefone telefone,
             RegistroAcademico registroAcad, ArrayList<Projeto> projetos,
-            ArrayList<Estado> historico) {
+            ArrayList<Estado> historico, ArrayList<Projeto> projetosGerenciados) {
         this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
@@ -43,6 +44,15 @@ public class Colaborador {
         this.registroAcad = registroAcad;
         this.projetos = projetos;
         this.historico = historico;
+        this.projetosGerenciados = projetosGerenciados;
+    }
+
+    public ArrayList<Projeto> getProjetosGerenciados() {
+        return projetosGerenciados;
+    }
+
+    public void setProjetosGerenciados(ArrayList<Projeto> projetosGerenciados) {
+        this.projetosGerenciados = projetosGerenciados;
     }
 
     public long calculaHorasTrabalhadas(Projeto p) {
