@@ -22,13 +22,18 @@ public class DaoProjeto {
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getObjetivo());
             stmt.setString(3, p.getRecursos());
 
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next())
+                p.setCodigo(rs.getInt(1));
+
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
             Logger.getLogger(DaoProjeto.class.getName()).log(Level.SEVERE, null, ex);

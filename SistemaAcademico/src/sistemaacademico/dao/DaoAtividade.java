@@ -23,7 +23,7 @@ public class DaoAtividade {
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, a.getTitulo());
             stmt.setDate(2, new java.sql.Date(a.getDataInicio().getTime()));
@@ -31,6 +31,11 @@ public class DaoAtividade {
             stmt.setDate(4, new java.sql.Date(a.getDuracaoEstimada().getTime()));
 
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next())
+                a.setCodigo(rs.getInt(1));
+
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
             Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);

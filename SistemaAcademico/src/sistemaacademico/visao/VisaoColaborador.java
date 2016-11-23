@@ -529,6 +529,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         limparComponentesColaborador();
         textCodigo.setText("");
+        tabelaColaboradores.clearSelection();
         habilitarControlesColaborador();
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -558,6 +559,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         if (msg.equals(Mensagens.SUCESSO)) {
             limparComponentesColaborador();
+            int linha = tabelaColaboradores.getSelectedRow();
+            atualizarTabela(linha, dados);
         } else {
             habilitarControlesColaborador();
         }
@@ -716,6 +719,21 @@ public class VisaoColaborador extends javax.swing.JFrame {
         for (HashMap<String, Object> p : projetos) {
             m.addRow(new Object[]{p.get("codigo"), p.get("nome")});
         }
+    }
+
+    private void atualizarTabela(int linha, HashMap<String, Object> dados) {
+        if (linha == -1) {
+            ((DefaultTableModel) tabelaColaboradores.getModel())
+                    .addRow(new Object[]{});
+            linha = tabelaColaboradores.getRowCount() - 1;
+        }
+
+        tabelaColaboradores.setValueAt(dados.get("codigo"), linha, 0);
+        tabelaColaboradores.setValueAt(dados.get("nome"), linha, 1);
+        tabelaColaboradores.setValueAt(dados.get("email"), linha, 2);
+        tabelaColaboradores.setValueAt(dados.get("categoria"), linha, 3);
+        tabelaColaboradores.setValueAt(dados.get("academico"), linha, 4);
+        tabelaColaboradores.setValueAt(dados.get("ativo"), linha, 5);
     }
 
 }

@@ -24,7 +24,8 @@ public class DaoColaborador {
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
             stmt.setString(1, c.getNome());
             stmt.setString(2, c.getCpf());
             stmt.setString(3, c.getRg());
@@ -36,6 +37,10 @@ public class DaoColaborador {
             stmt.setString(9, c.getLogin());
             stmt.setString(10, c.getSenha());
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next())
+                c.setCodigo(rs.getInt(1));
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {

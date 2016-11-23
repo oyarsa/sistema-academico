@@ -52,8 +52,11 @@ public class ControleColaborador {
         String sCodigo = dados.get("codigo").toString();
         if (sCodigo.equals("")) {
             String msg = DaoColaborador.inserir(c);
-            if (msg.equals(Mensagens.SUCESSO) && (Boolean) dados.get("academico")) {
-                // salvar RegistroAcademico
+            if (msg.equals(Mensagens.SUCESSO)) {
+                dados.put("codigo", c.getCodigo());
+                if ((Boolean) dados.get("academico")) {
+                    // salvar RegistroAcademico
+                }
             }
             return msg;
         } else {
