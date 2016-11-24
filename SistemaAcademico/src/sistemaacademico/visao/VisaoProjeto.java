@@ -5,17 +5,30 @@
  */
 package sistemaacademico.visao;
 
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import sistemaacademico.controle.ControleProjeto;
+
 /**
  *
  * @author Italo Silva
  */
 public class VisaoProjeto extends javax.swing.JFrame {
 
+    private final HashMap<String, Object> dados;
+
     /**
      * Creates new form VisaoProjeto
      */
     public VisaoProjeto() {
         initComponents();
+        dados = new HashMap<>();
+        inicializar();
+    }
+
+    public VisaoProjeto(int codigoProjeto) {
+        this.dados = ControleProjeto.recuperar(codigoProjeto);
+        inicializar();
     }
 
     /**
@@ -44,7 +57,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taRecursos = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
+        btnGravar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         painelAtividades = new javax.swing.JPanel();
 
@@ -91,10 +104,25 @@ public class VisaoProjeto extends javax.swing.JFrame {
         jScrollPane2.setViewportView(taRecursos);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
-        btnSalvar.setText("Salvar");
+        btnGravar.setText("Gravar");
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
@@ -122,10 +150,10 @@ public class VisaoProjeto extends javax.swing.JFrame {
                                 .addComponent(textGerente))
                             .addGroup(painelPrincipalLayout.createSequentialGroup()
                                 .addGap(76, 76, 76)
-                                .addComponent(btnSalvar)
+                                .addComponent(btnGravar)
                                 .addGap(74, 74, 74)
                                 .addComponent(btnExcluir)
-                                .addGap(0, 100, Short.MAX_VALUE))))
+                                .addGap(0, 98, Short.MAX_VALUE))))
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
@@ -157,7 +185,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnSalvar)
+                    .addComponent(btnGravar)
                     .addComponent(btnExcluir))
                 .addContainerGap())
         );
@@ -182,7 +210,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,6 +223,30 @@ public class VisaoProjeto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        resetCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+        dados.put("nome", textNome.getText());
+        dados.put("objetivo", taObjetivo.getText());
+        dados.put("recursos", taRecursos.getText());
+
+        String msg = ControleProjeto.salvar(dados);
+        JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja apagar esse projeto?",
+                "Confirmação de exlcusão", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.NO_OPTION)
+            return;
+
+        String msg = ControleProjeto.apagar(dados);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,7 +286,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnGravar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -253,4 +305,20 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JTextField textGerente;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables
+
+    private void inicializar() {
+        resetCampos();
+
+        if (!dados.containsKey("codigo")) {
+            btnExcluir.setEnabled(false);
+        }
+    }
+
+    private void resetCampos() {
+        textCodigo.setText(dados.getOrDefault("codigo", "").toString());
+        textNome.setText(dados.getOrDefault("nome", "").toString());
+        textGerente.setText(dados.getOrDefault("nomeGerente", "").toString());
+        taObjetivo.setText(dados.getOrDefault("objetivo", "").toString());
+        taRecursos.setText(dados.getOrDefault("recursos", "").toString());
+    }
 }
