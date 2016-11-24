@@ -1,6 +1,7 @@
 package sistemaacademico.controle;
 
 import java.util.HashMap;
+import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoProjeto;
 import sistemaacademico.modelo.Projeto;
 
@@ -23,15 +24,27 @@ public class ControleProjeto {
         p.setRecursos(dados.get("recursos").toString());
 
         if (!dados.containsKey("codigo")) {
-            return DaoProjeto.inserir(p);
+            String msg = DaoProjeto.inserir(p);
+            dados.put("codigo", p.getCodigo());
+            return msg;
         } else {
-            p.setCodigo((Integer) dados.get("codigo"));
-            return DaoProjeto.atualizar(p);
+            try {
+                p.setCodigo(Integer.parseInt(dados.get("codigo").toString()));
+                return DaoProjeto.atualizar(p);
+            } catch (Exception ex) {
+                return Mensagens.ERRO + "Código inválido";
+            }
         }
     }
 
     public static String apagar(HashMap<String, Object> dados) {
-        return DaoProjeto.remover((Integer) dados.get("codigo"));
+        int codigo;
+        try {
+            codigo = Integer.parseInt(dados.get("codigo").toString());
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Código inválido";
+        }
+        return DaoProjeto.remover(codigo);
     }
 
 }

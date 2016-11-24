@@ -23,12 +23,21 @@ public class ControleColaborador {
     }
 
     public static String remover(HashMap<String, Object> dados) {
-        int codigo = (Integer) dados.get("codigo");
-        return DaoColaborador.remover(codigo);
+        try {
+            int codigo = Integer.parseInt(dados.get("codigo").toString());
+            return DaoColaborador.remover(codigo);
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Código inválido";
+        }
     }
 
     public static HashMap<String, Object> carregarColaborador(HashMap<String, Object> dados) {
-        int codigo = (Integer) dados.get("codigo");
+        int codigo;
+        try {
+            codigo = Integer.parseInt(dados.get("codigo").toString());
+        } catch (Exception ex) {
+            return null;
+        }
 
         Colaborador c = DaoColaborador.recuperar(codigo);
         if (c == null)
