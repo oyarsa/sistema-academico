@@ -8,7 +8,6 @@ import sistemaacademico.modelo.Projeto;
 public class ControleProjeto {
 
     public static HashMap<String, Object> recuperar(int codigoProjeto) {
-        HashMap<String, Object> dados = new HashMap<>();
         Projeto p = DaoProjeto.recuperar(codigoProjeto);
 
         if (p == null)

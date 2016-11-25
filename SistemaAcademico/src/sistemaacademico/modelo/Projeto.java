@@ -91,6 +91,7 @@ public class Projeto {
         rv.put("nome", nome);
         rv.put("objetivo", objetivo);
         rv.put("recursos", recursos);
+        rv.put("codigoGerente", gerente.getCodigo());
 
         return rv;
     }

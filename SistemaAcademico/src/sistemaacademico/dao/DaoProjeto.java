@@ -124,7 +124,8 @@ public class DaoProjeto {
 
     public static ArrayList<Projeto> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_proj, nome_proj, objetivo_proj, recursos_proj "
+                = "SELECT cod_proj, nome_proj, objetivo_proj, recursos_proj,"
+                + "       gerente_proj "
                 + "FROM projeto "
                 + where;
 
@@ -144,6 +145,7 @@ public class DaoProjeto {
                 p.setNome(rs.getString("nome_proj"));
                 p.setObjetivo(rs.getString("objetivo_proj"));
                 p.setRecursos(rs.getString("recursos_proj"));
+                p.setGerente(DaoColaborador.recuperar(rs.getInt("gerente_proj")));
 
                 projetos.add(p);
             }
