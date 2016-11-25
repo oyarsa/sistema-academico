@@ -78,4 +78,21 @@ public class ControleAtividade {
         return rv;
     }
 
+    public static ArrayList<HashMap<String, Object>> recuperarDependencias(HashMap<String, Object> ativ) {
+        int codigo;
+        try {
+            codigo = Integer.parseInt(ativ.get("codigo").toString());
+        } catch (Exception ex) {
+            return null;
+        }
+
+        ArrayList<Atividade> dependencias = DaoAtividade.carregarDependencias(codigo);
+        ArrayList<HashMap<String, Object>> rv = new ArrayList<>();
+
+        for (Atividade a : dependencias) {
+            rv.add(a.toHashMap());
+        }
+        return rv;
+    }
+
 }

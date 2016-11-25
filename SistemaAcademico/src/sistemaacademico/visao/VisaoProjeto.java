@@ -47,6 +47,9 @@ public class VisaoProjeto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogDependencias = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaDependencias = new javax.swing.JTable();
         painelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -86,6 +89,49 @@ public class VisaoProjeto extends javax.swing.JFrame {
         btnGravarAtiv = new javax.swing.JButton();
         btnCancelarAtiv = new javax.swing.JButton();
         btnExcluirAtiv = new javax.swing.JButton();
+
+        dialogDependencias.setModal(true);
+        dialogDependencias.setSize(new java.awt.Dimension(500, 500));
+
+        tabelaDependencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tabelaDependencias);
+        if (tabelaDependencias.getColumnModel().getColumnCount() > 0) {
+            tabelaDependencias.getColumnModel().getColumn(0).setMinWidth(50);
+            tabelaDependencias.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
+
+        javax.swing.GroupLayout dialogDependenciasLayout = new javax.swing.GroupLayout(dialogDependencias.getContentPane());
+        dialogDependencias.getContentPane().setLayout(dialogDependenciasLayout);
+        dialogDependenciasLayout.setHorizontalGroup(
+            dialogDependenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        dialogDependenciasLayout.setVerticalGroup(
+            dialogDependenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -226,6 +272,11 @@ public class VisaoProjeto extends javax.swing.JFrame {
         labelDuracaoEstimadaAtividade.setText("Duração Estimada");
 
         btnDependencias.setText("Dependências");
+        btnDependencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDependenciasActionPerformed(evt);
+            }
+        });
 
         btnTarefas.setText("Tarefas");
 
@@ -503,6 +554,26 @@ public class VisaoProjeto extends javax.swing.JFrame {
         textDuracaoEstimadaAtividade.setText(rv.get("duracaoEstimada").toString());
     }//GEN-LAST:event_tabelaAtividadesMouseClicked
 
+    private void btnDependenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDependenciasActionPerformed
+        int linha = tabelaAtividades.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        HashMap<String, Object> ativ = new HashMap<>();
+        ativ.put("codigo", tabelaAtividades.getValueAt(linha, linha));
+        ArrayList<HashMap<String, Object>> dependencias
+                = ControleAtividade.recuperarDependencias(ativ);
+
+        DefaultTableModel m = (DefaultTableModel) tabelaAtividades.getModel();
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> a : dependencias) {
+            m.addColumn(new Object[]{a.get("codigo"), a.get("titulo")});
+        }
+
+        dialogDependencias.setVisible(true);
+    }//GEN-LAST:event_btnDependenciasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -550,9 +621,11 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JButton btnNovoAtiv;
     private javax.swing.JButton btnTarefas;
     private javax.swing.JComboBox<String> comboGerente;
+    private javax.swing.JDialog dialogDependencias;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelCodAtividade;
     private javax.swing.JLabel labelCodigo;
@@ -571,6 +644,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JTextArea taObjetivo;
     private javax.swing.JTextArea taRecursos;
     private javax.swing.JTable tabelaAtividades;
+    private javax.swing.JTable tabelaDependencias;
     private javax.swing.JTextField textCodAtividade;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textDataFimAtividade;
