@@ -119,7 +119,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaProjetosGerenciados = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -455,6 +455,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaProjetosGerenciados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaProjetosGerenciadosMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabelaProjetosGerenciados);
         if (tabelaProjetosGerenciados.getColumnModel().getColumnCount() > 0) {
             tabelaProjetosGerenciados.getColumnModel().getColumn(0).setMinWidth(70);
@@ -608,6 +613,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
             carregarProjetosGerenciados();
         }
     }//GEN-LAST:event_painelAbasStateChanged
+
+    private void tabelaProjetosGerenciadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProjetosGerenciadosMouseClicked
+        if (evt.getClickCount() != 2)
+            return;
+
+        int linha = tabelaProjetos.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int codigo = (Integer) tabelaProjetos.getValueAt(linha, 0);
+
+        VisaoProjeto p = new VisaoProjeto(codigo);
+        p.setVisible(true);
+    }//GEN-LAST:event_tabelaProjetosGerenciadosMouseClicked
 
     /**
      * @param args the command line arguments
