@@ -16,8 +16,8 @@ public class DaoProjeto {
     public static String inserir(Projeto p) {
         String sql
                 = "INSERT INTO projeto "
-                + "(nome_proj, objetivo_proj, recursos_proj) "
-                + "VALUES (?, ?, ?)";
+                + "(nome_proj, objetivo_proj, recursos_proj, gerente_proj) "
+                + "VALUES (?, ?, ?, ?)";
         PreparedStatement stmt = null;
 
         try {
@@ -27,6 +27,7 @@ public class DaoProjeto {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getObjetivo());
             stmt.setString(3, p.getRecursos());
+            stmt.setInt(4, p.getGerente().getCodigo());
 
             stmt.executeUpdate();
 
@@ -51,7 +52,8 @@ public class DaoProjeto {
     public static String atualizar(Projeto p) {
         String sql
                 = "UPDATE projeto "
-                + "SET nome_proj = ?, objetivo_proj = ?, recursos_proj = ? "
+                + "SET nome_proj = ?, objetivo_proj = ?, recursos_proj = ?, "
+                + "    gerente_proj = ? "
                 + "WHERE cod_proj = ?";
         PreparedStatement stmt = null;
 
@@ -62,7 +64,8 @@ public class DaoProjeto {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getObjetivo());
             stmt.setString(3, p.getRecursos());
-            stmt.setInt(4, p.getCodigo());
+            stmt.setInt(4, p.getGerente().getCodigo());
+            stmt.setInt(5, p.getCodigo());
 
             stmt.executeUpdate();
             return Mensagens.SUCESSO;
