@@ -2,6 +2,7 @@ package sistemaacademico.modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Atividade {
 
@@ -81,6 +82,17 @@ public class Atividade {
 
     public void setDuracaoEstimada(Date duracaoEstimada) {
         this.duracaoEstimada = duracaoEstimada;
+    }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("titulo", titulo);
+        rv.put("dataInicio", dataTermino);
+        rv.put("duracaoEstimada", duracaoEstimada);
+
+        return rv;
     }
 
 }
