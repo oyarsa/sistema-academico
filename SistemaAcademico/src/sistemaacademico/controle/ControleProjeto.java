@@ -2,6 +2,7 @@ package sistemaacademico.controle;
 
 import java.util.HashMap;
 import sistemaacademico.Util.Mensagens;
+import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoProjeto;
 import sistemaacademico.modelo.Projeto;
 
@@ -21,6 +22,14 @@ public class ControleProjeto {
         p.setNome(dados.get("nome").toString());
         p.setObjetivo(dados.get("objetivo").toString());
         p.setRecursos(dados.get("recursos").toString());
+
+        try {
+            p.setGerente(DaoColaborador.recuperar(
+                    Integer.parseInt((String) dados.get("codigoGerente"))));
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return Mensagens.ERRO + "Gerente inválido";
+        }
 
         if (!dados.containsKey("codigo")) {
             String msg = DaoProjeto.inserir(p);
