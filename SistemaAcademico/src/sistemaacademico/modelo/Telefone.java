@@ -1,5 +1,7 @@
 package sistemaacademico.modelo;
 
+import java.util.HashMap;
+
 public class Telefone {
 
     private int codigo;
@@ -57,6 +59,18 @@ public class Telefone {
 
     public void setOperadora(String operadora) {
         this.operadora = operadora;
+    }
+    
+      public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("ddd", ddd);
+        rv.put("ddi", ddi);
+        rv.put("numero", numero);
+        rv.put("operadora", operadora);
+
+        return rv;
     }
 
 }

@@ -127,6 +127,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
         botaoGravarTelefone = new javax.swing.JButton();
         botaoCancelarTelefone = new javax.swing.JButton();
         botaoExcluirTelefone = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        textCodigoTelefone = new javax.swing.JTextField();
         painelRegistroAcad = new javax.swing.JPanel();
         painelHistorico = new javax.swing.JPanel();
         painelProjetos = new javax.swing.JPanel();
@@ -397,12 +399,14 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabelaTelefones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaTelefonesMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tabelaTelefones);
 
         botaoNovoTelefone.setText("Novo");
-        botaoNovoTelefone.setMaximumSize(new java.awt.Dimension(57, 23));
-        botaoNovoTelefone.setMinimumSize(new java.awt.Dimension(57, 23));
-        botaoNovoTelefone.setPreferredSize(new java.awt.Dimension(57, 23));
         botaoNovoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoNovoTelefoneActionPerformed(evt);
@@ -410,9 +414,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
         });
 
         botaoEditarTelefone.setText("Editar");
-        botaoEditarTelefone.setMaximumSize(new java.awt.Dimension(61, 23));
-        botaoEditarTelefone.setMinimumSize(new java.awt.Dimension(61, 23));
-        botaoEditarTelefone.setPreferredSize(new java.awt.Dimension(61, 23));
         botaoEditarTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEditarTelefoneActionPerformed(evt);
@@ -420,9 +421,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
         });
 
         botaoGravarTelefone.setText("Gravar");
-        botaoGravarTelefone.setMaximumSize(new java.awt.Dimension(65, 23));
-        botaoGravarTelefone.setMinimumSize(new java.awt.Dimension(65, 23));
-        botaoGravarTelefone.setPreferredSize(new java.awt.Dimension(65, 23));
         botaoGravarTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoGravarTelefoneActionPerformed(evt);
@@ -430,9 +428,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
         });
 
         botaoCancelarTelefone.setText("Cancelar");
-        botaoCancelarTelefone.setMaximumSize(new java.awt.Dimension(75, 23));
-        botaoCancelarTelefone.setMinimumSize(new java.awt.Dimension(75, 23));
-        botaoCancelarTelefone.setPreferredSize(new java.awt.Dimension(75, 23));
         botaoCancelarTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCancelarTelefoneActionPerformed(evt);
@@ -440,14 +435,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
         });
 
         botaoExcluirTelefone.setText("Excluir");
-        botaoExcluirTelefone.setMaximumSize(new java.awt.Dimension(63, 23));
-        botaoExcluirTelefone.setMinimumSize(new java.awt.Dimension(63, 23));
-        botaoExcluirTelefone.setPreferredSize(new java.awt.Dimension(63, 23));
         botaoExcluirTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoExcluirTelefoneActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Código");
 
         javax.swing.GroupLayout painelTelefonesLayout = new javax.swing.GroupLayout(painelTelefones);
         painelTelefones.setLayout(painelTelefonesLayout);
@@ -459,50 +453,58 @@ public class VisaoColaborador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane4)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelTelefonesLayout.createSequentialGroup()
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textColaboradorTelefone))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelTelefonesLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textDDITelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textOperadoraTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textDDDTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textNumeroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelTelefonesLayout.createSequentialGroup()
+                                .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(painelTelefonesLayout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textDDITelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textOperadoraTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2))
+                                    .addGroup(painelTelefonesLayout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textCodigoTelefone)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textColaboradorTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelTelefonesLayout.createSequentialGroup()
+                                        .addComponent(textDDDTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textNumeroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(painelTelefonesLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(botaoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoNovoTelefone)
                         .addGap(64, 64, 64)
-                        .addComponent(botaoEditarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoEditarTelefone)
                         .addGap(70, 70, 70)
-                        .addComponent(botaoGravarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoGravarTelefone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoCancelarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoCancelarTelefone)
                         .addGap(85, 85, 85)
-                        .addComponent(botaoExcluirTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoExcluirTelefone)
                         .addGap(96, 96, 96)))
                 .addContainerGap())
         );
         painelTelefonesLayout.setVerticalGroup(
             painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTelefonesLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(textCodigoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(textColaboradorTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -519,12 +521,12 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoCancelarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoExcluirTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botaoCancelarTelefone)
+                        .addComponent(botaoExcluirTelefone))
                     .addGroup(painelTelefonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoEditarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoGravarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoEditarTelefone)
+                        .addComponent(botaoNovoTelefone)
+                        .addComponent(botaoGravarTelefone)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -534,7 +536,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         painelRegistroAcad.setLayout(painelRegistroAcadLayout);
         painelRegistroAcadLayout.setHorizontalGroup(
             painelRegistroAcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
+            .addGap(0, 817, Short.MAX_VALUE)
         );
         painelRegistroAcadLayout.setVerticalGroup(
             painelRegistroAcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,7 +549,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         painelHistorico.setLayout(painelHistoricoLayout);
         painelHistoricoLayout.setHorizontalGroup(
             painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
+            .addGap(0, 817, Short.MAX_VALUE)
         );
         painelHistoricoLayout.setVerticalGroup(
             painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +593,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelProjetosLayout.setVerticalGroup(
@@ -637,7 +639,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosGerenciadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosGerenciadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelProjetosGerenciadosLayout.setVerticalGroup(
@@ -673,7 +675,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         inicializarColaboradores();
-        inicializarColaboradoresTelefone();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -684,15 +685,17 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse Colaborador?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.NO_OPTION)
+        if (resposta == JOptionPane.NO_OPTION) {
             return;
+        }
 
         limparComponentesColaborador();
 
         DefaultTableModel m = (DefaultTableModel) tabelaColaboradores.getModel();
         int linha = tabelaColaboradores.getSelectedRow();
-        if (linha == -1)
+        if (linha == -1) {
             return;
+        }
 
         int codigo = (Integer) m.getValueAt(linha, 0);
         HashMap<String, Object> dados = new HashMap<>();
@@ -701,8 +704,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
         String msg = ControleColaborador.remover(dados);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
 
-        if (msg.equals(Mensagens.SUCESSO))
+        if (msg.equals(Mensagens.SUCESSO)) {
             m.removeRow(linha);
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -713,8 +717,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (tabelaColaboradores.getSelectedRow() != -1)
+        if (tabelaColaboradores.getSelectedRow() != -1) {
             habilitarControlesColaborador();
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
@@ -748,8 +753,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void tabelaColaboradoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaColaboradoresMouseClicked
         DefaultTableModel m = (DefaultTableModel) tabelaColaboradores.getModel();
         int linha = tabelaColaboradores.getSelectedRow();
-        if (linha == -1)
+        if (linha == -1) {
             return;
+        }
 
         int codigo = (Integer) m.getValueAt(linha, 0);
         HashMap<String, Object> dados = new HashMap<>();
@@ -780,16 +786,22 @@ public class VisaoColaborador extends javax.swing.JFrame {
             carregarProjetos();
         } else if (aba.equals("Projetos Gerenciados")) {
             carregarProjetosGerenciados();
+        } else if (aba.equals("Telefones")) {
+
+            inicializarColaboradoresTelefone();
+            carregarTelefones();
         }
     }//GEN-LAST:event_painelAbasStateChanged
 
     private void tabelaProjetosGerenciadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProjetosGerenciadosMouseClicked
-        if (evt.getClickCount() != 2)
+        if (evt.getClickCount() != 2) {
             return;
+        }
 
         int linha = tabelaProjetos.getSelectedRow();
-        if (linha == -1)
+        if (linha == -1) {
             return;
+        }
 
         int codigo = (Integer) tabelaProjetos.getValueAt(linha, 0);
 
@@ -797,69 +809,101 @@ public class VisaoColaborador extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_tabelaProjetosGerenciadosMouseClicked
 
+    //CONFERIDO
     private void botaoCancelarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarTelefoneActionPerformed
         limparComponentesColaboradorTelefone();
         desabilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoCancelarTelefoneActionPerformed
 
+    //CONFERIDO
     private void botaoExcluirTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirTelefoneActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse Colaborador?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.NO_OPTION)
+        if (resposta == JOptionPane.NO_OPTION) {
             return;
+        }
 
         limparComponentesColaboradorTelefone();
 
         DefaultTableModel mTelefone = (DefaultTableModel) tabelaTelefones.getModel();
         int linha = tabelaTelefones.getSelectedRow();
-        if (linha == -1)
+        if (linha == -1) {
             return;
+        }
 
         int codigo = (Integer) mTelefone.getValueAt(linha, 0);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("codigo", codigo);
 
-        String msg = ControleColaborador.remover(dados);
+        String msg = ControleColaborador.removerTelefone(dados);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
 
-        if (msg.equals(Mensagens.SUCESSO))
+        if (msg.equals(Mensagens.SUCESSO)) {
             mTelefone.removeRow(linha);
+        }
     }//GEN-LAST:event_botaoExcluirTelefoneActionPerformed
-
+//CONFERIDO
     private void botaoNovoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoTelefoneActionPerformed
         limparComponentesColaborador();
         //textCodigo.setText("");
         tabelaTelefones.clearSelection();
         habilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoNovoTelefoneActionPerformed
-
+//CONFERIDO
     private void botaoEditarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarTelefoneActionPerformed
-        if (tabelaTelefones.getSelectedRow() != -1)
+        if (tabelaTelefones.getSelectedRow() != -1) {
             habilitarControlesColaboradorTelefone();
+        }
     }//GEN-LAST:event_botaoEditarTelefoneActionPerformed
-
+//CONFERIDO
     private void botaoGravarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGravarTelefoneActionPerformed
-          desabilitarControlesColaboradorTelefone();
+        desabilitarControlesColaboradorTelefone();
 
         HashMap<String, Object> dados = new HashMap<>();
 
-        dados.put("colaborador", textColaboradorTelefone.getText());
-        dados.put("DDI", textDDITelefone.getText());
-        dados.put("DDD", textDDDTelefone.getText());
+        dados.put("codigo", textCodigoTelefone.getText());
+        dados.put("colaborador", textCodigo.getText());
+        dados.put("ddi", textDDITelefone.getText());
+        dados.put("ddd", textDDDTelefone.getText());
         dados.put("operadora", textOperadoraTelefone.getText());
         dados.put("numero", textNumeroTelefone.getText());
-        
-        String msg = ControleColaborador.salvar(dados);
+
+        String msg = ControleColaborador.salvarTelefone(dados);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
 
         if (msg.equals(Mensagens.SUCESSO)) {
-            limparComponentesColaborador();
-            int linha = tabelaColaboradores.getSelectedRow();
-            atualizarTabela(linha, dados);
+            limparComponentesColaboradorTelefone();
+            int linha = tabelaTelefones.getSelectedRow();
+            atualizarTabelaTelefone(linha, dados);
         } else {
-            habilitarControlesColaborador();
+            habilitarControlesColaboradorTelefone();
         }
     }//GEN-LAST:event_botaoGravarTelefoneActionPerformed
+
+    private void tabelaTelefonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTelefonesMouseClicked
+        DefaultTableModel m = (DefaultTableModel) tabelaTelefones.getModel();
+        int linha = tabelaTelefones.getSelectedRow();
+        if (linha == -1) {
+            return;
+        }
+
+        int codigo = (Integer) m.getValueAt(linha, 0);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", codigo);
+
+        HashMap<String, Object> t = ControleColaborador.carregarTelefone(dados);
+        if (t == null) {
+            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        textCodigo.setText(t.get("codigo").toString());
+        textCodigo.setText(t.get("colaborador").toString());
+        textDDITelefone.setText(t.get("ddi").toString());
+        textDDDTelefone.setText(t.get("ddd").toString());
+        textOperadoraTelefone.setText(t.get("operadora").toString());
+        textNumeroTelefone.setText(t.get("numero").toString());
+    }//GEN-LAST:event_tabelaTelefonesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -914,6 +958,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -942,6 +987,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JTextField textCPF;
     private javax.swing.JTextField textCategoria;
     private javax.swing.JTextField textCodigo;
+    private javax.swing.JTextField textCodigoTelefone;
     private javax.swing.JTextField textColaboradorTelefone;
     private javax.swing.JTextField textDDDTelefone;
     private javax.swing.JTextField textDDITelefone;
@@ -1010,17 +1056,17 @@ public class VisaoColaborador extends javax.swing.JFrame {
         tabelaColaboradores.setValueAt(dados.get("ativo"), linha, 5);
     }
 // CÓDIGOS DA ABA TELEFONE
-    
+
     private void limparComponentesColaboradorTelefone() {
-        
+
         textDDITelefone.setText("");
         textDDDTelefone.setText("");
         textNumeroTelefone.setText("");
-        textNumeroTelefone.setText("");
+        textOperadoraTelefone.setText("");
         textColaboradorTelefone.setText("");
     }
-    
-       private void toggleComponentesColaboradorTelefone(boolean ativo) {
+
+    private void toggleComponentesColaboradorTelefone(boolean ativo) {
         // Ativo será verdadeiro quando o formulário aceitar entradas
         botaoCancelarTelefone.setEnabled(ativo);
         botaoGravarTelefone.setEnabled(ativo);
@@ -1029,12 +1075,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
         botaoNovoTelefone.setEnabled(!ativo);
 
         textColaboradorTelefone.setEnabled(ativo);
+        textCodigoTelefone.setEnabled(ativo);
         textDDITelefone.setEnabled(ativo);
         textDDDTelefone.setEnabled(ativo);
         textOperadoraTelefone.setEnabled(ativo);
-        textNumeroTelefone.setEnabled(ativo);  
+        textNumeroTelefone.setEnabled(ativo);
     }
-       
+
     private void habilitarControlesColaboradorTelefone() {
         toggleComponentesColaboradorTelefone(true);
     }
@@ -1045,7 +1092,34 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     private void inicializarColaboradoresTelefone() {
         desabilitarControlesColaboradorTelefone();
-        carregarTabela();
     }
-    
+
+    private void atualizarTabelaTelefone(int linha, HashMap<String, Object> dados) {
+        if (linha == -1) {
+            ((DefaultTableModel) tabelaTelefones.getModel())
+                    .addRow(new Object[]{});
+            linha = tabelaTelefones.getRowCount() - 1;
+        }
+
+        tabelaTelefones.setValueAt(dados.get("codigo"), linha, 0);
+        tabelaTelefones.setValueAt(dados.get("colaborador"), linha, 1);
+        tabelaTelefones.setValueAt(dados.get("ddi"), linha, 2);
+        tabelaTelefones.setValueAt(dados.get("ddd"), linha, 3);
+        tabelaTelefones.setValueAt(dados.get("operadora"), linha, 4);
+        tabelaTelefones.setValueAt(dados.get("numero"), linha, 5);
+    }
+
+    private void carregarTelefones() {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", textCodigo.getText());
+
+        ArrayList<HashMap<String, Object>> telefones = ControleColaborador.carregarTelefones(dados);
+        DefaultTableModel m = (DefaultTableModel) tabelaTelefones.getModel();
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> t : telefones) {
+            m.addRow(new Object[]{t.get("codigo"), t.get("colaborador"), t.get("ddi"), t.get("ddd"), t.get("operadora"), t.get("numero")});
+        }
+    }
+
 }
