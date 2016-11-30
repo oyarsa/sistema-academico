@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistemaacademico.visao;
 
 import java.util.ArrayList;
@@ -12,10 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.controle.ControleColaborador;
 
-/**
- *
- * @author Italo Silva
- */
+
 public class VisaoColaborador extends javax.swing.JFrame {
 
     private void limparComponentesColaborador() {
@@ -130,13 +123,28 @@ public class VisaoColaborador extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         textCodigoTelefone = new javax.swing.JTextField();
         painelRegistroAcad = new javax.swing.JPanel();
-        painelHistorico = new javax.swing.JPanel();
         painelProjetos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProjetos = new javax.swing.JTable();
         painelProjetosGerenciados = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaProjetosGerenciados = new javax.swing.JTable();
+        painelHistorico = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        textCodigoEstado = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        textNomeEstado = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        textDataIniEstado = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        textDataTerEstado = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabelaEstados = new javax.swing.JTable();
+        botaoNovoEstado = new javax.swing.JButton();
+        botaoEditarEstado = new javax.swing.JButton();
+        botaoGravarEstado = new javax.swing.JButton();
+        botaoCancelarEstado = new javax.swing.JButton();
+        botaoExcluirEstado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -366,7 +374,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     .addComponent(btnGravar)
                     .addComponent(btnCancelar)
                     .addComponent(btnExcluir))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Principal", painelPrincipal);
@@ -527,7 +535,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                         .addComponent(botaoEditarTelefone)
                         .addComponent(botaoNovoTelefone)
                         .addComponent(botaoGravarTelefone)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Telefones", painelTelefones);
@@ -540,23 +548,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
         );
         painelRegistroAcadLayout.setVerticalGroup(
             painelRegistroAcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         painelAbas.addTab("Registro Acadêmico", painelRegistroAcad);
-
-        javax.swing.GroupLayout painelHistoricoLayout = new javax.swing.GroupLayout(painelHistorico);
-        painelHistorico.setLayout(painelHistoricoLayout);
-        painelHistoricoLayout.setHorizontalGroup(
-            painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 817, Short.MAX_VALUE)
-        );
-        painelHistoricoLayout.setVerticalGroup(
-            painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
-        );
-
-        painelAbas.addTab("Histórico", painelHistorico);
 
         tabelaProjetos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -600,7 +595,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -647,10 +642,141 @@ public class VisaoColaborador extends javax.swing.JFrame {
             .addGroup(painelProjetosGerenciadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Projetos Gerenciados", painelProjetosGerenciados);
+
+        jLabel7.setText("Código");
+
+        jLabel8.setText("Nome");
+
+        jLabel9.setText("Data de Início");
+
+        jLabel10.setText("Data de Término");
+
+        tabelaEstados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cód", "Nome", "Data de Início", "Data de Término"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tabelaEstados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaEstadosMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tabelaEstados);
+
+        botaoNovoEstado.setText("Novo");
+        botaoNovoEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoEstadoActionPerformed(evt);
+            }
+        });
+
+        botaoEditarEstado.setText("Editar");
+        botaoEditarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarEstadoActionPerformed(evt);
+            }
+        });
+
+        botaoGravarEstado.setText("Gravar");
+        botaoGravarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGravarEstadoActionPerformed(evt);
+            }
+        });
+
+        botaoCancelarEstado.setText("Cancelar");
+        botaoCancelarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarEstadoActionPerformed(evt);
+            }
+        });
+
+        botaoExcluirEstado.setText("Excluir");
+        botaoExcluirEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirEstadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelHistoricoLayout = new javax.swing.GroupLayout(painelHistorico);
+        painelHistorico.setLayout(painelHistoricoLayout);
+        painelHistoricoLayout.setHorizontalGroup(
+            painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelHistoricoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(painelHistoricoLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textCodigoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textNomeEstado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textDataIniEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textDataTerEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(painelHistoricoLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(botaoNovoEstado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(botaoEditarEstado)
+                .addGap(91, 91, 91)
+                .addComponent(botaoGravarEstado)
+                .addGap(93, 93, 93)
+                .addComponent(botaoCancelarEstado)
+                .addGap(69, 69, 69)
+                .addComponent(botaoExcluirEstado)
+                .addGap(76, 76, 76))
+        );
+        painelHistoricoLayout.setVerticalGroup(
+            painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelHistoricoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(textCodigoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(textNomeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(textDataIniEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(textDataTerEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(painelHistoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoNovoEstado)
+                    .addComponent(botaoEditarEstado)
+                    .addComponent(botaoGravarEstado)
+                    .addComponent(botaoCancelarEstado)
+                    .addComponent(botaoExcluirEstado))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        painelAbas.addTab("Histórico", painelHistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -790,6 +916,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
             inicializarColaboradoresTelefone();
             carregarTelefones();
+        }else if (aba.equals("Histórico")) {
+
+            inicializarColaboradoresEstado();
+            carregarEstado();
         }
     }//GEN-LAST:event_painelAbasStateChanged
 
@@ -810,6 +940,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaProjetosGerenciadosMouseClicked
 
     //CONFERIDO
+    //CODIGO PARA TELEFONE
     private void botaoCancelarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarTelefoneActionPerformed
         limparComponentesColaboradorTelefone();
         desabilitarControlesColaboradorTelefone();
@@ -817,7 +948,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     //CONFERIDO
     private void botaoExcluirTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirTelefoneActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse Colaborador?",
+        int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse telefone?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.NO_OPTION) {
             return;
@@ -844,8 +975,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoExcluirTelefoneActionPerformed
 //CONFERIDO
     private void botaoNovoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoTelefoneActionPerformed
-        limparComponentesColaborador();
-        //textCodigo.setText("");
+        limparComponentesColaboradorTelefone();
+        textCodigoTelefone.setText("");
         tabelaTelefones.clearSelection();
         habilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoNovoTelefoneActionPerformed
@@ -897,13 +1028,104 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
-        textCodigo.setText(t.get("codigo").toString());
+        textCodigoTelefone.setText(t.get("codigo").toString());
         textCodigo.setText(t.get("colaborador").toString());
         textDDITelefone.setText(t.get("ddi").toString());
         textDDDTelefone.setText(t.get("ddd").toString());
         textOperadoraTelefone.setText(t.get("operadora").toString());
         textNumeroTelefone.setText(t.get("numero").toString());
     }//GEN-LAST:event_tabelaTelefonesMouseClicked
+
+    //CODIGO PARA ESTADO
+    private void botaoCancelarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarEstadoActionPerformed
+         limparComponentesColaboradorEstado();
+        desabilitarControlesColaboradorEstado();
+    }//GEN-LAST:event_botaoCancelarEstadoActionPerformed
+
+    private void botaoExcluirEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirEstadoActionPerformed
+          int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse histórico?",
+                "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        limparComponentesColaboradorEstado();
+
+        DefaultTableModel mEstado = (DefaultTableModel) tabelaEstados.getModel();
+        int linha = tabelaEstados.getSelectedRow();
+        if (linha == -1) {
+            return;
+        }
+
+        int codigo = (Integer) mEstado.getValueAt(linha, 0);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", codigo);
+
+        String msg = ControleColaborador.removerEstado(dados);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO)) {
+            mEstado.removeRow(linha);
+        }
+    }//GEN-LAST:event_botaoExcluirEstadoActionPerformed
+
+    private void botaoNovoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoEstadoActionPerformed
+        limparComponentesColaboradorEstado();
+        textCodigoEstado.setText("");
+        tabelaEstados.clearSelection();
+        habilitarControlesColaboradorEstado();
+    }//GEN-LAST:event_botaoNovoEstadoActionPerformed
+
+    private void botaoEditarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarEstadoActionPerformed
+        if (tabelaEstados.getSelectedRow() != -1) {
+            habilitarControlesColaboradorEstado();
+        }
+    }//GEN-LAST:event_botaoEditarEstadoActionPerformed
+
+    private void botaoGravarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGravarEstadoActionPerformed
+         desabilitarControlesColaboradorEstado();
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("codigo", textCodigoEstado.getText());
+        dados.put("nome", textNomeEstado.getText());
+        dados.put("dataIni", textDataIniEstado.getText());
+        dados.put("dataTerm", textDataTerEstado.getText());
+
+        String msg = ControleColaborador.salvarEstado(dados);
+        JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO)) {
+            limparComponentesColaboradorEstado();
+            int linha = tabelaEstados.getSelectedRow();
+            atualizarTabelaEstado(linha, dados);
+        } else {
+            habilitarControlesColaboradorEstado();
+        }
+    }//GEN-LAST:event_botaoGravarEstadoActionPerformed
+
+    private void tabelaEstadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEstadosMouseClicked
+        DefaultTableModel m = (DefaultTableModel) tabelaEstados.getModel();
+        int linha = tabelaEstados.getSelectedRow();
+        if (linha == -1) {
+            return;
+        }
+
+        int codigo = (Integer) m.getValueAt(linha, 0);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", codigo);
+
+        HashMap<String, Object> t = ControleColaborador.carregarEstado(dados);
+        if (t == null) {
+            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        textCodigoEstado.setText(t.get("codigo").toString());
+        textNomeEstado.setText(t.get("nome").toString());
+        textDataIniEstado.setText(t.get("dataIni").toString());
+        textDataTerEstado.setText(t.get("dataTerm").toString());
+    }//GEN-LAST:event_tabelaEstadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -941,10 +1163,15 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCancelarEstado;
     private javax.swing.JButton botaoCancelarTelefone;
+    private javax.swing.JButton botaoEditarEstado;
     private javax.swing.JButton botaoEditarTelefone;
+    private javax.swing.JButton botaoExcluirEstado;
     private javax.swing.JButton botaoExcluirTelefone;
+    private javax.swing.JButton botaoGravarEstado;
     private javax.swing.JButton botaoGravarTelefone;
+    private javax.swing.JButton botaoNovoEstado;
     private javax.swing.JButton botaoNovoTelefone;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
@@ -954,15 +1181,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkAcademico;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelCPF;
     private javax.swing.JLabel labelCategoria;
     private javax.swing.JLabel labelCodigo;
@@ -981,18 +1213,23 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JPanel painelTelefones;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTable tabelaColaboradores;
+    private javax.swing.JTable tabelaEstados;
     private javax.swing.JTable tabelaProjetos;
     private javax.swing.JTable tabelaProjetosGerenciados;
     private javax.swing.JTable tabelaTelefones;
     private javax.swing.JTextField textCPF;
     private javax.swing.JTextField textCategoria;
     private javax.swing.JTextField textCodigo;
+    private javax.swing.JTextField textCodigoEstado;
     private javax.swing.JTextField textCodigoTelefone;
     private javax.swing.JTextField textColaboradorTelefone;
     private javax.swing.JTextField textDDDTelefone;
     private javax.swing.JTextField textDDITelefone;
+    private javax.swing.JTextField textDataIniEstado;
+    private javax.swing.JTextField textDataTerEstado;
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textNomeEstado;
     private javax.swing.JTextField textNomeMae;
     private javax.swing.JTextField textNomePai;
     private javax.swing.JTextField textNumeroTelefone;
@@ -1119,6 +1356,66 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         for (HashMap<String, Object> t : telefones) {
             m.addRow(new Object[]{t.get("codigo"), t.get("colaborador"), t.get("ddi"), t.get("ddd"), t.get("operadora"), t.get("numero")});
+        }
+    }
+    
+    //CÓDIGOS DA ABA HISTÓRICO
+    
+    private void limparComponentesColaboradorEstado() {
+
+        textNomeEstado.setText("");
+        textDataIniEstado.setText("");
+        textDataTerEstado.setText("");
+    }
+
+    private void toggleComponentesColaboradorEstado(boolean ativo) {
+        botaoCancelarEstado.setEnabled(ativo);
+        botaoGravarEstado.setEnabled(ativo);
+        botaoEditarEstado.setEnabled(!ativo);
+        botaoExcluirEstado.setEnabled(!ativo);
+        botaoNovoEstado.setEnabled(!ativo);
+
+        textCodigoEstado.setEnabled(ativo);
+        textNomeEstado.setEnabled(ativo);
+        textDataIniEstado.setEnabled(ativo);
+        textDataTerEstado.setEnabled(ativo);
+    }
+
+    private void habilitarControlesColaboradorEstado() {
+        toggleComponentesColaboradorEstado(true);
+    }
+
+    private void desabilitarControlesColaboradorEstado() {
+        toggleComponentesColaboradorEstado(false);
+    }
+
+    private void inicializarColaboradoresEstado() {
+        desabilitarControlesColaboradorEstado();
+    }
+
+    private void atualizarTabelaEstado(int linha, HashMap<String, Object> dados) {
+        if (linha == -1) {
+            ((DefaultTableModel) tabelaEstados.getModel())
+                    .addRow(new Object[]{});
+            linha = tabelaEstados.getRowCount() - 1;
+        }
+
+        tabelaEstados.setValueAt(dados.get("codigo"), linha, 0);
+        tabelaEstados.setValueAt(dados.get("nome"), linha, 1);
+        tabelaEstados.setValueAt(dados.get("dataIni").toString(), linha, 2);
+        tabelaEstados.setValueAt(dados.get("dataTerm").toString(), linha, 3);
+    }
+
+    private void carregarEstado() {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", textCodigoEstado.getText());
+
+        ArrayList<HashMap<String, Object>> estados = ControleColaborador.carregarEstados(dados);
+        DefaultTableModel m = (DefaultTableModel) tabelaEstados.getModel();
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> e : estados) {
+            m.addRow(new Object[]{e.get("codigo"), e.get("nome"), e.get("dataIni"), e.get("dataTerm")});
         }
     }
 

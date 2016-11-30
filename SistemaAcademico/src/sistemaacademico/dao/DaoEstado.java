@@ -9,35 +9,35 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sistemaacademico.Util.Mensagens;
-import sistemaacademico.modelo.Telefone;
+import sistemaacademico.modelo.Estado;
 
-public class DaoTelefone {
-    public static String inserir(sistemaacademico.modelo.Telefone t, int codigo) {
+public class DaoEstado {
+
+    public static String inserir(sistemaacademico.modelo.Estado e, int codigo) {
         String sql
-                = "INSERT INTO telefone "
-                + "     (ddi_tel, ddd_tel, numero_tel, "
-                + "      operadora_tel, colaborador) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                = "INSERT INTO estado "
+                + "     (nome_est, dataini_est, "
+                + "      datafim_est, colaborador) "
+                + "VALUES (?, ?, ?, ?)";
         PreparedStatement stmt = null;
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setString(1, t.getDdi());
-            stmt.setString(2, t.getDdd());
-            stmt.setString(3, t.getNumero());
-            stmt.setString(4, t.getOperadora());
+            stmt.setString(1, e.getNome());
+            stmt.setDate(2, new java.sql.Date(e.getDataInicio().getTime()));
+            stmt.setDate(3, new java.sql.Date(e.getDataTermino().getTime()));
             stmt.setInt(4, codigo);
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next())
-                t.setCodigo(rs.getInt(1));
+                e.setCodigo(rs.getInt(1));
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoTelefone.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {
@@ -49,26 +49,25 @@ public class DaoTelefone {
         }
     }
 
-    public static String atualizar(Telefone t) {
+    public static String atualizar(sistemaacademico.modelo.Estado e) {
         String sql
-                = "UPDATE telefone "
-                + "SET ddi_tel = ?, ddd_tel = ?, numero_tel = ?, operadora_tel = ?, "
-                + "WHERE cod_tel = ?";
+                = "UPDATE estado "
+                + "SET nome_est = ?, dataini_est = ?, datafim_est = ?, "
+                + "WHERE cod_est = ?";
         PreparedStatement stmt = null;
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, t.getDdd());
-            stmt.setString(2, t.getDdi());
-            stmt.setString(3, t.getNumero());
-            stmt.setString(4, t.getOperadora());
-            stmt.setInt(5, t.getCodigo());
+            stmt.setString(1, e.getNome());
+            stmt.setDate(2, new java.sql.Date(e.getDataInicio().getTime()));
+            stmt.setDate(3, new java.sql.Date(e.getDataTermino().getTime()));
+            stmt.setInt(5, e.getCodigo());
             stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoTelefone.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {
@@ -82,7 +81,7 @@ public class DaoTelefone {
 
     public static String remover(int codigo) {
         String sql
-                = "DELETE FROM telefone WHERE cod_tel = ?";
+                = "DELETE FROM estado WHERE cod_est = ?";
         PreparedStatement stmt = null;
 
         try {
@@ -92,7 +91,7 @@ public class DaoTelefone {
             stmt.executeUpdate();
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoColaborador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {
@@ -104,8 +103,8 @@ public class DaoTelefone {
         }
     }
 
-    public static sistemaacademico.modelo.Telefone recuperar(int codigo) {
-        ArrayList<sistemaacademico.modelo.Telefone> result = recuperarQuery("where cod_tel = " + codigo);
+    public static sistemaacademico.modelo.Estado recuperar(int codigo) {
+        ArrayList<sistemaacademico.modelo.Estado> result = recuperarQuery("where cod_est = " + codigo);
         if (!result.isEmpty()) {
             return result.get(0);
         } else {
@@ -113,18 +112,18 @@ public class DaoTelefone {
         }
     }
 
-    public static ArrayList<Telefone> recuperarTodos(int codigo) {
+    public static ArrayList<Estado> recuperarTodos(int codigo) {
         return recuperarQuery("WHERE colaborador = " + codigo);
     }
 
-    public static ArrayList<Telefone> recuperarQuery(String where) {
+    public static ArrayList<Estado> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_tel, ddi_tel, ddd_tel, numero_tel, operadora_tel, "
-                + "FROM telefone "
+                = "SELECT cod_est, nome_est, dataini_est, datafim_est"
+                + "FROM estado "
                 + where;
         Statement stmt = null;
         ResultSet rs = null;
-        ArrayList<Telefone> telefones = new ArrayList<>();
+        ArrayList<Estado> estados = new ArrayList<>();
 
         try {
             Connection conn = FabricaConexao.GeraConexao();
@@ -132,19 +131,18 @@ public class DaoTelefone {
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Telefone t = new Telefone();
+                Estado e = new Estado();
 
-                t.setCodigo(rs.getInt("cod_tel"));
-                t.setDdd(rs.getString("ddd_tel"));
-                t.setDdi(rs.getString("ddi_tel"));
-                t.setNumero(rs.getString("numero_tel"));
-                t.setOperadora(rs.getString("operadora_tel"));
+                e.setCodigo(rs.getInt("cod_est"));
+                e.setNome(rs.getString("nome_est"));
+                e.setDataInicio(rs.getDate("dataini_est"));
+                e.setDataTermino(rs.getDate("datafim_est"));
           
 
-                telefones.add(t);
+                estados.add(e);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoTelefone.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (rs != null) {
                 try {
@@ -160,7 +158,7 @@ public class DaoTelefone {
             }
         }
 
-        return telefones;
+        return estados;
     }
 
 }

@@ -1,12 +1,15 @@
 package sistemaacademico.controle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import sistemaacademico.Util.Helper;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoColaboradorProjeto;
 import sistemaacademico.dao.DaoProjeto;
 import sistemaacademico.modelo.Colaborador;
+import sistemaacademico.modelo.Estado;
 import sistemaacademico.modelo.Projeto;
 import sistemaacademico.modelo.Telefone;
 
@@ -185,9 +188,93 @@ public class ControleColaborador {
 
         for (Telefone t : telefones) {
             result.add(t.toHashMap());
+            
         }
 
         return result;
     }
+    
+    //CODIGO PARA HISTÓRICO
+    
+    public static String removerEstado(HashMap<String, Object> dados) {
+        try {
+            int codigo = Integer.parseInt(dados.get("codigo").toString());
+            return sistemaacademico.dao.DaoEstado.remover(codigo);
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Código inválido";
+        }
+    }
 
+    public static HashMap<String, Object> carregarEstado(HashMap<String, Object> dados) {
+        int codigo;
+        try {
+            codigo = Integer.parseInt(dados.get("codigo").toString());
+        } catch (Exception ex) {
+            return null;
+        }
+
+        sistemaacademico.modelo.Estado e = sistemaacademico.dao.DaoEstado.recuperar(codigo);//ADAPTAR PARA ESTADO
+        if (e == null) {
+            return null;
+        } else {
+            return e.toHashMap();
+        }
+    }
+
+    public static String salvarEstado(HashMap<String, Object> dados) {
+        sistemaacademico.modelo.Estado e = new Estado();
+
+        e.setNome(dados.get("nome").toString());
+        e.setDataInicio(Helper.stringToDate(dados.get("dataIni").toString()));
+        e.setDataTermino(Helper.stringToDate(dados.get("dataTerm").toString()));
+
+        String sCodigo = dados.get("codigo").toString();
+        if (sCodigo.equals("")) {
+            String msg = sistemaacademico.dao.DaoEstado.inserir(e, e.getCodigo());
+            if (msg.equals(Mensagens.SUCESSO)) {
+                dados.put("codigo", e.getCodigo());
+                if ((Boolean) dados.get("academico")) {
+                    // salvar RegistroAcademico
+                }
+            }
+            return msg;
+        } else {
+            int codigo;
+            try {
+                codigo = Integer.parseInt(sCodigo);
+            } catch (NumberFormatException ex) {
+                return Mensagens.ERRO + ex;
+            }
+
+            e.setCodigo(codigo);
+            return sistemaacademico.dao.DaoEstado.atualizar(e); 
+        }
+
+    }
+
+    public static ArrayList<HashMap<String, Object>> carregarEstados(HashMap<String, Object> dados) {
+        int codigo;
+        try {
+            codigo = Integer.parseInt(dados.get("codigo").toString());
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+
+        ArrayList<sistemaacademico.modelo.Estado> estados
+                = sistemaacademico.dao.DaoEstado.recuperarTodos(codigo);//ADAPTAR PARA ESTADO
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+
+        for (Estado e : estados) {
+            HashMap<String, Object> map = e.toHashMap();
+            converteDatasEstado(map);
+            result.add(map);
+        }
+
+        return result;
+    }
+    
+      private static void converteDatasEstado(HashMap<String, Object> dados) {
+        dados.put("dataIni", Helper.dateToString((Date) dados.get("dataIni")));
+        dados.put("dataTerm", Helper.dateToString((Date) dados.get("dataTerm")));
+    }
 }

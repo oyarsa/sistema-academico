@@ -1,6 +1,7 @@
 package sistemaacademico.modelo;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class Estado {
 
@@ -49,6 +50,17 @@ public class Estado {
 
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
+    }
+    
+        public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("nome", nome);
+        rv.put("dataIni", dataInicio);
+        rv.put("dataTerm", dataTermino);
+
+        return rv;
     }
 
 }
