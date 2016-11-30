@@ -102,6 +102,15 @@ public class VisaoColaborador extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
+        panelAcadêmico = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        textMatricula = new javax.swing.JTextField();
+        textCurso = new javax.swing.JTextField();
+        textPeriodo = new javax.swing.JTextField();
         painelTelefones = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textDDITelefone = new javax.swing.JTextField();
@@ -199,6 +208,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
         labelCategoria.setText("Categoria");
 
         checkAcademico.setText("Acadêmico");
+        checkAcademico.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkAcademicoItemStateChanged(evt);
+            }
+        });
 
         tabelaColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,14 +293,73 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         textCodigo.setEditable(false);
 
+        jLabel12.setText("Matrícula");
+
+        jLabel14.setText("Curso");
+
+        jLabel15.setText("Período");
+
+        javax.swing.GroupLayout panelAcadêmicoLayout = new javax.swing.GroupLayout(panelAcadêmico);
+        panelAcadêmico.setLayout(panelAcadêmicoLayout);
+        panelAcadêmicoLayout.setHorizontalGroup(
+            panelAcadêmicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAcadêmicoLayout.createSequentialGroup()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addComponent(textCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(textPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelAcadêmicoLayout.setVerticalGroup(
+            panelAcadêmicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAcadêmicoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(panelAcadêmicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(textCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(btnNovo)
+                .addGap(79, 79, 79)
+                .addComponent(btnEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGravar)
+                .addGap(82, 82, 82)
+                .addComponent(btnCancelar)
+                .addGap(69, 69, 69)
+                .addComponent(btnExcluir)
+                .addGap(89, 89, 89))
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
                         .addComponent(labelEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -322,21 +395,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelNomeMae)
                         .addGap(18, 18, 18)
-                        .addComponent(textNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(textNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(btnNovo)
-                .addGap(79, 79, 79)
-                .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGravar)
-                .addGap(82, 82, 82)
-                .addComponent(btnCancelar)
-                .addGap(69, 69, 69)
-                .addComponent(btnExcluir)
-                .addGap(89, 89, 89))
+            .addComponent(panelAcadêmico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,8 +426,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     .addComponent(labelNomePai)
                     .addComponent(labelRG)
                     .addComponent(textRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelAcadêmico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
@@ -374,7 +437,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     .addComponent(btnGravar)
                     .addComponent(btnCancelar)
                     .addComponent(btnExcluir))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Principal", painelPrincipal);
@@ -544,7 +607,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         painelRegistroAcad.setLayout(painelRegistroAcadLayout);
         painelRegistroAcadLayout.setHorizontalGroup(
             painelRegistroAcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 817, Short.MAX_VALUE)
+            .addGap(0, 874, Short.MAX_VALUE)
         );
         painelRegistroAcadLayout.setVerticalGroup(
             painelRegistroAcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,7 +651,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelProjetosLayout.setVerticalGroup(
@@ -634,7 +697,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosGerenciadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosGerenciadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelProjetosGerenciadosLayout.setVerticalGroup(
@@ -671,33 +734,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tabelaEstados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaEstadosMouseClicked(evt);
-            }
-        });
         jScrollPane5.setViewportView(tabelaEstados);
 
         botaoNovoEstado.setText("Novo");
-        botaoNovoEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoNovoEstadoActionPerformed(evt);
-            }
-        });
 
         botaoEditarEstado.setText("Editar");
-        botaoEditarEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEditarEstadoActionPerformed(evt);
-            }
-        });
 
         botaoGravarEstado.setText("Gravar");
-        botaoGravarEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoGravarEstadoActionPerformed(evt);
-            }
-        });
 
         botaoCancelarEstado.setText("Cancelar");
         botaoCancelarEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -707,11 +750,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
         });
 
         botaoExcluirEstado.setText("Excluir");
-        botaoExcluirEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluirEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout painelHistoricoLayout = new javax.swing.GroupLayout(painelHistorico);
         painelHistorico.setLayout(painelHistoricoLayout);
@@ -741,7 +779,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             .addGroup(painelHistoricoLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(botaoNovoEstado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(botaoEditarEstado)
                 .addGap(91, 91, 91)
                 .addComponent(botaoGravarEstado)
@@ -785,8 +823,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelAbas)
-                .addContainerGap())
+                .addComponent(painelAbas))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -800,7 +837,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        panelAcadêmico.setVisible(false);
         inicializarColaboradores();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1042,90 +1081,14 @@ public class VisaoColaborador extends javax.swing.JFrame {
         desabilitarControlesColaboradorEstado();
     }//GEN-LAST:event_botaoCancelarEstadoActionPerformed
 
-    private void botaoExcluirEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirEstadoActionPerformed
-          int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse histórico?",
-                "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.NO_OPTION) {
-            return;
-        }
-
-        limparComponentesColaboradorEstado();
-
-        DefaultTableModel mEstado = (DefaultTableModel) tabelaEstados.getModel();
-        int linha = tabelaEstados.getSelectedRow();
-        if (linha == -1) {
-            return;
-        }
-
-        int codigo = (Integer) mEstado.getValueAt(linha, 0);
-        HashMap<String, Object> dados = new HashMap<>();
-        dados.put("codigo", codigo);
-
-        String msg = ControleColaborador.removerEstado(dados);
-        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
-
-        if (msg.equals(Mensagens.SUCESSO)) {
-            mEstado.removeRow(linha);
-        }
-    }//GEN-LAST:event_botaoExcluirEstadoActionPerformed
-
-    private void botaoNovoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoEstadoActionPerformed
-        limparComponentesColaboradorEstado();
-        textCodigoEstado.setText("");
-        tabelaEstados.clearSelection();
-        habilitarControlesColaboradorEstado();
-    }//GEN-LAST:event_botaoNovoEstadoActionPerformed
-
-    private void botaoEditarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarEstadoActionPerformed
-        if (tabelaEstados.getSelectedRow() != -1) {
-            habilitarControlesColaboradorEstado();
-        }
-    }//GEN-LAST:event_botaoEditarEstadoActionPerformed
-
-    private void botaoGravarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGravarEstadoActionPerformed
-         desabilitarControlesColaboradorEstado();
-
-        HashMap<String, Object> dados = new HashMap<>();
-
-        dados.put("codigo", textCodigoEstado.getText());
-        dados.put("nome", textNomeEstado.getText());
-        dados.put("dataIni", textDataIniEstado.getText());
-        dados.put("dataTerm", textDataTerEstado.getText());
-
-        String msg = ControleColaborador.salvarEstado(dados);
-        JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
-
-        if (msg.equals(Mensagens.SUCESSO)) {
-            limparComponentesColaboradorEstado();
-            int linha = tabelaEstados.getSelectedRow();
-            atualizarTabelaEstado(linha, dados);
+    private void checkAcademicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkAcademicoItemStateChanged
+        boolean marcar = checkAcademico.isSelected();
+        if (marcar == true) {
+           panelAcadêmico.setVisible(true);
         } else {
-            habilitarControlesColaboradorEstado();
+            panelAcadêmico.setVisible(false);
         }
-    }//GEN-LAST:event_botaoGravarEstadoActionPerformed
-
-    private void tabelaEstadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEstadosMouseClicked
-        DefaultTableModel m = (DefaultTableModel) tabelaEstados.getModel();
-        int linha = tabelaEstados.getSelectedRow();
-        if (linha == -1) {
-            return;
-        }
-
-        int codigo = (Integer) m.getValueAt(linha, 0);
-        HashMap<String, Object> dados = new HashMap<>();
-        dados.put("codigo", codigo);
-
-        HashMap<String, Object> t = ControleColaborador.carregarEstado(dados);
-        if (t == null) {
-            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-
-        textCodigoEstado.setText(t.get("codigo").toString());
-        textNomeEstado.setText(t.get("nome").toString());
-        textDataIniEstado.setText(t.get("dataIni").toString());
-        textDataTerEstado.setText(t.get("dataTerm").toString());
-    }//GEN-LAST:event_tabelaEstadosMouseClicked
+    }//GEN-LAST:event_checkAcademicoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1182,6 +1145,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1211,6 +1179,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JPanel painelProjetosGerenciados;
     private javax.swing.JPanel painelRegistroAcad;
     private javax.swing.JPanel painelTelefones;
+    private javax.swing.JPanel panelAcadêmico;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTable tabelaColaboradores;
     private javax.swing.JTable tabelaEstados;
@@ -1223,17 +1192,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JTextField textCodigoEstado;
     private javax.swing.JTextField textCodigoTelefone;
     private javax.swing.JTextField textColaboradorTelefone;
+    private javax.swing.JTextField textCurso;
     private javax.swing.JTextField textDDDTelefone;
     private javax.swing.JTextField textDDITelefone;
     private javax.swing.JTextField textDataIniEstado;
     private javax.swing.JTextField textDataTerEstado;
     private javax.swing.JTextField textEmail;
+    private javax.swing.JTextField textMatricula;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textNomeEstado;
     private javax.swing.JTextField textNomeMae;
     private javax.swing.JTextField textNomePai;
     private javax.swing.JTextField textNumeroTelefone;
     private javax.swing.JTextField textOperadoraTelefone;
+    private javax.swing.JTextField textPeriodo;
     private javax.swing.JTextField textRG;
     // End of variables declaration//GEN-END:variables
 
