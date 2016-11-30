@@ -850,7 +850,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse Colaborador?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.NO_OPTION) {
+        if (resposta == JOptionPane.NO_OPTION) {  
             return;
         }
 
