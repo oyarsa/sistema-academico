@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `academico` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `academico`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: academico
+-- Host: localhost    Database: academico
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.13-MariaDB
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,11 +23,14 @@ DROP TABLE IF EXISTS `projeto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `projeto` (
-  `cod_proj` int(11) NOT NULL,
+  `cod_proj` int(11) NOT NULL AUTO_INCREMENT,
   `nome_proj` varchar(60) DEFAULT NULL,
   `objetivo_proj` varchar(60) DEFAULT NULL,
   `recursos_proj` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`cod_proj`)
+  `gerente_proj` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cod_proj`),
+  KEY `FK_gerente_proj_idx` (`gerente_proj`),
+  CONSTRAINT `FK_gerente_proj` FOREIGN KEY (`gerente_proj`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-20 21:39:55
+-- Dump completed on 2016-12-02 18:20:35

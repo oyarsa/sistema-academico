@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `telefone`
+-- Table structure for table `dependencia_atividades`
 --
 
-DROP TABLE IF EXISTS `telefone`;
+DROP TABLE IF EXISTS `dependencia_atividades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `telefone` (
-  `cod_tel` int(11) NOT NULL AUTO_INCREMENT,
-  `ddi_tel` int(3) DEFAULT NULL,
-  `ddd_tel` int(3) DEFAULT NULL,
-  `numero_tel` int(20) DEFAULT NULL,
-  `operadora_tel` varchar(45) DEFAULT NULL,
-  `colaborador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`cod_tel`),
-  UNIQUE KEY `numero_tel_UNIQUE` (`numero_tel`),
-  KEY `FK_COLABORADOR_TELEFONE_idx` (`colaborador`),
-  CONSTRAINT `FK_COLABORADOR_TELEFONE` FOREIGN KEY (`colaborador`) REFERENCES `colaborador` (`cod_col`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `dependencia_atividades` (
+  `cod_dependente` int(11) NOT NULL,
+  `cod_dependencia` int(11) NOT NULL,
+  PRIMARY KEY (`cod_dependente`,`cod_dependencia`),
+  KEY `FK_cod_dependencia_idx` (`cod_dependencia`),
+  CONSTRAINT `FK_cod_dependencia` FOREIGN KEY (`cod_dependencia`) REFERENCES `atividade` (`cod_atv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_cod_dependente` FOREIGN KEY (`cod_dependente`) REFERENCES `atividade` (`cod_atv`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `telefone`
+-- Dumping data for table `dependencia_atividades`
 --
 
-LOCK TABLES `telefone` WRITE;
-/*!40000 ALTER TABLE `telefone` DISABLE KEYS */;
-/*!40000 ALTER TABLE `telefone` ENABLE KEYS */;
+LOCK TABLES `dependencia_atividades` WRITE;
+/*!40000 ALTER TABLE `dependencia_atividades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dependencia_atividades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 18:20:36
+-- Dump completed on 2016-12-02 18:20:35

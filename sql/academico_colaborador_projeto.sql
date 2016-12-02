@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `telefone`
+-- Table structure for table `colaborador_projeto`
 --
 
-DROP TABLE IF EXISTS `telefone`;
+DROP TABLE IF EXISTS `colaborador_projeto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `telefone` (
-  `cod_tel` int(11) NOT NULL AUTO_INCREMENT,
-  `ddi_tel` int(3) DEFAULT NULL,
-  `ddd_tel` int(3) DEFAULT NULL,
-  `numero_tel` int(20) DEFAULT NULL,
-  `operadora_tel` varchar(45) DEFAULT NULL,
-  `colaborador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`cod_tel`),
-  UNIQUE KEY `numero_tel_UNIQUE` (`numero_tel`),
-  KEY `FK_COLABORADOR_TELEFONE_idx` (`colaborador`),
-  CONSTRAINT `FK_COLABORADOR_TELEFONE` FOREIGN KEY (`colaborador`) REFERENCES `colaborador` (`cod_col`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `colaborador_projeto` (
+  `cod_proj` int(11) NOT NULL,
+  `cod_col` int(11) NOT NULL,
+  PRIMARY KEY (`cod_proj`,`cod_col`),
+  KEY `cod_col_idx` (`cod_col`),
+  CONSTRAINT `FK_cod_col` FOREIGN KEY (`cod_col`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_cod_proj` FOREIGN KEY (`cod_proj`) REFERENCES `projeto` (`cod_proj`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `telefone`
+-- Dumping data for table `colaborador_projeto`
 --
 
-LOCK TABLES `telefone` WRITE;
-/*!40000 ALTER TABLE `telefone` DISABLE KEYS */;
-/*!40000 ALTER TABLE `telefone` ENABLE KEYS */;
+LOCK TABLES `colaborador_projeto` WRITE;
+/*!40000 ALTER TABLE `colaborador_projeto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `colaborador_projeto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 18:20:36
+-- Dump completed on 2016-12-02 18:20:35
