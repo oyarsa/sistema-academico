@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.RegistroAcademico;
 
-public class DaoRegistroAcadêmico {
+public class DaoRegistroAcademico {
      public static String inserir(RegistroAcademico r) {
         String sql
                 = "INSERT INTO registro_academico "
@@ -32,7 +32,7 @@ public class DaoRegistroAcadêmico {
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoRegistroAcadêmico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoRegistroAcademico.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {
@@ -44,7 +44,7 @@ public class DaoRegistroAcadêmico {
         }
     }
 
-    public static String atualizar(RegistroAcademico t) {
+    public static String atualizar(RegistroAcademico r) {
         String sql
                 = "UPDATE registro_academico "
                 + "SET matricula_ra = ?, curso_ra = ?, periodo_ra = ?, colaborador = ?, "
@@ -54,15 +54,15 @@ public class DaoRegistroAcadêmico {
         try {
             Connection conn = FabricaConexao.GeraConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, t.getMatricula());
-            stmt.setString(2, t.getCurso());
-            stmt.setString(3, t.getPeriodo());
-            stmt.setInt(5, t.getColaborador().getCodigo());
+            stmt.setString(1, r.getMatricula());
+            stmt.setString(2, r.getCurso());
+            stmt.setString(3, r.getPeriodo());
+            stmt.setInt(5, r.getColaborador().getCodigo());
             stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoRegistroAcadêmico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoRegistroAcademico.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {
@@ -86,7 +86,7 @@ public class DaoRegistroAcadêmico {
             stmt.executeUpdate();
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoRegistroAcadêmico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoRegistroAcademico.class.getName()).log(Level.SEVERE, null, ex);
             return Mensagens.ERRO + ex.getMessage();
         } finally {
             if (stmt != null) {

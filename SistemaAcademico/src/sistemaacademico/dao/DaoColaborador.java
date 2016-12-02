@@ -96,6 +96,10 @@ public class DaoColaborador {
     }
 
     public static String remover(int codigo) {
+        String msg = DaoRegistroAcademico.remover(codigo);
+        if (!msg.equals(Mensagens.SUCESSO))
+            return msg;
+        
         String sql
                 = "DELETE FROM colaborador WHERE cod_col = ?";
         PreparedStatement stmt = null;

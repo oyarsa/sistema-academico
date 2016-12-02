@@ -12,6 +12,7 @@ import sistemaacademico.controle.ControleColaborador;
 public class VisaoColaborador extends javax.swing.JFrame {
 
     private void limparComponentesColaborador() {
+        painelRegistro.setVisible(false);
         checkAcademico.setSelected(false);
         checkAtivo.setSelected(false);
         textCPF.setText("");
@@ -22,6 +23,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
         textNomeMae.setText("");
         textNomePai.setText("");
         textRG.setText("");
+        textMatricula.setText("");
+        textCurso.setText("");
+        textPeriodo.setText("");
     }
 
     private void toggleComponentesColaborador(boolean ativo) {
@@ -42,6 +46,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
         textNomeMae.setEnabled(ativo);
         textNomePai.setEnabled(ativo);
         textRG.setEnabled(ativo);
+        textMatricula.setEnabled(ativo);
+        textCurso.setEnabled(ativo);
+        textPeriodo.setEnabled(ativo);
     }
 
     private void habilitarControlesColaborador() {
@@ -102,13 +109,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        painelRegistro = new javax.swing.JPanel();
+        textMatricula = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textCurso = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textPeriodo = new javax.swing.JTextField();
         painelTelefones = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textDDITelefone = new javax.swing.JTextField();
@@ -205,6 +212,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
         labelCategoria.setText("Categoria");
 
         checkAcademico.setText("Acadêmico");
+        checkAcademico.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkAcademicoItemStateChanged(evt);
+            }
+        });
 
         tabelaColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -291,35 +303,35 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         jLabel13.setText("Período");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelRegistroLayout = new javax.swing.GroupLayout(painelRegistro);
+        painelRegistro.setLayout(painelRegistroLayout);
+        painelRegistroLayout.setHorizontalGroup(
+            painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelRegistroLayout.createSequentialGroup()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        painelRegistroLayout.setVerticalGroup(
+            painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelRegistroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -383,7 +395,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                                 .addComponent(textNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 8, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(painelRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,7 +425,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     .addComponent(labelRG)
                     .addComponent(textRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -836,6 +848,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        painelRegistro.setVisible(false);
         inicializarColaboradores();
     }//GEN-LAST:event_formWindowOpened
 
@@ -899,6 +912,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
         dados.put("rg", textRG.getText());
         dados.put("academico", checkAcademico.isSelected());
         dados.put("ativo", checkAtivo.isSelected());
+        dados.put("cursoAcademico", textCurso.getText());
+        dados.put("matriculaAcademico", textMatricula.getText());
+        dados.put("periodoAcademico", textPeriodo.getText());
 
         String msg = ControleColaborador.salvar(dados);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
@@ -937,9 +953,18 @@ public class VisaoColaborador extends javax.swing.JFrame {
         textNomeMae.setText(c.get("nomeMae").toString());
         textNomePai.setText(c.get("nomePai").toString());
         textRG.setText(c.get("rg").toString());
-
+        textCurso.setText(c.get("cursoAcademico").toString());
+        textMatricula.setText(c.get("matriculaAcademico").toString());
+        textPeriodo.setText(c.get("periodoAcademico").toString());
         checkAcademico.setSelected((Boolean) c.get("academico"));
         checkAtivo.setSelected((Boolean) c.get("ativo"));
+        textCurso.setText(c.get("cursoAcademico").toString());
+        textMatricula.setText(c.get("matriculaAcademico").toString());
+        textPeriodo.setText(c.get("periodoAcademico").toString());
+        
+        if (checkAcademico.isSelected() == true){
+           painelRegistro.setVisible(true);
+        }
     }//GEN-LAST:event_tabelaColaboradoresMouseClicked
 
     private void painelAbasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_painelAbasStateChanged
@@ -1163,6 +1188,14 @@ public class VisaoColaborador extends javax.swing.JFrame {
         textDataTerEstado.setText(t.get("dataTerm").toString());
     }//GEN-LAST:event_tabelaEstadosMouseClicked
 
+    private void checkAcademicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkAcademicoItemStateChanged
+        if (checkAcademico.isSelected() == true){
+            painelRegistro.setVisible(true);
+        }else{
+            painelRegistro.setVisible(false);
+        }
+    }//GEN-LAST:event_checkAcademicoItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1229,15 +1262,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelCPF;
     private javax.swing.JLabel labelCategoria;
     private javax.swing.JLabel labelCodigo;
@@ -1252,6 +1281,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel painelProjetos;
     private javax.swing.JPanel painelProjetosGerenciados;
+    private javax.swing.JPanel painelRegistro;
     private javax.swing.JPanel painelTelefones;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTable tabelaColaboradores;
@@ -1265,17 +1295,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JTextField textCodigoEstado;
     private javax.swing.JTextField textCodigoTelefone;
     private javax.swing.JTextField textColaboradorTelefone;
+    private javax.swing.JTextField textCurso;
     private javax.swing.JTextField textDDDTelefone;
     private javax.swing.JTextField textDDITelefone;
     private javax.swing.JTextField textDataIniEstado;
     private javax.swing.JTextField textDataTerEstado;
     private javax.swing.JTextField textEmail;
+    private javax.swing.JTextField textMatricula;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textNomeEstado;
     private javax.swing.JTextField textNomeMae;
     private javax.swing.JTextField textNomePai;
     private javax.swing.JTextField textNumeroTelefone;
     private javax.swing.JTextField textOperadoraTelefone;
+    private javax.swing.JTextField textPeriodo;
     private javax.swing.JTextField textRG;
     // End of variables declaration//GEN-END:variables
 

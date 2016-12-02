@@ -8,9 +8,11 @@ import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoColaboradorProjeto;
 import sistemaacademico.dao.DaoProjeto;
+import sistemaacademico.dao.DaoRegistroAcademico;
 import sistemaacademico.modelo.Colaborador;
 import sistemaacademico.modelo.Estado;
 import sistemaacademico.modelo.Projeto;
+import sistemaacademico.modelo.RegistroAcademico;
 import sistemaacademico.modelo.Telefone;
 
 public class ControleColaborador {
@@ -47,7 +49,20 @@ public class ControleColaborador {
         if (c == null) {
             return null;
         } else {
-            return c.toHashMap();
+            HashMap<String, Object> rv = c.toHashMap();
+            RegistroAcademico r = DaoRegistroAcademico.recuperar(codigo);
+            if (r != null) {
+                rv.put("academico", true);
+                rv.put("cursoAcademico", r.getCurso());
+                rv.put("matriculaAcademico", r.getMatricula());
+                rv.put("periodoAcademico", r.getPeriodo());
+            } else {
+                rv.put("academico", false);
+                rv.put("cursoAcademico", "");
+                rv.put("matriculaAcademico", "");
+                rv.put("periodoAcademico", "");
+            }
+            return rv;
         }
     }
 
@@ -68,9 +83,7 @@ public class ControleColaborador {
             String msg = DaoColaborador.inserir(c);
             if (msg.equals(Mensagens.SUCESSO)) {
                 dados.put("codigo", c.getCodigo());
-                if ((Boolean) dados.get("academico")) {
-                    // salvar RegistroAcademico
-                }
+                msg = salvarAcademico(c, dados);
             }
             return msg;
         } else {
@@ -82,7 +95,12 @@ public class ControleColaborador {
             }
 
             c.setCodigo(codigo);
-            return DaoColaborador.atualizar(c);
+            String msg = DaoColaborador.atualizar(c);
+            if (msg.equals(Mensagens.SUCESSO)) {
+                dados.put("codigo", c.getCodigo());
+                msg = salvarAcademico(c, dados);
+            }
+            return msg;
         }
 
     }
@@ -116,7 +134,6 @@ public class ControleColaborador {
     }
 
     // CÓDIGO PARA TELEFONE
-
     public static String removerTelefone(HashMap<String, Object> dados) {
         try {
             int codigo = Integer.parseInt(dados.get("codigo").toString());
@@ -185,14 +202,13 @@ public class ControleColaborador {
 
         for (Telefone t : telefones) {
             result.add(t.toHashMap());
-            
+
         }
 
         return result;
     }
-    
+
     //CODIGO PARA HISTÓRICO
-    
     public static String removerEstado(HashMap<String, Object> dados) {
         try {
             int codigo = Integer.parseInt(dados.get("codigo").toString());
@@ -230,9 +246,6 @@ public class ControleColaborador {
             String msg = sistemaacademico.dao.DaoEstado.inserir(e, e.getCodigo());
             if (msg.equals(Mensagens.SUCESSO)) {
                 dados.put("codigo", e.getCodigo());
-                if ((Boolean) dados.get("academico")) {
-                    // salvar RegistroAcademico
-                }
             }
             return msg;
         } else {
@@ -244,7 +257,7 @@ public class ControleColaborador {
             }
 
             e.setCodigo(codigo);
-            return sistemaacademico.dao.DaoEstado.atualizar(e); 
+            return sistemaacademico.dao.DaoEstado.atualizar(e);
         }
 
     }
@@ -269,9 +282,34 @@ public class ControleColaborador {
 
         return result;
     }
-    
-      private static void converteDatasEstado(HashMap<String, Object> dados) {
+
+    private static void converteDatasEstado(HashMap<String, Object> dados) {
         dados.put("dataIni", Helper.dateToString((Date) dados.get("dataIni")));
         dados.put("dataTerm", Helper.dateToString((Date) dados.get("dataTerm")));
+    }
+
+    private static String salvarAcademico(Colaborador c, HashMap<String, Object> dados) {
+        RegistroAcademico r = DaoRegistroAcademico.recuperar(c.getCodigo());
+        boolean antes = r != null;
+        boolean depois = (Boolean) dados.get("academico");
+
+        if (r == null) {
+            r = new RegistroAcademico();
+        }
+
+        r.setColaborador(c);
+        r.setCurso(dados.get("cursoAcademico").toString());
+        r.setMatricula(dados.get("matriculaAcademico").toString());
+        r.setPeriodo(dados.get("periodoAcademico").toString());
+
+        if (antes && depois) {
+            return DaoRegistroAcademico.atualizar(r);
+        } else if (!antes && depois) {
+            return DaoRegistroAcademico.inserir(r);
+        } else if (antes && !depois) {
+            return DaoRegistroAcademico.remover(c.getCodigo());
+        } else {
+            return Mensagens.SUCESSO;
+        }
     }
 }
