@@ -2,27 +2,27 @@ package sistemaacademico.modelo;
 
 public class RegistroAcademico {
 
-    private int codigo;
     private String matricula;
     private String curso;
     private String periodo;
+    private Colaborador colaborador;
 
     public RegistroAcademico() {
     }
 
-    public RegistroAcademico(int codigo, String matricula, String curso, String periodo) {
-        this.codigo = codigo;
+    public RegistroAcademico(String matricula, String curso, String periodo, Colaborador colaborador) {
         this.matricula = matricula;
         this.curso = curso;
         this.periodo = periodo;
+        this.colaborador = colaborador;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public Colaborador getColaborador() {
+        return colaborador;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setColaborador(Colaborador colaborador) {
+        this.colaborador = colaborador;
     }
 
     public String getMatricula() {

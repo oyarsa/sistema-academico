@@ -155,9 +155,6 @@ public class ControleColaborador {
             String msg = sistemaacademico.dao.DaoTelefone.inserir(t, t.getCodigo());
             if (msg.equals(Mensagens.SUCESSO)) {
                 dados.put("codigo", t.getCodigo());
-                if ((Boolean) dados.get("academico")) {
-                    // salvar RegistroAcademico
-                }
             }
             return msg;
         } else {
