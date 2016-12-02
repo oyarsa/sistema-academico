@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.RegistroAcademico;
 
@@ -99,7 +100,7 @@ public class DaoRegistroAcademico {
     }
 
     public static sistemaacademico.modelo.RegistroAcademico recuperar(int codigo) {
-        ArrayList<sistemaacademico.modelo.RegistroAcademico> result = recuperarQuery("where colaborador = " + codigo);
+        ArrayList<sistemaacademico.modelo.RegistroAcademico> result = recuperarQuery("WHERE colaborador = " + codigo);
         if (!result.isEmpty()) {
             return result.get(0);
         } else {
@@ -113,9 +114,10 @@ public class DaoRegistroAcademico {
 
     public static ArrayList<RegistroAcademico> recuperarQuery(String where) {
         String sql
-                = "SELECT colaborador, matricula_ra, curso_ra, periodo_ra, "
+                = "SELECT colaborador, matricula_ra, curso_ra, periodo_ra "
                 + "FROM registro_academico "
                 + where;
+        JOptionPane.showMessageDialog(null, sql);
         Statement stmt = null;
         ResultSet rs = null;
         ArrayList<RegistroAcademico> registros = new ArrayList<>();

@@ -13,7 +13,6 @@ import sistemaacademico.modelo.Atividade;
 
 public class DaoAtividade {
 
-    // TODO: O campo titulo_atv ainda não existe, deve ser criado
     public static String inserir(Atividade a) {
         String sql
                 = "INSERT INTO atividade "
@@ -162,13 +161,7 @@ public class DaoAtividade {
         return atividades;
     }
 
-    // TODO: É necessário existir uma tabela NxN entre atividades, uma vez que é
-    // uma relacionamento recursivo. Um atividade pode depender de várias, enquanto
-    // uma atividade pode ser dependências de várias.
-    // Assume-se aqui que essa tabela será chamada 'dependencia_atividades'
-    // com os campos 'cod_dependencia' (que é a atiivdade original) e
-    // 'cod_dependente' (que é a atividade que possui a dependência).
-    // Se outros nomes forem utilizados, esse código deve ser modificado.
+  
     private static ArrayList<Integer> carregarCodigoDependencias(int codigo) {
         String sql
                 = "SELECT cod_dependencia FROM dependencia_atividades "

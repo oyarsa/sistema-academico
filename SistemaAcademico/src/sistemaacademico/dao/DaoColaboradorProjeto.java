@@ -11,7 +11,6 @@ import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.Colaborador;
 import sistemaacademico.modelo.Projeto;
 
-// TODO: Modificar(?) nome da tabela quando ela estiver pronta
 public class DaoColaboradorProjeto {
 
     public static String inserir(int codProjeto, int codColaboador) {

@@ -208,6 +208,7 @@ public class Colaborador {
         rv.put("email", email);
         rv.put("nomePai", nomePai);
         rv.put("nomeMae", nomeMae);
+        rv.put("categoria", categoria);
 
         return rv;
     }
