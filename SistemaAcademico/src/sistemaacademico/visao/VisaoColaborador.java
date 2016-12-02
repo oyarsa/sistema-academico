@@ -1,4 +1,3 @@
-
 package sistemaacademico.visao;
 
 import java.util.ArrayList;
@@ -7,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.controle.ControleColaborador;
-
 
 public class VisaoColaborador extends javax.swing.JFrame {
 
@@ -860,7 +858,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse Colaborador?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.NO_OPTION) {  
+        if (resposta == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -961,9 +959,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
         textCurso.setText(c.get("cursoAcademico").toString());
         textMatricula.setText(c.get("matriculaAcademico").toString());
         textPeriodo.setText(c.get("periodoAcademico").toString());
-        
-        if (checkAcademico.isSelected() == true){
-           painelRegistro.setVisible(true);
+
+        if (checkAcademico.isSelected() == true) {
+            painelRegistro.setVisible(true);
         }
     }//GEN-LAST:event_tabelaColaboradoresMouseClicked
 
@@ -977,7 +975,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
             inicializarColaboradoresTelefone();
             carregarTelefones();
-        }else if (aba.equals("Histórico")) {
+        } else if (aba.equals("Histórico")) {
 
             inicializarColaboradoresEstado();
             carregarEstado();
@@ -1099,12 +1097,12 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     //CODIGO PARA ESTADO
     private void botaoCancelarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarEstadoActionPerformed
-         limparComponentesColaboradorEstado();
+        limparComponentesColaboradorEstado();
         desabilitarControlesColaboradorEstado();
     }//GEN-LAST:event_botaoCancelarEstadoActionPerformed
 
     private void botaoExcluirEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirEstadoActionPerformed
-          int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse histórico?",
+        int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse histórico?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.NO_OPTION) {
             return;
@@ -1144,7 +1142,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarEstadoActionPerformed
 
     private void botaoGravarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGravarEstadoActionPerformed
-         desabilitarControlesColaboradorEstado();
+        desabilitarControlesColaboradorEstado();
 
         HashMap<String, Object> dados = new HashMap<>();
 
@@ -1189,9 +1187,9 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaEstadosMouseClicked
 
     private void checkAcademicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkAcademicoItemStateChanged
-        if (checkAcademico.isSelected() == true){
+        if (checkAcademico.isSelected() == true) {
             painelRegistro.setVisible(true);
-        }else{
+        } else {
             painelRegistro.setVisible(false);
         }
     }//GEN-LAST:event_checkAcademicoItemStateChanged
@@ -1433,9 +1431,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
             m.addRow(new Object[]{t.get("codigo"), t.get("colaborador"), t.get("ddi"), t.get("ddd"), t.get("operadora"), t.get("numero")});
         }
     }
-    
+
     //CÓDIGOS DA ABA HISTÓRICO
-    
     private void limparComponentesColaboradorEstado() {
 
         textNomeEstado.setText("");
@@ -1461,6 +1458,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     }
 
     private void desabilitarControlesColaboradorEstado() {
+        tabelaColaboradores.clearSelection();
         toggleComponentesColaboradorEstado(false);
     }
 

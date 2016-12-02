@@ -8,12 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.RegistroAcademico;
 
 public class DaoRegistroAcademico {
-     public static String inserir(RegistroAcademico r) {
+
+    public static String inserir(RegistroAcademico r) {
         String sql
                 = "INSERT INTO registro_academico "
                 + "     (matricula_ra, curso_ra, periodo_ra, "
@@ -58,7 +58,7 @@ public class DaoRegistroAcademico {
             stmt.setString(1, r.getMatricula());
             stmt.setString(2, r.getCurso());
             stmt.setString(3, r.getPeriodo());
-            stmt.setInt(5, r.getColaborador().getCodigo());
+            stmt.setInt(4, r.getColaborador().getCodigo());
             stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
@@ -117,7 +117,6 @@ public class DaoRegistroAcademico {
                 = "SELECT colaborador, matricula_ra, curso_ra, periodo_ra "
                 + "FROM registro_academico "
                 + where;
-        JOptionPane.showMessageDialog(null, sql);
         Statement stmt = null;
         ResultSet rs = null;
         ArrayList<RegistroAcademico> registros = new ArrayList<>();
@@ -155,5 +154,5 @@ public class DaoRegistroAcademico {
 
         return registros;
     }
-    
+
 }
