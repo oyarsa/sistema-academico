@@ -1,4 +1,3 @@
-
 package sistemaacademico.visao;
 
 import java.util.ArrayList;
@@ -8,16 +7,11 @@ import javax.swing.table.DefaultTableModel;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.controle.ControleTipoTrabalho;
 
-
 public class VisaoTipoTrabalho extends javax.swing.JFrame {
-
 
     public VisaoTipoTrabalho() {
         initComponents();
-        jTextFieldCodigoTT.setEnabled(false);
-        jTextPaneDescricaoTT.setEnabled(false);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,6 +34,11 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         btnExcluirTipoTrab = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -62,6 +61,8 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
+
+        jTextFieldCodigoTT.setEditable(false);
 
         jLabel2.setText("Código");
 
@@ -202,7 +203,6 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoTipoTrabActionPerformed
-        jTextPaneDescricaoTT.setEnabled(true);
         jTableTipoTrabalho.clearSelection();
         limpaControlesTipoTrabalho();
         habilitaControlesTipoTrabalho();
@@ -214,8 +214,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         HashMap<String, Object> dados = new HashMap<>();
 
         dados.put("codigo", jTextFieldCodigoTT.getText());
-        dados.put("descricao",jTextPaneDescricaoTT.getText());
-
+        dados.put("descricao", jTextPaneDescricaoTT.getText());
 
         String msg = ControleTipoTrabalho.salvar(dados);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
@@ -229,7 +228,6 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarTipoTrabActionPerformed
 
     private void btnEditarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTipoTrabActionPerformed
-        jTextPaneDescricaoTT.setEnabled(true);
         if (jTableTipoTrabalho.getSelectedRow() != -1)
             habilitaControlesTipoTrabalho();
     }//GEN-LAST:event_btnEditarTipoTrabActionPerformed
@@ -245,7 +243,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
             return;
 
         int resposta = JOptionPane.showConfirmDialog(this,
-                "Tem certeza que deseja apagar essa atividade?",
+                "Tem certeza que deseja apagar esse Tipo de Trabalho?",
                 "Confirmação de exlcusão", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.NO_OPTION)
             return;
@@ -270,12 +268,15 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTableTipoTrabalhoMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        carregarTipoTrabalho();
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
-        
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -295,7 +296,6 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VisaoTipoTrabalho().setVisible(true);
@@ -322,7 +322,6 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void toggleControlesTipoTrabalho(boolean ativo) {
-        jTextFieldCodigoTT.setEditable(ativo);
         jTextPaneDescricaoTT.setEditable(ativo);
 
         btnCancelarTipoTrab.setEnabled(ativo);
@@ -365,9 +364,6 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         for (HashMap<String, Object> tt : tipotrab) {
             m.addRow(new Object[]{tt.get("codigo"), tt.get("descricao")});
         }
-    }    
-    
+    }
 
-    
-    
 }
