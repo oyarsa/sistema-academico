@@ -20,13 +20,13 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         jPanelTitulo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelTipoTrabalho = new javax.swing.JPanel();
-        jTextFieldCodigoTT = new javax.swing.JTextField();
+        textCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPaneDescricaoTT = new javax.swing.JTextPane();
+        textDescricao = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableTipoTrabalho = new javax.swing.JTable();
+        tableTipoTrabalho = new javax.swing.JTable();
         btnNovoTipoTrab = new javax.swing.JButton();
         btnEditarTipoTrab = new javax.swing.JButton();
         btnGravarTipoTrab = new javax.swing.JButton();
@@ -62,15 +62,15 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTextFieldCodigoTT.setEditable(false);
+        textCodigo.setEditable(false);
 
         jLabel2.setText("Código");
 
-        jScrollPane1.setViewportView(jTextPaneDescricaoTT);
+        jScrollPane1.setViewportView(textDescricao);
 
         jLabel3.setText("Descrição");
 
-        jTableTipoTrabalho.setModel(new javax.swing.table.DefaultTableModel(
+        tableTipoTrabalho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -79,21 +79,25 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTableTipoTrabalho.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTableTipoTrabalho.getColumnModel().getColumn(1).setPreferredWidth(400);
-        jTableTipoTrabalho.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableTipoTrabalho.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tableTipoTrabalho.getColumnModel().getColumn(1).setPreferredWidth(400);
+        tableTipoTrabalho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableTipoTrabalhoMouseClicked(evt);
+                tableTipoTrabalhoMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableTipoTrabalho);
+        jScrollPane2.setViewportView(tableTipoTrabalho);
+        if (tableTipoTrabalho.getColumnModel().getColumnCount() > 0) {
+            tableTipoTrabalho.getColumnModel().getColumn(0).setMinWidth(70);
+            tableTipoTrabalho.getColumnModel().getColumn(0).setMaxWidth(70);
+        }
 
         btnNovoTipoTrab.setText("Novo");
         btnNovoTipoTrab.addActionListener(new java.awt.event.ActionListener() {
@@ -138,43 +142,44 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                        .addComponent(btnNovoTipoTrab)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnEditarTipoTrab)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnGravarTipoTrab)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnCancelarTipoTrab)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluirTipoTrab))
+                        .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                        .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldCodigoTT, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
+                                    .addComponent(btnNovoTipoTrab)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(btnEditarTipoTrab)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(btnGravarTipoTrab)
+                                    .addGap(50, 50, 50)
+                                    .addComponent(btnCancelarTipoTrab)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExcluirTipoTrab))
+                                .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
+                                    .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         jPanelTipoTrabalhoLayout.setVerticalGroup(
             jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCodigoTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovoTipoTrab)
                     .addComponent(btnEditarTipoTrab)
@@ -195,15 +200,15 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelTipoTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanelTipoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoTipoTrabActionPerformed
-        jTableTipoTrabalho.clearSelection();
+        tableTipoTrabalho.clearSelection();
         limpaControlesTipoTrabalho();
         habilitaControlesTipoTrabalho();
     }//GEN-LAST:event_btnNovoTipoTrabActionPerformed
@@ -213,14 +218,14 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
 
         HashMap<String, Object> dados = new HashMap<>();
 
-        dados.put("codigo", jTextFieldCodigoTT.getText());
-        dados.put("descricao", jTextPaneDescricaoTT.getText());
+        dados.put("codigo", textCodigo.getText());
+        dados.put("descricao", textDescricao.getText());
 
         String msg = ControleTipoTrabalho.salvar(dados);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
 
         if (msg.equals(Mensagens.SUCESSO)) {
-            int linha = jTableTipoTrabalho.getSelectedRow();
+            int linha = tableTipoTrabalho.getSelectedRow();
             atualizarTabela(linha, dados);
         } else {
             habilitaControlesTipoTrabalho();
@@ -228,7 +233,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarTipoTrabActionPerformed
 
     private void btnEditarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTipoTrabActionPerformed
-        if (jTableTipoTrabalho.getSelectedRow() != -1)
+        if (tableTipoTrabalho.getSelectedRow() != -1)
             habilitaControlesTipoTrabalho();
     }//GEN-LAST:event_btnEditarTipoTrabActionPerformed
 
@@ -238,7 +243,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarTipoTrabActionPerformed
 
     private void btnExcluirTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTipoTrabActionPerformed
-        int linha = jTableTipoTrabalho.getSelectedRow();
+        int linha = tableTipoTrabalho.getSelectedRow();
         if (linha == -1)
             return;
 
@@ -249,24 +254,24 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
             return;
 
         HashMap<String, Object> tipotrab = new HashMap<>();
-        tipotrab.put("codigo", jTextFieldCodigoTT.getText());
+        tipotrab.put("codigo", textCodigo.getText());
         String msg = ControleTipoTrabalho.apagar(tipotrab);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnExcluirTipoTrabActionPerformed
 
-    private void jTableTipoTrabalhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTipoTrabalhoMouseClicked
-        int linha = jTableTipoTrabalho.getSelectedRow();
+    private void tableTipoTrabalhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTipoTrabalhoMouseClicked
+        int linha = tableTipoTrabalho.getSelectedRow();
         if (linha == -1)
             return;
 
         HashMap<String, Object> tipotrab = new HashMap<>();
-        tipotrab.put("codigo", jTableTipoTrabalho.getValueAt(linha, 0));
+        tipotrab.put("codigo", tableTipoTrabalho.getValueAt(linha, 0));
         HashMap<String, Object> rv = ControleTipoTrabalho.recuperar(tipotrab);
 
-        jTextFieldCodigoTT.setText(rv.get("codigo").toString());
-        jTextPaneDescricaoTT.setText(rv.get("descricao").toString());
+        textCodigo.setText(rv.get("codigo").toString());
+        textDescricao.setText(rv.get("descricao").toString());
 
-    }//GEN-LAST:event_jTableTipoTrabalhoMouseClicked
+    }//GEN-LAST:event_tableTipoTrabalhoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         carregarTipoTrabalho();
@@ -316,13 +321,13 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableTipoTrabalho;
-    private javax.swing.JTextField jTextFieldCodigoTT;
-    private javax.swing.JTextPane jTextPaneDescricaoTT;
+    private javax.swing.JTable tableTipoTrabalho;
+    private javax.swing.JTextField textCodigo;
+    private javax.swing.JTextPane textDescricao;
     // End of variables declaration//GEN-END:variables
 
     private void toggleControlesTipoTrabalho(boolean ativo) {
-        jTextPaneDescricaoTT.setEditable(ativo);
+        textDescricao.setEditable(ativo);
 
         btnCancelarTipoTrab.setEnabled(ativo);
         btnGravarTipoTrab.setEnabled(ativo);
@@ -330,7 +335,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         btnEditarTipoTrab.setEnabled(!ativo);
         btnNovoTipoTrab.setEnabled(!ativo);
         btnExcluirTipoTrab.setEnabled(!ativo);
-        jTableTipoTrabalho.setEnabled(!ativo);
+        tableTipoTrabalho.setEnabled(!ativo);
     }
 
     private void habilitaControlesTipoTrabalho() {
@@ -342,22 +347,22 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }
 
     private void limpaControlesTipoTrabalho() {
-        jTextFieldCodigoTT.setText("");
-        jTextPaneDescricaoTT.setText("");
+        textCodigo.setText("");
+        textDescricao.setText("");
     }
 
     private void atualizarTabela(int linha, HashMap<String, Object> dados) {
         if (linha == -1) {
-            linha = jTableTipoTrabalho.getRowCount();
-            ((DefaultTableModel) jTableTipoTrabalho.getModel()).addRow(new Object[]{});
+            linha = tableTipoTrabalho.getRowCount();
+            ((DefaultTableModel) tableTipoTrabalho.getModel()).addRow(new Object[]{});
         }
 
-        jTableTipoTrabalho.setValueAt(dados.get("codigo"), linha, 0);
-        jTableTipoTrabalho.setValueAt(dados.get("descricao"), linha, 1);
+        tableTipoTrabalho.setValueAt(dados.get("codigo"), linha, 0);
+        tableTipoTrabalho.setValueAt(dados.get("descricao"), linha, 1);
     }
 
     private void carregarTipoTrabalho() {
-        DefaultTableModel m = (DefaultTableModel) jTableTipoTrabalho.getModel();
+        DefaultTableModel m = (DefaultTableModel) tableTipoTrabalho.getModel();
         m.setRowCount(0);
         ArrayList<HashMap<String, Object>> tipotrab = ControleTipoTrabalho.recuperarTodos();
 
