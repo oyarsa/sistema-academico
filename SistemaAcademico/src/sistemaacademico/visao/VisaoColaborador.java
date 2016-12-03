@@ -140,6 +140,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
         painelProjetosGerenciados = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaProjetosGerenciados = new javax.swing.JTable();
+        btnNovoProjetoGerenciado = new javax.swing.JButton();
+        btnAtualizarListaProjGerenciados = new javax.swing.JButton();
         painelHistorico = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         textCodigoEstado = new javax.swing.JTextField();
@@ -433,7 +435,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                     .addComponent(btnGravar)
                     .addComponent(btnCancelar)
                     .addComponent(btnExcluir))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Principal", painelPrincipal);
@@ -594,7 +596,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
                         .addComponent(botaoEditarTelefone)
                         .addComponent(botaoNovoTelefone)
                         .addComponent(botaoGravarTelefone)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Telefones", painelTelefones);
@@ -641,7 +643,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
             painelProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -674,6 +676,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
             tabelaProjetosGerenciados.getColumnModel().getColumn(0).setMaxWidth(70);
         }
 
+        btnNovoProjetoGerenciado.setText("Novo Projeto");
+        btnNovoProjetoGerenciado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProjetoGerenciadoActionPerformed(evt);
+            }
+        });
+
+        btnAtualizarListaProjGerenciados.setText("Atualizar");
+        btnAtualizarListaProjGerenciados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarListaProjGerenciadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelProjetosGerenciadosLayout = new javax.swing.GroupLayout(painelProjetosGerenciados);
         painelProjetosGerenciados.setLayout(painelProjetosGerenciadosLayout);
         painelProjetosGerenciadosLayout.setHorizontalGroup(
@@ -682,13 +698,23 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(painelProjetosGerenciadosLayout.createSequentialGroup()
+                .addGap(319, 319, 319)
+                .addComponent(btnNovoProjetoGerenciado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAtualizarListaProjGerenciados)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelProjetosGerenciadosLayout.setVerticalGroup(
             painelProjetosGerenciadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosGerenciadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelProjetosGerenciadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoProjetoGerenciado)
+                    .addComponent(btnAtualizarListaProjGerenciados))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Projetos Gerenciados", painelProjetosGerenciados);
@@ -847,6 +873,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         painelRegistro.setVisible(false);
+        desabilitarAbas();
         inicializarColaboradores();
     }//GEN-LAST:event_formWindowOpened
 
@@ -886,6 +913,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         limparComponentesColaborador();
         textCodigo.setText("");
         tabelaColaboradores.clearSelection();
+        desabilitarAbas();
         habilitarControlesColaborador();
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -941,7 +969,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
         if (c == null) {
             JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
                     "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        habilitarAbas();
 
         textCodigo.setText(c.get("codigo").toString());
         textCPF.setText(c.get("cpf").toString());
@@ -1194,6 +1225,15 @@ public class VisaoColaborador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkAcademicoItemStateChanged
 
+    private void btnNovoProjetoGerenciadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoGerenciadoActionPerformed
+        VisaoProjeto vp = new VisaoProjeto();
+        vp.setVisible(true);
+    }//GEN-LAST:event_btnNovoProjetoGerenciadoActionPerformed
+
+    private void btnAtualizarListaProjGerenciadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarListaProjGerenciadosActionPerformed
+        carregarProjetosGerenciados();
+    }//GEN-LAST:event_btnAtualizarListaProjGerenciadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1240,11 +1280,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JButton botaoGravarTelefone;
     private javax.swing.JButton botaoNovoEstado;
     private javax.swing.JButton botaoNovoTelefone;
+    private javax.swing.JButton btnAtualizarListaProjGerenciados;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnNovoProjetoGerenciado;
     private javax.swing.JCheckBox checkAcademico;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
@@ -1489,6 +1531,21 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         for (HashMap<String, Object> e : estados) {
             m.addRow(new Object[]{e.get("codigo"), e.get("nome"), e.get("dataIni"), e.get("dataTerm")});
+        }
+    }
+
+    private void desabilitarAbas() {
+        toggleAbas(false);
+    }
+
+    private void habilitarAbas() {
+        toggleAbas(true);
+    }
+
+    private void toggleAbas(boolean mostrar) {
+        int n = painelAbas.getTabCount();
+        for (int i = 1; i < n; i++) {
+            painelAbas.setEnabledAt(i, mostrar);
         }
     }
 
