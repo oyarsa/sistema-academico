@@ -1,6 +1,7 @@
 package sistemaacademico.modelo;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class Tarefa {
 
@@ -92,5 +93,17 @@ public class Tarefa {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> rv = new HashMap<>();
+
+        rv.put("codigo", codigo);
+        rv.put("descricao", descricao);
+        rv.put("horaInicio", horaInicio);
+        rv.put("horaTermino",horaTermino);
+        rv.put("tipoTrabalho",tipo);
+        rv.put("colaborador",responsavel);
+        return rv;
+    }   
 
 }
