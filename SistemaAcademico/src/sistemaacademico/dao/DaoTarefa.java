@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.Tarefa;
 
-
 public class DaoTarefa {
+
     public static String inserir(Tarefa t) {
         String sql
                 = "INSERT INTO tarefa "
@@ -24,11 +24,11 @@ public class DaoTarefa {
             Connection conn = FabricaConexao.GeraConexao();
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setString(1, t.getHoraInicio().toString());
-            stmt.setString(2, t.getHoraTermino().toString());
+            stmt.setDate(1, new java.sql.Date(t.getHoraInicio().getTime()));
+            stmt.setDate(2, new java.sql.Date(t.getHoraTermino().getTime()));
             stmt.setString(3, t.getObservacao());
             stmt.setInt(4, t.getTipo().getCodigo());
-            stmt.setInt(5,t.getResponsavel().getCodigo());
+            stmt.setInt(5, t.getResponsavel().getCodigo());
 
             stmt.executeUpdate();
 
@@ -49,7 +49,7 @@ public class DaoTarefa {
             }
         }
     }
-  
+
     public static String atualizar(Tarefa t) {
         String sql
                 = "UPDATE tarefa "
@@ -61,11 +61,12 @@ public class DaoTarefa {
             Connection conn = FabricaConexao.GeraConexao();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, (t.getHoraInicio().getTime()));
-            stmt.setString(2, (t.getHoraTermino().getTime()));
+            stmt.setDate(1, new java.sql.Date(t.getHoraInicio().getTime()));
+            stmt.setDate(2, new java.sql.Date(t.getHoraTermino().getTime()));
             stmt.setString(3, t.getObservacao());
-            stmt.setString(4, t.getTipo().toString());
-            stmt.setString(5, t.getResponsavel().toString());
+            stmt.setInt(4, t.getTipo().getCodigo());
+            stmt.setInt(5, t.getResponsavel().getCodigo());
+            stmt.setInt(6, t.getCodigo());
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
@@ -79,8 +80,8 @@ public class DaoTarefa {
                 }
             }
         }
-    }   
-    
+    }
+
     public static String remover(int codigo) {
         String sql = "DELETE FROM tarefa WHERE cod_trf = ?";
         PreparedStatement stmt = null;
@@ -135,11 +136,11 @@ public class DaoTarefa {
                 Tarefa t = new Tarefa();
 
                 t.setCodigo(rs.getInt("cod_trf"));
-                t.setHoraInicio(rs.getTime("horaini_trf"));
-                t.setHoraTermino(rs.getTime("horaterm_trf"));
+                t.setHoraInicio(rs.getDate("horaini_trf"));
+                t.setHoraTermino(rs.getDate("horaterm_trf"));
                 t.setObservacao(rs.getString("observacao_trf"));
-                t.setTipo(DaoTipoTrabalho.recuperar(rs.getInt("cod_tt")));
-                t.setResponsavel(DaoColaborador.recuperar(rs.getInt("cod_col")));
+                t.setTipo(DaoTipoTrabalho.recuperar(rs.getInt("tipo_trabalho")));
+                t.setResponsavel(DaoColaborador.recuperar(rs.getInt("colaborador")));
 
                 tarefas.add(t);
             }
@@ -161,7 +162,6 @@ public class DaoTarefa {
         }
 
         return tarefas;
-    }    
-    
-    
+    }
+
 }
