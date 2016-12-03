@@ -1,4 +1,3 @@
-
 package sistemaacademico.visao;
 
 import java.util.ArrayList;
@@ -129,7 +128,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelTitulo.setBackground(new java.awt.Color(204, 204, 255));
 
