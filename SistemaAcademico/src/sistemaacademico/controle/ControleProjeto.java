@@ -3,6 +3,7 @@ package sistemaacademico.controle;
 import java.util.HashMap;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoColaborador;
+import sistemaacademico.dao.DaoColaboradorProjeto;
 import sistemaacademico.dao.DaoProjeto;
 import sistemaacademico.modelo.Projeto;
 
@@ -53,6 +54,46 @@ public class ControleProjeto {
             return Mensagens.ERRO + "Código inválido";
         }
         return DaoProjeto.remover(codigo);
+    }
+
+    public static String removerColaborador(HashMap<String, Object> dados) {
+        int codigoProjeto, codigoColaborador;
+
+        try {
+            codigoProjeto = Integer.parseInt(dados.get("codigoProjeto").toString());
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return Mensagens.ERRO + "Erro ao recuperar código do projeto";
+        }
+
+        try {
+            codigoColaborador = Integer.parseInt(dados.get("codigoColaborador").toString());
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return Mensagens.ERRO + "Erro ao recuperar código do colaborador";
+        }
+
+        return DaoColaboradorProjeto.remover(codigoProjeto, codigoColaborador);
+    }
+
+    public static String adicionarColaborador(HashMap<String, Object> dados, HashMap<String, Object> dadosColab) {
+        int codigoProjeto, codigoColaborador;
+
+        try {
+            codigoProjeto = Integer.parseInt(dados.get("codigoProjeto").toString());
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return Mensagens.ERRO + "Erro ao recuperar código do projeto";
+        }
+
+        try {
+            codigoColaborador = Integer.parseInt(dados.get("codigoColaborador").toString());
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return Mensagens.ERRO + "Erro ao recuperar código do colaborador";
+        }
+
+        return DaoColaboradorProjeto.inserir(codigoProjeto, codigoColaborador);
     }
 
 }
