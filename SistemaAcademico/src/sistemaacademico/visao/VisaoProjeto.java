@@ -47,7 +47,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         tabelaDependencias = new javax.swing.JTable();
         painelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        painelColaboradores = new javax.swing.JTabbedPane();
         painelPrincipal = new javax.swing.JPanel();
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
@@ -84,6 +84,11 @@ public class VisaoProjeto extends javax.swing.JFrame {
         btnGravarAtiv = new javax.swing.JButton();
         btnCancelarAtiv = new javax.swing.JButton();
         btnExcluirAtiv = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tableColaboradores = new javax.swing.JTable();
+        btnAddColab = new javax.swing.JButton();
+        btnRemoveColab = new javax.swing.JButton();
 
         dialogDependencias.setModal(true);
         dialogDependencias.setSize(new java.awt.Dimension(500, 500));
@@ -246,7 +251,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addComponent(labelRecursos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGravar)
@@ -254,7 +259,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Principal", painelPrincipal);
+        painelColaboradores.addTab("Principal", painelPrincipal);
 
         labelCodAtividade.setText("Código");
 
@@ -420,7 +425,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                             .addComponent(btnTarefas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(46, Short.MAX_VALUE))
+                        .addContainerGap(100, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAtividadesLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(painelAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -432,21 +437,92 @@ public class VisaoProjeto extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        jTabbedPane1.addTab("Atividades", painelAtividades);
+        painelColaboradores.addTab("Atividades", painelAtividades);
+
+        tableColaboradores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tableColaboradores);
+        if (tableColaboradores.getColumnModel().getColumnCount() > 0) {
+            tableColaboradores.getColumnModel().getColumn(0).setMinWidth(70);
+            tableColaboradores.getColumnModel().getColumn(0).setMaxWidth(70);
+        }
+
+        btnAddColab.setText("Adicionar Colaborador");
+        btnAddColab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddColabActionPerformed(evt);
+            }
+        });
+
+        btnRemoveColab.setText("Remover Colaborador");
+        btnRemoveColab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveColabActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(btnAddColab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRemoveColab)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddColab)
+                    .addComponent(btnRemoveColab))
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
+        painelColaboradores.addTab("Colaboradores", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(painelColaboradores)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(painelColaboradores)
                 .addGap(0, 0, 0))
         );
 
@@ -569,6 +645,59 @@ public class VisaoProjeto extends javax.swing.JFrame {
         dialogDependencias.setVisible(true);
     }//GEN-LAST:event_btnDependenciasActionPerformed
 
+    private void btnRemoveColabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveColabActionPerformed
+        int linha = tableColaboradores.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int codigo = (Integer) tableColaboradores.getValueAt(linha, 0);
+        String nome = (String) tableColaboradores.getValueAt(linha, 1);
+
+        int opt = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir " + nome + " desse projeto?",
+                "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+        if (opt == JOptionPane.NO_OPTION)
+            return;
+
+        HashMap<String, Object> dadosColab = new HashMap<>();
+        dadosColab.put("codigoProjeto", dados.get("codigo"));
+        dadosColab.put("codigoColaborador", codigo);
+        String msg = ControleProjeto.removerColaborador(dadosColab);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO))
+            ((DefaultTableModel) tableColaboradores.getModel()).removeRow(linha);
+    }//GEN-LAST:event_btnRemoveColabActionPerformed
+
+    private void btnAddColabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddColabActionPerformed
+        ArrayList<HashMap<String, Object>> colaboradores = ControleColaborador.recuperarTodos();
+        ArrayList<String> nomes = new ArrayList<>();
+
+        for (HashMap<String, Object> c : colaboradores) {
+            nomes.add((String) c.get("nome"));
+        }
+
+        String colabNome = (String) JOptionPane.showInputDialog(this, "Escolha o Colaborador",
+                "Adicionar colaborador",
+                JOptionPane.QUESTION_MESSAGE, null, nomes.toArray(), nomes.get(0));
+
+        for (HashMap<String, Object> c : colaboradores) {
+            if (c.get("nome").equals(colabNome)) {
+                HashMap<String, Object> dadosColab = new HashMap<>();
+                dadosColab.put("codigoProjeto", dados.get("codigo"));
+                dadosColab.put("codigoColaborador", c.get("codigo"));
+
+                String msg = ControleProjeto.adicionarColaborador(dados, dadosColab);
+                if (msg.equals(Mensagens.SUCESSO)) {
+                    ((DefaultTableModel) tableColaboradores.getModel()).addRow(
+                            new Object[]{c.get("codigo"), c.get("nome")}
+                    );
+                }
+
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnAddColabActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -605,6 +734,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddColab;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelarAtiv;
     private javax.swing.JButton btnDependencias;
@@ -614,14 +744,16 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnGravarAtiv;
     private javax.swing.JButton btnNovoAtiv;
+    private javax.swing.JButton btnRemoveColab;
     private javax.swing.JButton btnTarefas;
     private javax.swing.JComboBox<String> comboGerente;
     private javax.swing.JDialog dialogDependencias;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelCodAtividade;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelDataFimAtividade;
@@ -634,12 +766,14 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTituloAtividade;
     private javax.swing.JPanel painelAtividades;
+    private javax.swing.JTabbedPane painelColaboradores;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel painelTitulo;
     private javax.swing.JTextArea taObjetivo;
     private javax.swing.JTextArea taRecursos;
     private javax.swing.JTable tabelaAtividades;
     private javax.swing.JTable tabelaDependencias;
+    private javax.swing.JTable tableColaboradores;
     private javax.swing.JTextField textCodAtividade;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textDataFimAtividade;
