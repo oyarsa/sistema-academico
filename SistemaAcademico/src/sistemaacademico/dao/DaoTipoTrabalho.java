@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.TipoTrabalho;
 
-
 public class DaoTipoTrabalho {
+
     public static String inserir(TipoTrabalho t) {
         String sql
                 = "INSERT INTO tipo_trabalho "
@@ -44,7 +44,7 @@ public class DaoTipoTrabalho {
                 }
             }
         }
-    } 
+    }
 
     public static String atualizar(TipoTrabalho t) {
         String sql
@@ -58,6 +58,7 @@ public class DaoTipoTrabalho {
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, t.getDescricao());
+            stmt.setInt(2, t.getCodigo());
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
@@ -71,8 +72,8 @@ public class DaoTipoTrabalho {
                 }
             }
         }
-    }    
-  
+    }
+
     public static String remover(int codigo) {
         String sql = "DELETE FROM tipo_trabalho WHERE cod_tt = ?";
         PreparedStatement stmt = null;
@@ -149,6 +150,6 @@ public class DaoTipoTrabalho {
         }
 
         return tipoTrabalho;
-    }    
-    
+    }
+
 }
