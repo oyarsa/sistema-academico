@@ -17,7 +17,7 @@ public class Helper {
     }
 
     public static String dateToString(Date date) {
-        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
         return ft.format(date);
     }
 }
