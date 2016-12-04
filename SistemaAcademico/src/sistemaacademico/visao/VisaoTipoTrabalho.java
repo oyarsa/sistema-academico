@@ -81,9 +81,16 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tableTipoTrabalho.getColumnModel().getColumn(0).setPreferredWidth(60);
@@ -147,23 +154,22 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
                     .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
                         .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                                    .addComponent(btnNovoTipoTrab)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(btnEditarTipoTrab)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(btnGravarTipoTrab)
-                                    .addGap(50, 50, 50)
-                                    .addComponent(btnCancelarTipoTrab)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnExcluirTipoTrab))
-                                .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
-                                    .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
+                                .addComponent(btnNovoTipoTrab)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnEditarTipoTrab)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnGravarTipoTrab)
+                                .addGap(50, 50, 50)
+                                .addComponent(btnCancelarTipoTrab)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluirTipoTrab))
+                            .addGroup(jPanelTipoTrabalhoLayout.createSequentialGroup()
+                                .addGroup(jPanelTipoTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanelTipoTrabalhoLayout.setVerticalGroup(
