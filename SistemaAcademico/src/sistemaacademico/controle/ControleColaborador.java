@@ -258,7 +258,9 @@ public class ControleColaborador {
         if (e == null) {
             return null;
         } else {
-            return e.toHashMap();
+            HashMap<String, Object> rv = e.toHashMap();
+            converteDatasEstado(rv);
+            return rv;
         }
     }
 
@@ -319,8 +321,13 @@ public class ControleColaborador {
     }
 
     private static void converteDatasEstado(HashMap<String, Object> dados) {
-        dados.put("dataIni", Helper.dateToString((Date) dados.get("dataIni")));
-        dados.put("dataTerm", Helper.dateToString((Date) dados.get("dataTerm")));
+        Date dataIni = (Date) dados.get("dataIni");
+        dados.remove("dataIni");
+        dados.put("dataIni", Helper.dateToString(dataIni));
+
+        Date dataTerm = (Date) dados.get("dataTerm");
+        dados.remove("dataTerm");
+        dados.put("dataTerm", Helper.dateToString(dataTerm));
     }
 
     private static String salvarAcademico(Colaborador c, HashMap<String, Object> dados) {

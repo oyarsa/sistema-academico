@@ -17,7 +17,7 @@ public class Helper {
             SimpleDateFormat curFormater = new SimpleDateFormat(format);
             return curFormater.parse(dateStr);
         } catch (ParseException ex) {
-            System.err.println("Erro no stringToCal");
+            ex.printStackTrace();
             return null;
         }
     }
