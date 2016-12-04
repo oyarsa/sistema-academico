@@ -624,6 +624,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaProjetos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaProjetosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaProjetos);
         if (tabelaProjetos.getColumnModel().getColumnCount() > 0) {
             tabelaProjetos.getColumnModel().getColumn(0).setMinWidth(70);
@@ -1235,6 +1240,22 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnAtualizarListaProjGerenciadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarListaProjGerenciadosActionPerformed
         carregarProjetosGerenciados();
     }//GEN-LAST:event_btnAtualizarListaProjGerenciadosActionPerformed
+
+    private void tabelaProjetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProjetosMouseClicked
+        if (evt.getClickCount() != 2) {
+            return;
+        }
+
+        int linha = tabelaProjetos.getSelectedRow();
+        if (linha == -1) {
+            return;
+        }
+
+        int codigo = (Integer) tabelaProjetos.getValueAt(linha, 0);
+
+        VisaoProjeto p = new VisaoProjeto(codigo);
+        p.setVisible(true);
+    }//GEN-LAST:event_tabelaProjetosMouseClicked
 
     /**
      * @param args the command line arguments
