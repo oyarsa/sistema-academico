@@ -279,6 +279,7 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     }//GEN-LAST:event_tableTipoTrabalhoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        desabilitaControlesTipoTrabalho();
         carregarTipoTrabalho();
     }//GEN-LAST:event_formWindowOpened
 
