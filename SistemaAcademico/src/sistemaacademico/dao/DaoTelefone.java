@@ -53,7 +53,7 @@ public class DaoTelefone {
     public static String atualizar(Telefone t) {
         String sql
                 = "UPDATE telefone "
-                + "SET ddi_tel = ?, ddd_tel = ?, numero_tel = ?, operadora_tel = ?, "
+                + "SET ddi_tel = ?, ddd_tel = ?, numero_tel = ?, operadora_tel = ? "
                 + "WHERE cod_tel = ?";
         PreparedStatement stmt = null;
 
