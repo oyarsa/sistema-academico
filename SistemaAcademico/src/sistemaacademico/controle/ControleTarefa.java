@@ -88,6 +88,7 @@ public class ControleTarefa {
             HashMap<String, Object> rv = t.toHashMap();
             rv.put("tipoTrabalho", t.getTipo().getCodigo());
             rv.put("responsavel", t.getResponsavel().getCodigo());
+            converteHoras(rv);
             return rv;
         }
     }
@@ -109,9 +110,20 @@ public class ControleTarefa {
             HashMap<String, Object> map = t.toHashMap();
             map.put("tipoTrabalho", t.getTipo().getCodigo());
             map.put("responsavel", t.getResponsavel().getCodigo());
+            converteHoras(map);
             rv.add(map);
         }
         return rv;
+    }
+
+    private static void converteHoras(HashMap<String, Object> rv) {
+        Date horaInicio = (Date) rv.get("horaInicio");
+        rv.remove("horaInicio");
+        rv.put("horaInicio", Helper.timeDateToString(horaInicio));
+
+        Date horaTermino = (Date) rv.get("horaTermino");
+        rv.remove("horaTermino");
+        rv.put("horaTermino", Helper.timeDateToString(horaTermino));
     }
 
 }

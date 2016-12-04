@@ -100,10 +100,11 @@ public class Tarefa {
         rv.put("codigo", codigo);
         rv.put("descricao", descricao);
         rv.put("horaInicio", horaInicio);
-        rv.put("horaTermino",horaTermino);
-        rv.put("tipoTrabalho",tipo);
-        rv.put("colaborador",responsavel);
+        rv.put("horaTermino", horaTermino);
+        rv.put("tipoTrabalho", tipo);
+        rv.put("observacao", observacao);
+        rv.put("colaborador", responsavel);
         return rv;
-    }   
+    }
 
 }

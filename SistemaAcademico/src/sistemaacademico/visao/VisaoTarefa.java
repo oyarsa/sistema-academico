@@ -330,7 +330,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         HashMap<String, Object> tarefa = ControleTarefa.recuperar(dados);
         textCodigo.setText(tarefa.get("codigo").toString());
-        textHoraFim.setText(tarefa.get("horaFim").toString());
+        textHoraFim.setText(tarefa.get("horaTermino").toString());
         textHoraInicio.setText(tarefa.get("horaInicio").toString());
         taObservacao.setText(tarefa.get("observacao").toString());
         comboColaboradores.setSelectedItem(codToColab.get((Integer) tarefa.get("responsavel")));

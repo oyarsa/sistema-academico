@@ -8,10 +8,11 @@ public class Helper {
 
     private static final String FORMATO_DATA = "dd/MM/yyyy";
     private static final String FORMATO_HORA = "HH:mm";
+    private static final Date DATA_PADRAO = new Date(0);
 
     private static Date formatStrToDate(String format, String dateStr) {
         if (dateStr.trim().equals("")) {
-            return new Date(0);
+            return DATA_PADRAO;
         }
         try {
             SimpleDateFormat curFormater = new SimpleDateFormat(format);
@@ -23,8 +24,9 @@ public class Helper {
     }
 
     private static String dateToFormatStr(String format, Date date) {
-        if (date.getTime() == 0)
+        if (date.getYear() == DATA_PADRAO.getYear())
             return "";
+
         SimpleDateFormat ft = new SimpleDateFormat(format);
         return ft.format(date);
     }
