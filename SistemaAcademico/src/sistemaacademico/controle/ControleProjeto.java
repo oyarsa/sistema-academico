@@ -29,7 +29,6 @@ public class ControleProjeto {
                     Integer.parseInt(dados.get("codigoGerente").toString())));
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.err.println(ex.getMessage());
             return Mensagens.ERRO + "Gerente inválido";
         }
 
@@ -42,6 +41,7 @@ public class ControleProjeto {
                 p.setCodigo(Integer.parseInt(dados.get("codigo").toString()));
                 return DaoProjeto.atualizar(p);
             } catch (Exception ex) {
+                ex.printStackTrace();
                 return Mensagens.ERRO + "Código inválido";
             }
         }
@@ -63,14 +63,14 @@ public class ControleProjeto {
         try {
             codigoProjeto = Integer.parseInt(dados.get("codigoProjeto").toString());
         } catch (Exception ex) {
-            System.err.println(ex);
+            ex.printStackTrace();
             return Mensagens.ERRO + "Erro ao recuperar código do projeto";
         }
 
         try {
             codigoColaborador = Integer.parseInt(dados.get("codigoColaborador").toString());
         } catch (Exception ex) {
-            System.err.println(ex);
+            ex.printStackTrace();
             return Mensagens.ERRO + "Erro ao recuperar código do colaborador";
         }
 

@@ -255,7 +255,7 @@ public class ControleColaborador {
         try {
             codigoColaborador = Integer.parseInt(dados.get("colaborador").toString());
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
+            ex.printStackTrace();
             return Mensagens.ERRO + "Colaborador inválido";
         }
         sistemaacademico.modelo.Estado e = new Estado();

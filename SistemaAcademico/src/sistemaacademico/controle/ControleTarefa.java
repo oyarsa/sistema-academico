@@ -88,8 +88,8 @@ public class ControleTarefa {
         try {
             codigo = Integer.parseInt(atividade.get("codigo").toString());
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.err.println("Erro ao recuperar tarefas de uma atividade");
-            System.err.println(ex.getMessage());
             return null;
         }
 
