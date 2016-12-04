@@ -591,9 +591,12 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private void btnCancelarAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAtivActionPerformed
         desabilitaControlesAtividade();
         limpaControlesAtividade();
+        tabelaAtividades.clearSelection();
     }//GEN-LAST:event_btnCancelarAtivActionPerformed
 
     private void btnExcluirAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAtivActionPerformed
+        desabilitaControlesAtividade();
+
         int linha = tabelaAtividades.getSelectedRow();
         if (linha == -1)
             return;
@@ -608,6 +611,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
         ativ.put("codigo", textCodAtividade.getText());
         String msg = ControleAtividade.apagar(ativ);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        tabelaAtividades.clearSelection();
     }//GEN-LAST:event_btnExcluirAtivActionPerformed
 
     private void tabelaAtividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAtividadesMouseClicked

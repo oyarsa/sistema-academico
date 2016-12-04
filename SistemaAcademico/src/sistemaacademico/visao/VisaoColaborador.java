@@ -882,6 +882,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limparComponentesColaborador();
         desabilitarControlesColaborador();
+        tabelaColaboradores.clearSelection();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -1129,6 +1130,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private void botaoCancelarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarEstadoActionPerformed
         limparComponentesColaboradorEstado();
         desabilitarControlesColaboradorEstado();
+        tabelaEstados.clearSelection();
     }//GEN-LAST:event_botaoCancelarEstadoActionPerformed
 
     private void botaoExcluirEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirEstadoActionPerformed

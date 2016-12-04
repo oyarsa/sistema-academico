@@ -32,7 +32,6 @@ public class VisaoTarefa extends javax.swing.JFrame {
         comboColaboradores.setSelectedIndex(0);
         comboTipo.setSelectedIndex(0);
         taObservacao.setText("");
-        tableTarefas.clearSelection();
     }
 
     private void toggleControles(boolean ativo) {
@@ -340,6 +339,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private void btnCancelarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTipoTrabActionPerformed
         desabilitaControles();
         limparControles();
+        tableTarefas.clearSelection();
     }//GEN-LAST:event_btnCancelarTipoTrabActionPerformed
 
     private void btnEditarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTipoTrabActionPerformed
@@ -350,6 +350,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private void btnNovoTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoTipoTrabActionPerformed
         limparControles();
         habilitaControles();
+        tableTarefas.clearSelection();
     }//GEN-LAST:event_btnNovoTipoTrabActionPerformed
 
     private void btnExcluirTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTipoTrabActionPerformed
@@ -376,6 +377,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
         }
 
         limparControles();
+        tableTarefas.clearSelection();
     }//GEN-LAST:event_btnExcluirTipoTrabActionPerformed
 
     private void btnGravarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarTipoTrabActionPerformed

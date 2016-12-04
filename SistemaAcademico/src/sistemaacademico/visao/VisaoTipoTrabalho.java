@@ -240,9 +240,12 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
     private void btnCancelarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTipoTrabActionPerformed
         desabilitaControlesTipoTrabalho();
         limpaControlesTipoTrabalho();
+        tableTipoTrabalho.clearSelection();
     }//GEN-LAST:event_btnCancelarTipoTrabActionPerformed
 
     private void btnExcluirTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTipoTrabActionPerformed
+        desabilitaControlesTipoTrabalho();
+
         int linha = tableTipoTrabalho.getSelectedRow();
         if (linha == -1)
             return;
@@ -257,6 +260,8 @@ public class VisaoTipoTrabalho extends javax.swing.JFrame {
         tipotrab.put("codigo", textCodigo.getText());
         String msg = ControleTipoTrabalho.apagar(tipotrab);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        tableTipoTrabalho.clearSelection();
     }//GEN-LAST:event_btnExcluirTipoTrabActionPerformed
 
     private void tableTipoTrabalhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTipoTrabalhoMouseClicked
