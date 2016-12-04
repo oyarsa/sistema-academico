@@ -388,7 +388,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         dados.put("codigo", textCodigo.getText());
         dados.put("horaInicio", textHoraInicio.getText());
-        dados.put("horaFim", textHoraFim.getText());
+        dados.put("horaTermino", textHoraFim.getText());
         dados.put("responsavel", colabToCod.get(comboColaboradores.getSelectedItem().toString()));
         dados.put("tipoTrabalho", tipoToCod.get(comboTipo.getSelectedItem().toString()));
         dados.put("observacao", taObservacao.getText());
