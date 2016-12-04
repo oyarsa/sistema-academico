@@ -721,6 +721,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         jLabel7.setText("Código");
 
+        textCodigoEstado.setEditable(false);
+
         jLabel8.setText("Nome");
 
         jLabel9.setText("Data de Início");
@@ -1176,6 +1178,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         HashMap<String, Object> dados = new HashMap<>();
 
         dados.put("codigo", textCodigoEstado.getText());
+        dados.put("colaborador", textCodigo.getText());
         dados.put("nome", textNomeEstado.getText());
         dados.put("dataIni", textDataIniEstado.getText());
         dados.put("dataTerm", textDataTerEstado.getText());

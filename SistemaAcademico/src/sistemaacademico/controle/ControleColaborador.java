@@ -251,6 +251,13 @@ public class ControleColaborador {
     }
 
     public static String salvarEstado(HashMap<String, Object> dados) {
+        int codigoColaborador;
+        try {
+            codigoColaborador = Integer.parseInt(dados.get("colaborador").toString());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return Mensagens.ERRO + "Colaborador inválido";
+        }
         sistemaacademico.modelo.Estado e = new Estado();
 
         e.setNome(dados.get("nome").toString());
@@ -259,7 +266,7 @@ public class ControleColaborador {
 
         String sCodigo = dados.get("codigo").toString();
         if (sCodigo.equals("")) {
-            String msg = sistemaacademico.dao.DaoEstado.inserir(e, e.getCodigo());
+            String msg = sistemaacademico.dao.DaoEstado.inserir(e, codigoColaborador);
             if (msg.equals(Mensagens.SUCESSO)) {
                 dados.put("codigo", e.getCodigo());
             }
