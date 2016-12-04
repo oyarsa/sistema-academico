@@ -67,15 +67,25 @@ public class ControleColaborador {
     }
 
     public static String salvar(HashMap<String, Object> dados) {
+        String cpf = dados.get("cpf").toString();
+        if (cpf.length() != 11) {
+            return Mensagens.ERRO + "Tamanho do CPF inválido. Deve possuir 11 caracteres";
+        }
+
+        String rg = dados.get("rg").toString();
+        if (rg.length() != 12) {
+            return Mensagens.ERRO + "Tamanho do RG inválido. Deve possuir 12 caracteres";
+        }
+
         Colaborador c = new Colaborador();
 
-        c.setCpf(dados.get("cpf").toString());
+        c.setCpf(cpf);
         c.setCategoria(dados.get("categoria").toString());
         c.setEmail(dados.get("email").toString());
         c.setNome(dados.get("nome").toString());
         c.setNomePai(dados.get("nomePai").toString());
         c.setNomeMae(dados.get("nomeMae").toString());
-        c.setRg(dados.get("rg").toString());
+        c.setRg(rg);
         c.setAtivo((Boolean) dados.get("ativo"));
 
         String sCodigo = dados.get("codigo").toString();
