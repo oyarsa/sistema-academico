@@ -1,10 +1,12 @@
 package sistemaacademico.controle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import sistemaacademico.Util.Mensagens;
 import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoColaboradorProjeto;
 import sistemaacademico.dao.DaoProjeto;
+import sistemaacademico.modelo.Colaborador;
 import sistemaacademico.modelo.Projeto;
 
 public class ControleProjeto {
@@ -95,6 +97,25 @@ public class ControleProjeto {
         }
 
         return DaoColaboradorProjeto.inserir(codigoProjeto, codigoColaborador);
+    }
+
+    public static ArrayList<HashMap<String, Object>> recuperarColaboradores(HashMap<String, Object> dados) {
+        int codigoProjeto;
+        try {
+            codigoProjeto = Integer.parseInt(dados.get("codigo").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        ArrayList<Colaborador> colaboradores = DaoColaboradorProjeto.recuperarColabadores(codigoProjeto);
+        ArrayList<HashMap<String, Object>> rv = new ArrayList<>();
+
+        for (Colaborador c : colaboradores) {
+            rv.add(c.toHashMap());
+        }
+
+        return rv;
     }
 
 }

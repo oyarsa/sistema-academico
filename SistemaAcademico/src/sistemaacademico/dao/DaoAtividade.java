@@ -115,8 +115,8 @@ public class DaoAtividade {
         }
     }
 
-    public static ArrayList<Atividade> recuperarTodos() {
-        return recuperarQuery("");
+    public static ArrayList<Atividade> recuperarTodos(int codigoProjeto) {
+        return recuperarQuery("WHERE projeto = " + codigoProjeto);
     }
 
     private static ArrayList<Atividade> recuperarQuery(String where) {

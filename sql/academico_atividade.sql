@@ -28,8 +28,10 @@ CREATE TABLE `atividade` (
   `datafim_atv` date DEFAULT NULL,
   `duracaoestimada_atv` date DEFAULT NULL,
   `titulo_atv` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`cod_atv`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `projeto` int(11) NOT NULL,
+  PRIMARY KEY (`cod_atv`),
+  KEY `FK_Atividade_Projeto_idx` (`projeto`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +40,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
+INSERT INTO `atividade` VALUES (1,'2015-02-01','2016-03-01','2015-02-01','asdasdasd',0),(2,'2015-01-01','2015-02-01','2015-01-01','asdasdsad',0);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:19
+-- Dump completed on 2016-12-04 14:59:08

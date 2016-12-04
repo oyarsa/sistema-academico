@@ -86,8 +86,16 @@ public class ControleAtividade {
         dados.put("duracaoEstimada", Helper.dateToString(duracaoEstimada));
     }
 
-    public static ArrayList<HashMap<String, Object>> recuperarTodos() {
-        ArrayList<Atividade> atividades = DaoAtividade.recuperarTodos();
+    public static ArrayList<HashMap<String, Object>> recuperarTodos(HashMap<String, Object> dados) {
+        int codigoProjeto;
+        try {
+            codigoProjeto = Integer.parseInt(dados.get("codigo").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        ArrayList<Atividade> atividades = DaoAtividade.recuperarTodos(codigoProjeto);
         ArrayList<HashMap<String, Object>> rv = new ArrayList<>();
 
         for (Atividade a : atividades) {

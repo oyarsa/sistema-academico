@@ -15,7 +15,7 @@ import sistemaacademico.controle.ControleProjeto;
  */
 public class VisaoProjeto extends javax.swing.JFrame {
 
-    private final HashMap<String, Object> dados;
+    private final HashMap<String, Object> dadosProjeto;
     private final HashMap<String, Integer> colabToCod = new HashMap<>();
     private final HashMap<Integer, String> codToColab = new HashMap<>();
 
@@ -24,14 +24,16 @@ public class VisaoProjeto extends javax.swing.JFrame {
      */
     public VisaoProjeto() {
         initComponents();
-        dados = new HashMap<>();
+        dadosProjeto = new HashMap<>();
         inicializar();
+        desabilitarAbas();
     }
 
     public VisaoProjeto(int codigoProjeto) {
         initComponents();
-        this.dados = ControleProjeto.recuperar(codigoProjeto);
+        this.dadosProjeto = ControleProjeto.recuperar(codigoProjeto);
         inicializar();
+        habilitarAbas();
     }
 
     /**
@@ -48,7 +50,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         tabelaDependencias = new javax.swing.JTable();
         painelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
-        painelColaboradores = new javax.swing.JTabbedPane();
+        painelAbas = new javax.swing.JTabbedPane();
         painelPrincipal = new javax.swing.JPanel();
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
@@ -262,7 +264,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelColaboradores.addTab("Principal", painelPrincipal);
+        painelAbas.addTab("Principal", painelPrincipal);
 
         labelCodAtividade.setText("Código");
 
@@ -442,7 +444,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        painelColaboradores.addTab("Atividades", painelAtividades);
+        painelAbas.addTab("Atividades", painelAtividades);
 
         tableColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -513,21 +515,21 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        painelColaboradores.addTab("Colaboradores", jPanel1);
+        painelAbas.addTab("Colaboradores", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelColaboradores)
+            .addComponent(painelAbas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelColaboradores)
+                .addComponent(painelAbas)
                 .addGap(0, 0, 0))
         );
 
@@ -539,12 +541,12 @@ public class VisaoProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        dados.put("nome", textNome.getText());
-        dados.put("objetivo", taObjetivo.getText());
-        dados.put("recursos", taRecursos.getText());
-        dados.put("codigoGerente", colabToCod.get(comboGerente.getSelectedItem().toString()));
+        dadosProjeto.put("nome", textNome.getText());
+        dadosProjeto.put("objetivo", taObjetivo.getText());
+        dadosProjeto.put("recursos", taRecursos.getText());
+        dadosProjeto.put("codigoGerente", colabToCod.get(comboGerente.getSelectedItem().toString()));
 
-        String msg = ControleProjeto.salvar(dados);
+        String msg = ControleProjeto.salvar(dadosProjeto);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnGravarActionPerformed
 
@@ -555,7 +557,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         if (resposta == JOptionPane.NO_OPTION)
             return;
 
-        String msg = ControleProjeto.apagar(dados);
+        String msg = ControleProjeto.apagar(dadosProjeto);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -670,7 +672,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
             return;
 
         HashMap<String, Object> dadosColab = new HashMap<>();
-        dadosColab.put("codigoProjeto", dados.get("codigo"));
+        dadosColab.put("codigoProjeto", dadosProjeto.get("codigo"));
         dadosColab.put("codigoColaborador", codigo);
         String msg = ControleProjeto.removerColaborador(dadosColab);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
@@ -694,7 +696,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         for (HashMap<String, Object> c : colaboradores) {
             if (c.get("nome").equals(colabNome)) {
                 HashMap<String, Object> dadosColab = new HashMap<>();
-                dadosColab.put("codigoProjeto", dados.get("codigo"));
+                dadosColab.put("codigoProjeto", dadosProjeto.get("codigo"));
                 dadosColab.put("codigoColaborador", c.get("codigo"));
 
                 String msg = ControleProjeto.adicionarColaborador(dadosColab);
@@ -787,8 +789,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JLabel labelRecursos;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTituloAtividade;
+    private javax.swing.JTabbedPane painelAbas;
     private javax.swing.JPanel painelAtividades;
-    private javax.swing.JTabbedPane painelColaboradores;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel painelTitulo;
     private javax.swing.JTextArea taObjetivo;
@@ -807,27 +809,26 @@ public class VisaoProjeto extends javax.swing.JFrame {
 
     private void inicializar() {
         carregarColaboradores();
-        carregarAtividades();
         initComboGerentes();
         resetCampos();
 
-        if (!dados.containsKey("codigo")) {
+        if (!dadosProjeto.containsKey("codigo")) {
             btnExcluir.setEnabled(false);
         }
     }
 
     private void resetCampos() {
-        textCodigo.setText(dados.getOrDefault("codigo", "").toString());
-        textNome.setText(dados.getOrDefault("nome", "").toString());
-        taObjetivo.setText(dados.getOrDefault("objetivo", "").toString());
-        taRecursos.setText(dados.getOrDefault("recursos", "").toString());
+        textCodigo.setText(dadosProjeto.getOrDefault("codigo", "").toString());
+        textNome.setText(dadosProjeto.getOrDefault("nome", "").toString());
+        taObjetivo.setText(dadosProjeto.getOrDefault("objetivo", "").toString());
+        taRecursos.setText(dadosProjeto.getOrDefault("recursos", "").toString());
 
-        if (!dados.containsKey("codigoGerente"))
+        if (!dadosProjeto.containsKey("codigoGerente"))
             return;
 
         int codigo;
         try {
-            codigo = Integer.parseInt(dados.get("codigoGerente").toString());
+            codigo = Integer.parseInt(dadosProjeto.get("codigoGerente").toString());
         } catch (NumberFormatException ex) {
             System.err.println("Erro ao capturar código do gerente");
             return;
@@ -902,13 +903,40 @@ public class VisaoProjeto extends javax.swing.JFrame {
         tabelaAtividades.setValueAt(dados.get("titulo"), linha, 1);
     }
 
+    private void toggleAbas(boolean ativo) {
+        for (int i = 1; i < painelAbas.getTabCount(); i++) {
+            painelAbas.setEnabledAt(i, ativo);
+        }
+    }
+
+    private void habilitarAbas() {
+        toggleAbas(true);
+        carregarAtividades();
+        carregarColaboradoresProjeto();
+    }
+
+    private void desabilitarAbas() {
+        toggleAbas(false);
+    }
+
     private void carregarAtividades() {
         DefaultTableModel m = (DefaultTableModel) tabelaAtividades.getModel();
         m.setRowCount(0);
-        ArrayList<HashMap<String, Object>> atividades = ControleAtividade.recuperarTodos();
+        ArrayList<HashMap<String, Object>> atividades = ControleAtividade.recuperarTodos(dadosProjeto);
 
         for (HashMap<String, Object> a : atividades) {
             m.addRow(new Object[]{a.get("codigo"), a.get("titulo")});
+        }
+    }
+
+    private void carregarColaboradoresProjeto() {
+        DefaultTableModel m = (DefaultTableModel) tableColaboradores.getModel();
+        m.setRowCount(0);
+        ArrayList<HashMap<String, Object>> colaboradores
+                = ControleProjeto.recuperarColaboradores(dadosProjeto);
+
+        for (HashMap<String, Object> c : colaboradores) {
+            m.addRow(new Object[]{c.get("codigo"), c.get("nome")});
         }
     }
 }
