@@ -22,6 +22,7 @@ public class ControleColaborador {
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
 
         for (Colaborador c : colaboradores) {
+            c.setRegistroAcad(DaoRegistroAcademico.recuperar(c.getCodigo()));
             result.add(c.toHashMap());
         }
 
