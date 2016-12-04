@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: localhost    Database: academico
+-- Host: 127.0.0.1    Database: academico
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.5.5-10.1.13-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,11 +25,8 @@ DROP TABLE IF EXISTS `tipo_trabalho`;
 CREATE TABLE `tipo_trabalho` (
   `cod_tt` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_tt` varchar(100) DEFAULT NULL,
-  `tarefa` int(11) DEFAULT NULL,
-  PRIMARY KEY (`cod_tt`),
-  KEY `FK_TAREFA_TP_idx` (`tarefa`),
-  CONSTRAINT `FK_TAREFA_TP` FOREIGN KEY (`tarefa`) REFERENCES `tarefa` (`cod_trf`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`cod_tt`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +35,7 @@ CREATE TABLE `tipo_trabalho` (
 
 LOCK TABLES `tipo_trabalho` WRITE;
 /*!40000 ALTER TABLE `tipo_trabalho` DISABLE KEYS */;
+INSERT INTO `tipo_trabalho` VALUES (1,'Oi');
 /*!40000 ALTER TABLE `tipo_trabalho` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 18:20:36
+-- Dump completed on 2016-12-03 22:24:20

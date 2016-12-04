@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: localhost    Database: academico
+-- Host: 127.0.0.1    Database: academico
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.5.5-10.1.13-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,11 +24,16 @@ DROP TABLE IF EXISTS `tarefa`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tarefa` (
   `cod_trf` int(11) NOT NULL AUTO_INCREMENT,
-  `horain_trf` time(6) DEFAULT NULL,
-  `horaterm_trf` time(6) DEFAULT NULL,
+  `horain_trf` date DEFAULT NULL,
+  `horaterm_trf` date DEFAULT NULL,
   `observacao_trf` varchar(45) DEFAULT NULL,
-  `tarefacol` blob,
-  PRIMARY KEY (`cod_trf`)
+  `tipo_trabalho` int(11) DEFAULT NULL,
+  `colaborador` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cod_trf`),
+  UNIQUE KEY `tipo_trabalho_UNIQUE` (`tipo_trabalho`),
+  UNIQUE KEY `colaborador_UNIQUE` (`colaborador`),
+  CONSTRAINT `FK_Colaborador` FOREIGN KEY (`colaborador`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_TipoTrabalho` FOREIGN KEY (`tipo_trabalho`) REFERENCES `tipo_trabalho` (`cod_tt`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 18:20:36
+-- Dump completed on 2016-12-03 22:24:21
