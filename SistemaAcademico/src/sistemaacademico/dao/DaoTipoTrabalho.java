@@ -112,7 +112,7 @@ public class DaoTipoTrabalho {
 
     private static ArrayList<TipoTrabalho> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_tt, tipo_tt"
+                = "SELECT cod_tt, tipo_tt "
                 + "FROM tipo_trabalho "
                 + where;
         Statement stmt = null;

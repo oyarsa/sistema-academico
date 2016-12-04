@@ -123,7 +123,7 @@ public class DaoTarefa {
 
     private static ArrayList<Tarefa> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_trf, horaini_trf, horaterm_trf, observacao_trf, tipo_trabalho, colaborador "
+                = "SELECT cod_trf, horain_trf, horaterm_trf, observacao_trf, tipo_trabalho, colaborador "
                 + "FROM tarefa "
                 + where;
         Statement stmt = null;

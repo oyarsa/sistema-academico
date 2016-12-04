@@ -169,7 +169,7 @@ public class DaoAtividade {
     private static ArrayList<Integer> carregarCodigoDependencias(int codigo) {
         String sql
                 = "SELECT cod_dependencia FROM dependencia_atividades "
-                + "WHERE cod_dependente = codigo";
+                + "WHERE cod_dependente = " + codigo;
         Statement stmt = null;
         ResultSet rs = null;
         ArrayList<Integer> codigos = new ArrayList<>();

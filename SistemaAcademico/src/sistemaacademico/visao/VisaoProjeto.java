@@ -649,7 +649,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         ArrayList<HashMap<String, Object>> dependencias
                 = ControleAtividade.recuperarDependencias(ativ);
 
-        DefaultTableModel m = (DefaultTableModel) tabelaAtividades.getModel();
+        DefaultTableModel m = (DefaultTableModel) tabelaDependencias.getModel();
         m.setRowCount(0);
 
         for (HashMap<String, Object> a : dependencias) {
