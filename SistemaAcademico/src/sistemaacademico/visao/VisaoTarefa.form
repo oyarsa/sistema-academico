@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -120,7 +123,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxColaboradorTarefa" min="-2" pref="289" max="-2" attributes="0"/>
+                                  <Component id="comboColaboradores" min="-2" pref="289" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -130,11 +133,11 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextFieldCodTarefa" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="textCodigo" min="-2" pref="100" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jFormattedTextFieldHoraIniTarefa" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textHoraInicio" min="-2" pref="185" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -144,8 +147,8 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextFieldHoraFimTarefa" max="32767" attributes="0"/>
-                              <Component id="jComboBoxTipoTarefa" pref="199" max="32767" attributes="0"/>
+                              <Component id="textHoraFim" max="32767" attributes="0"/>
+                              <Component id="comboTipo" pref="199" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -159,18 +162,18 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldHoraIniTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textHoraInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldHoraFimTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textHoraFim" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxTipoTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxColaboradorTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboColaboradores" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -186,28 +189,28 @@
             <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodTarefa">
+        <Component class="javax.swing.JTextField" name="textCodigo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hora Inicio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldHoraIniTarefa">
+        <Component class="javax.swing.JFormattedTextField" name="textHoraInicio">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hora Fim"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldHoraFimTarefa">
+        <Component class="javax.swing.JTextField" name="textHoraFim">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipo de Tarefa"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBoxTipoTarefa">
+        <Component class="javax.swing.JComboBox" name="comboTipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -227,7 +230,7 @@
             <Property name="text" type="java.lang.String" value="Colaborador"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBoxColaboradorTarefa">
+        <Component class="javax.swing.JComboBox" name="comboColaboradores">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -249,7 +252,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JEditorPane" name="jEditorPaneObservacaoTarefa">
+            <Component class="javax.swing.JEditorPane" name="taObservacao">
             </Component>
           </SubComponents>
         </Container>
@@ -287,7 +290,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableTarefa">
+        <Component class="javax.swing.JTable" name="tableTarefas">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="0">

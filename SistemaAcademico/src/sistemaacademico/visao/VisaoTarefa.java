@@ -5,11 +5,21 @@
  */
 package sistemaacademico.visao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import sistemaacademico.controle.ControleColaborador;
+import sistemaacademico.controle.ControleTipoTrabalho;
+
 /**
  *
  * @author Marlysson
  */
 public class VisaoTarefa extends javax.swing.JFrame {
+
+    private HashMap<Integer, String> codToColab;
+    private HashMap<Integer, String> codToTipo;
+    private HashMap<String, Integer> colabToCod;
+    private HashMap<String, Integer> tipoToCod;
 
     /**
      * Creates new form VisaoTarefa
@@ -31,27 +41,32 @@ public class VisaoTarefa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanelPrincipalTarefa = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldCodTarefa = new javax.swing.JTextField();
+        textCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextFieldHoraIniTarefa = new javax.swing.JFormattedTextField();
+        textHoraInicio = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldHoraFimTarefa = new javax.swing.JTextField();
+        textHoraFim = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxTipoTarefa = new javax.swing.JComboBox<>();
+        comboTipo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxColaboradorTarefa = new javax.swing.JComboBox<>();
+        comboColaboradores = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jEditorPaneObservacaoTarefa = new javax.swing.JEditorPane();
+        taObservacao = new javax.swing.JEditorPane();
         btnNovoTipoTrab = new javax.swing.JButton();
         btnEditarTipoTrab = new javax.swing.JButton();
         btnGravarTipoTrab = new javax.swing.JButton();
         btnCancelarTipoTrab = new javax.swing.JButton();
         btnExcluirTipoTrab = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableTarefa = new javax.swing.JTable();
+        tableTarefas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanelTituloTarefa.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -88,7 +103,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
         jLabel7.setText("Colaborador");
 
         jScrollPane3.setHorizontalScrollBar(null);
-        jScrollPane3.setViewportView(jEditorPaneObservacaoTarefa);
+        jScrollPane3.setViewportView(taObservacao);
 
         javax.swing.GroupLayout jPanelPrincipalTarefaLayout = new javax.swing.GroupLayout(jPanelPrincipalTarefa);
         jPanelPrincipalTarefa.setLayout(jPanelPrincipalTarefaLayout);
@@ -104,7 +119,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxColaboradorTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
@@ -113,18 +128,18 @@ public class VisaoTarefa extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelPrincipalTarefaLayout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldCodTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormattedTextFieldHoraIniTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel4))
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(3, 3, 3)))
                         .addGroup(jPanelPrincipalTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldHoraFimTarefa)
-                            .addComponent(jComboBoxTipoTarefa, 0, 199, Short.MAX_VALUE))))
+                            .addComponent(textHoraFim)
+                            .addComponent(comboTipo, 0, 199, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanelPrincipalTarefaLayout.setVerticalGroup(
@@ -133,17 +148,17 @@ public class VisaoTarefa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelPrincipalTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldCodTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextFieldHoraIniTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldHoraFimTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textHoraFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelPrincipalTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBoxTipoTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBoxColaboradorTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -160,7 +175,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         btnExcluirTipoTrab.setText("Excluir");
 
-        jTableTarefa.setModel(new javax.swing.table.DefaultTableModel(
+        tableTarefas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -176,7 +191,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTableTarefa);
+        jScrollPane2.setViewportView(tableTarefas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,6 +236,11 @@ public class VisaoTarefa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        initTiposTrabalho();
+        initColaboradores();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -262,10 +282,8 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirTipoTrab;
     private javax.swing.JButton btnGravarTipoTrab;
     private javax.swing.JButton btnNovoTipoTrab;
-    private javax.swing.JComboBox<String> jComboBoxColaboradorTarefa;
-    private javax.swing.JComboBox<String> jComboBoxTipoTarefa;
-    private javax.swing.JEditorPane jEditorPaneObservacaoTarefa;
-    private javax.swing.JFormattedTextField jFormattedTextFieldHoraIniTarefa;
+    private javax.swing.JComboBox<String> comboColaboradores;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,8 +295,32 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTituloTarefa;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableTarefa;
-    private javax.swing.JTextField jTextFieldCodTarefa;
-    private javax.swing.JTextField jTextFieldHoraFimTarefa;
+    private javax.swing.JEditorPane taObservacao;
+    private javax.swing.JTable tableTarefas;
+    private javax.swing.JTextField textCodigo;
+    private javax.swing.JTextField textHoraFim;
+    private javax.swing.JFormattedTextField textHoraInicio;
     // End of variables declaration//GEN-END:variables
+
+    private void initColaboradores() {
+        codToColab = new HashMap<>();
+        colabToCod = new HashMap<>();
+        ArrayList<HashMap<String, Object>> colaboradores = ControleColaborador.recuperarTodos();
+
+        for (HashMap<String, Object> c : colaboradores) {
+            codToColab.put((Integer) c.get("codigo"), (String) c.get("nome"));
+            colabToCod.put((String) c.get("nome"), (Integer) c.get("codigo"));
+        }
+    }
+
+    private void initTiposTrabalho() {
+        codToTipo = new HashMap<>();
+        tipoToCod = new HashMap<>();
+        ArrayList<HashMap<String, Object>> tipos = ControleTipoTrabalho.recuperarTodos();
+
+        for (HashMap<String, Object> t : tipos) {
+            codToTipo.put((Integer) t.get("codigo"), (String) t.get("descricao"));
+            tipoToCod.put((String) t.get("descricao"), (Integer) t.get("codigo"));
+        }
+    }
 }
