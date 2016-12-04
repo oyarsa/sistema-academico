@@ -139,7 +139,7 @@ public class DaoTarefa {
                 Tarefa t = new Tarefa();
 
                 t.setCodigo(rs.getInt("cod_trf"));
-                t.setHoraInicio(rs.getDate("horaini_trf"));
+                t.setHoraInicio(rs.getDate("horain_trf"));
                 t.setHoraTermino(rs.getDate("horaterm_trf"));
                 t.setObservacao(rs.getString("observacao_trf"));
                 t.setTipo(DaoTipoTrabalho.recuperar(rs.getInt("tipo_trabalho")));
