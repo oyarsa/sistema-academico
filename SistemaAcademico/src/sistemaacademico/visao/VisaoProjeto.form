@@ -206,7 +206,7 @@
                                       <Component id="btnGravar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                       <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="121" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -381,7 +381,7 @@
                               <Component id="textTituloAtividade" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                               <Component id="btnDependencias" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnTarefas" min="-2" max="-2" attributes="0"/>
@@ -408,7 +408,7 @@
                               <Component id="btnGravarAtiv" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="btnCancelarAtiv" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="56" max="32767" attributes="0"/>
                               <Component id="btnExcluirAtiv" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -612,7 +612,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="496" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="546" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

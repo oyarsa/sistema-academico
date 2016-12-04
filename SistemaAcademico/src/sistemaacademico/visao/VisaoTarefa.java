@@ -157,7 +157,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
             .addGroup(jPanelPrincipalTarefaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPrincipalTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanelPrincipalTarefaLayout.createSequentialGroup()
                         .addGroup(jPanelPrincipalTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPrincipalTarefaLayout.createSequentialGroup()
@@ -250,7 +250,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Hora Inicio", "Hora Fim", "Tipo Tarefa", "Observacao"
+                "Código", "Hora Início", "Hora Fim", "Tipo Tarefa", "Observação"
             }
         ) {
             Class[] types = new Class [] {
@@ -281,7 +281,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
                         .addComponent(btnNovoTipoTrab)
                         .addGap(65, 65, 65)
                         .addComponent(btnEditarTipoTrab)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                         .addComponent(btnGravarTipoTrab)
                         .addGap(62, 62, 62)
                         .addComponent(btnCancelarTipoTrab)
