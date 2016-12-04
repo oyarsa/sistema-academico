@@ -213,4 +213,41 @@ public class DaoAtividade {
         return dependencias;
     }
 
+    public static String inserirDependencia(int codigoDependencia, int codigoDependente) {
+        String sql
+                = "INSERT INTO dependencia_atividades "
+                + "  (cod_dependente, cod_dependencia) "
+                + "VALUES (?, ?)";
+        Connection conn = FabricaConexao.GeraConexao();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, codigoDependente);
+            stmt.setInt(2, codigoDependencia);
+            stmt.executeUpdate();
+
+            return Mensagens.SUCESSO;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            return Mensagens.ERRO + ex.getMessage();
+        }
+    }
+
+    public static String removerDependencia(int codigoDependencia, int codigoDependente) {
+        String sql
+                = "DELETE FROM dependencia_atividades "
+                + "WHERE cod_dependente = ? AND cod_dependencia = ?";
+        Connection conn = FabricaConexao.GeraConexao();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, codigoDependente);
+            stmt.setInt(2, codigoDependencia);
+            stmt.executeUpdate();
+
+            return Mensagens.SUCESSO;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            return Mensagens.ERRO + ex.getMessage();
+        }
+    }
+
 }

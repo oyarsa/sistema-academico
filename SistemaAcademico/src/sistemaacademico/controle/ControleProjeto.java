@@ -3,6 +3,7 @@ package sistemaacademico.controle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import sistemaacademico.Util.Mensagens;
+import sistemaacademico.dao.DaoAtividade;
 import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoColaboradorProjeto;
 import sistemaacademico.dao.DaoProjeto;
@@ -126,6 +127,44 @@ public class ControleProjeto {
             rv.add(p.toHashMap());
         }
         return rv;
+    }
+
+    public static String adicionarDependencia(HashMap<String, Object> dadosDep) {
+        int codigoDependencia, codigoDependente;
+        try {
+            codigoDependencia = Integer.parseInt(dadosDep.get("codigoDependencia").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Mensagens.ERRO + "Dependência inválida";
+        }
+
+        try {
+            codigoDependente = Integer.parseInt(dadosDep.get("codigoDependente").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Mensagens.ERRO + "Dependente inválido";
+        }
+
+        return DaoAtividade.inserirDependencia(codigoDependencia, codigoDependente);
+    }
+
+    public static String removerDependencia(HashMap<String, Object> dadosDep) {
+        int codigoDependencia, codigoDependente;
+        try {
+            codigoDependencia = Integer.parseInt(dadosDep.get("codigoDependencia").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Mensagens.ERRO + "Dependência inválida";
+        }
+
+        try {
+            codigoDependente = Integer.parseInt(dadosDep.get("codigoDependente").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Mensagens.ERRO + "Dependente inválido";
+        }
+
+        return DaoAtividade.removerDependencia(codigoDependencia, codigoDependente);
     }
 
 }

@@ -48,6 +48,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
         dialogDependencias = new javax.swing.JDialog();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabelaDependencias = new javax.swing.JTable();
+        btnAddDep = new javax.swing.JButton();
+        btnRemoveDep = new javax.swing.JButton();
         painelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         painelAbas = new javax.swing.JTabbedPane();
@@ -125,15 +127,40 @@ public class VisaoProjeto extends javax.swing.JFrame {
             tabelaDependencias.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
+        btnAddDep.setText("Adicionar Dependência");
+        btnAddDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDepActionPerformed(evt);
+            }
+        });
+
+        btnRemoveDep.setText("Remover Dependência");
+        btnRemoveDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveDepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dialogDependenciasLayout = new javax.swing.GroupLayout(dialogDependencias.getContentPane());
         dialogDependencias.getContentPane().setLayout(dialogDependenciasLayout);
         dialogDependenciasLayout.setHorizontalGroup(
             dialogDependenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(dialogDependenciasLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(btnAddDep)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemoveDep)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dialogDependenciasLayout.setVerticalGroup(
             dialogDependenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(dialogDependenciasLayout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(dialogDependenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddDep)
+                    .addComponent(btnRemoveDep)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -225,7 +252,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                                 .addComponent(btnGravar)
                                 .addGap(74, 74, 74)
                                 .addComponent(btnExcluir)
-                                .addGap(0, 132, Short.MAX_VALUE))
+                                .addGap(0, 71, Short.MAX_VALUE))
                             .addGroup(painelPrincipalLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +283,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addComponent(labelRecursos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGravar)
@@ -403,7 +430,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                         .addComponent(btnGravarAtiv)
                         .addGap(55, 55, 55)
                         .addComponent(btnCancelarAtiv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExcluirAtiv)))
                 .addContainerGap())
         );
@@ -432,7 +459,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                             .addComponent(btnTarefas))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(100, Short.MAX_VALUE))
+                        .addContainerGap(89, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAtividadesLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(painelAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -495,10 +522,10 @@ public class VisaoProjeto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(97, 97, 97)
                 .addComponent(btnAddColab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRemoveColab)
@@ -512,7 +539,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddColab)
                     .addComponent(btnRemoveColab))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         painelAbas.addTab("Colaboradores", jPanel1);
@@ -653,7 +680,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         m.setRowCount(0);
 
         for (HashMap<String, Object> a : dependencias) {
-            m.addColumn(new Object[]{a.get("codigo"), a.get("titulo")});
+            m.addRow(new Object[]{a.get("codigo"), a.get("titulo")});
         }
 
         dialogDependencias.setVisible(true);
@@ -693,6 +720,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
         String colabNome = (String) JOptionPane.showInputDialog(this, "Escolha o Colaborador",
                 "Adicionar colaborador",
                 JOptionPane.QUESTION_MESSAGE, null, nomes.toArray(), nomes.get(0));
+        if (colabNome == null)
+            return;
 
         for (HashMap<String, Object> c : colaboradores) {
             if (c.get("nome").equals(colabNome)) {
@@ -722,6 +751,60 @@ public class VisaoProjeto extends javax.swing.JFrame {
         VisaoTarefa vt = new VisaoTarefa(dadosAtv);
         vt.setVisible(true);
     }//GEN-LAST:event_btnTarefasActionPerformed
+
+    private void btnAddDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepActionPerformed
+        ArrayList<HashMap<String, Object>> atividades = ControleAtividade.recuperarTodos(dadosProjeto);
+        ArrayList<String> nomes = new ArrayList<>();
+
+        for (HashMap<String, Object> a : atividades) {
+            nomes.add((String) a.get("titulo"));
+        }
+
+        String depNome = (String) JOptionPane.showInputDialog(this, "Escolha a dependência",
+                "Adicionar dependencia",
+                JOptionPane.QUESTION_MESSAGE, null, nomes.toArray(), nomes.get(0));
+        if (depNome == null)
+            return;
+
+        for (HashMap<String, Object> a : atividades) {
+            if (a.get("titulo").equals(depNome)) {
+                HashMap<String, Object> dadosDep = new HashMap<>();
+                dadosDep.put("codigoDependente", textCodAtividade.getText());
+                dadosDep.put("codigoDependencia", a.get("codigo"));
+
+                String msg = ControleProjeto.adicionarDependencia(dadosDep);
+                if (msg.equals(Mensagens.SUCESSO)) {
+                    ((DefaultTableModel) tabelaDependencias.getModel()).addRow(
+                            new Object[]{a.get("codigo"), a.get("titulo")}
+                    );
+                }
+
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnAddDepActionPerformed
+
+    private void btnRemoveDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveDepActionPerformed
+        int linha = tabelaDependencias.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int codigo = (Integer) tabelaDependencias.getValueAt(linha, 0);
+
+        int opt = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir essa dependência?",
+                "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+        if (opt == JOptionPane.NO_OPTION)
+            return;
+
+        HashMap<String, Object> dadosDep = new HashMap<>();
+        dadosDep.put("codigoDependencia", codigo);
+        dadosDep.put("codigoDependente", textCodAtividade.getText());
+        String msg = ControleProjeto.removerDependencia(dadosDep);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO))
+            ((DefaultTableModel) tabelaDependencias.getModel()).removeRow(linha);
+    }//GEN-LAST:event_btnRemoveDepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -760,6 +843,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddColab;
+    private javax.swing.JButton btnAddDep;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelarAtiv;
     private javax.swing.JButton btnDependencias;
@@ -770,6 +854,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
     private javax.swing.JButton btnGravarAtiv;
     private javax.swing.JButton btnNovoAtiv;
     private javax.swing.JButton btnRemoveColab;
+    private javax.swing.JButton btnRemoveDep;
     private javax.swing.JButton btnTarefas;
     private javax.swing.JComboBox<String> comboGerente;
     private javax.swing.JDialog dialogDependencias;
