@@ -137,6 +137,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
         painelProjetos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProjetos = new javax.swing.JTable();
+        btnAtualizarProjetos = new javax.swing.JButton();
         painelProjetosGerenciados = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaProjetosGerenciados = new javax.swing.JTable();
@@ -637,6 +638,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
             tabelaProjetos.getColumnModel().getColumn(0).setMaxWidth(70);
         }
 
+        btnAtualizarProjetos.setText("Atualizar");
+        btnAtualizarProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarProjetosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelProjetosLayout = new javax.swing.GroupLayout(painelProjetos);
         painelProjetos.setLayout(painelProjetosLayout);
         painelProjetosLayout.setHorizontalGroup(
@@ -645,13 +653,18 @@ public class VisaoColaborador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(painelProjetosLayout.createSequentialGroup()
+                .addGap(338, 338, 338)
+                .addComponent(btnAtualizarProjetos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelProjetosLayout.setVerticalGroup(
             painelProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProjetosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAtualizarProjetos))
         );
 
         painelAbas.addTab("Projetos", painelProjetos);
@@ -1259,6 +1272,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_tabelaProjetosMouseClicked
 
+    private void btnAtualizarProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProjetosActionPerformed
+        carregarProjetos();
+    }//GEN-LAST:event_btnAtualizarProjetosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1306,6 +1323,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
     private javax.swing.JButton botaoNovoEstado;
     private javax.swing.JButton botaoNovoTelefone;
     private javax.swing.JButton btnAtualizarListaProjGerenciados;
+    private javax.swing.JButton btnAtualizarProjetos;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
