@@ -1,24 +1,38 @@
 package sistemaacademico.controle;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
+import sistemaacademico.Util.Helper;
 import sistemaacademico.Util.Mensagens;
+import sistemaacademico.dao.DaoColaborador;
 import sistemaacademico.dao.DaoTarefa;
-import sistemaacademico.modelo.Colaborador;
+import sistemaacademico.dao.DaoTipoTrabalho;
 import sistemaacademico.modelo.Tarefa;
-import sistemaacademico.modelo.TipoTrabalho;
-
 
 public class ControleTarefa {
+
     public static String salvar(HashMap<String, Object> dados) {
+        int codigoTipoTrabalho, codigoColaborador;
+
+        try {
+            codigoTipoTrabalho = Integer.parseInt(dados.get("tipoTrabalho").toString());
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Tipo de Trabalho inválido";
+        }
+
+        try {
+            codigoColaborador = Integer.parseInt(dados.get("responsavel").toString());
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Colaborador responsável inválido";
+        }
+
         Tarefa t = new Tarefa();
 
-        t.setHoraInicio((Date) dados.get("horaInicio"));
-        t.setHoraTermino((Date) dados.get("horaTermino"));
+        t.setHoraInicio(Helper.stringToTimeDate(dados.get("horaInicio").toString()));
+        t.setHoraTermino(Helper.stringToTimeDate(dados.get("horaTermino").toString()));
         t.setObservacao((String) dados.get("observacao"));
-        t.setTipo((TipoTrabalho) dados.get("tipoTrabalho"));
-        t.setResponsavel((Colaborador) dados.get("colaborador"));
+        t.setTipo(DaoTipoTrabalho.recuperar(codigoTipoTrabalho));
+        t.setResponsavel(DaoColaborador.recuperar(codigoColaborador));
 
         if (dados.get("codigo").equals("")) {
             String msg = DaoTarefa.inserir(t);
@@ -29,7 +43,7 @@ public class ControleTarefa {
                 t.setCodigo(Integer.parseInt(dados.get("codigo").toString()));
                 return DaoTarefa.atualizar(t);
             } catch (Exception ex) {
-                System.err.println("Erro ao atualizar uma Atividade");
+                System.err.println("Erro ao atualizar uma Tarefa");
                 return Mensagens.ERRO + "Código inválido";
             }
         }
@@ -57,10 +71,11 @@ public class ControleTarefa {
             return null;
         else {
             HashMap<String, Object> rv = t.toHashMap();
+            rv.put("tipoTrabalho", t.getTipo().getCodigo());
+            rv.put("responsavel", t.getResponsavel().getCodigo());
             return rv;
         }
     }
-
 
     public static ArrayList<HashMap<String, Object>> recuperarTodos() {
         ArrayList<Tarefa> tarefas = DaoTarefa.recuperarTodos();
@@ -68,6 +83,8 @@ public class ControleTarefa {
 
         for (Tarefa t : tarefas) {
             HashMap<String, Object> map = t.toHashMap();
+            map.put("tipoTrabalho", t.getTipo().getCodigo());
+            map.put("responsavel", t.getResponsavel().getCodigo());
             rv.add(map);
         }
         return rv;
