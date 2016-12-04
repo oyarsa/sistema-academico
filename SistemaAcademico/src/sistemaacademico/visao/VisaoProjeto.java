@@ -548,6 +548,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
 
         String msg = ControleProjeto.apagar(dados);
         JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnNovoAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAtivActionPerformed
