@@ -52,7 +52,7 @@ public class DaoEstado {
     public static String atualizar(sistemaacademico.modelo.Estado e) {
         String sql
                 = "UPDATE estado "
-                + "SET nome_est = ?, dataini_est = ?, datafim_est = ?, "
+                + "SET nome_est = ?, dataini_est = ?, datafim_est = ? "
                 + "WHERE cod_est = ?";
         PreparedStatement stmt = null;
 
@@ -62,7 +62,7 @@ public class DaoEstado {
             stmt.setString(1, e.getNome());
             stmt.setDate(2, new java.sql.Date(e.getDataInicio().getTime()));
             stmt.setDate(3, new java.sql.Date(e.getDataTermino().getTime()));
-            stmt.setInt(5, e.getCodigo());
+            stmt.setInt(4, e.getCodigo());
             stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
