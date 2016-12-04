@@ -1,6 +1,7 @@
 package sistemaacademico.controle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import sistemaacademico.Util.Helper;
 import sistemaacademico.Util.Mensagens;
@@ -34,8 +35,16 @@ public class ControleTarefa {
 
         Tarefa t = new Tarefa();
 
-        t.setHoraInicio(Helper.stringToTimeDate(dados.get("horaInicio").toString()));
-        t.setHoraTermino(Helper.stringToTimeDate(dados.get("horaTermino").toString()));
+        Date horaInicio = Helper.stringToTimeDate(dados.get("horaInicio").toString());
+        if (horaInicio == null)
+            return Mensagens.ERRO + "Hora de início inválida: o formato é HH:mm";
+
+        Date horaTermino = Helper.stringToTimeDate(dados.get("horaTermino").toString());
+        if (horaTermino == null)
+            return Mensagens.ERRO + "Hora de término inválida: o formato é HH:mm";
+
+        t.setHoraInicio(horaInicio);
+        t.setHoraTermino(horaTermino);
         t.setObservacao((String) dados.get("observacao"));
         t.setTipo(DaoTipoTrabalho.recuperar(codigoTipoTrabalho));
         t.setResponsavel(DaoColaborador.recuperar(codigoColaborador));
