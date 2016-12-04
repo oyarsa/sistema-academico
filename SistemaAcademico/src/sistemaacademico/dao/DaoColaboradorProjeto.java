@@ -68,7 +68,7 @@ public class DaoColaboradorProjeto {
     }
 
     private static ArrayList<Integer> carregarCodigosProjeto(int codColaborador) {
-        String sql = "SELECT cod_proj FROM projeto WHERE cod_col = ?";
+        String sql = "SELECT cod_proj FROM colaborador_projeto WHERE cod_col = ?";
         PreparedStatement stmt = null;
         ArrayList<Integer> codigos = new ArrayList<>();
         ResultSet rs = null;
@@ -113,7 +113,7 @@ public class DaoColaboradorProjeto {
     }
 
     private static ArrayList<Integer> carregarCodigosColaborador(int codProjeto) {
-        String sql = "SELECT cod_col FROM projeto WHERE cod_proj = ?";
+        String sql = "SELECT cod_col FROM colaborador_projeto WHERE cod_proj = ?";
         PreparedStatement stmt = null;
         ArrayList<Integer> codigos = new ArrayList<>();
         ResultSet rs = null;
