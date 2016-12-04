@@ -579,6 +579,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
         HashMap<String, Object> dados = new HashMap<>();
 
         dados.put("codigo", textCodAtividade.getText());
+        dados.put("codigoProjeto", textCodigo.getText());
         dados.put("titulo", textTituloAtividade.getText());
         dados.put("dataInicio", textDataInicioAtividade.getText());
         dados.put("dataFim", textDataFimAtividade.getText());

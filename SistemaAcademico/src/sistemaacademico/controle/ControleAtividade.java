@@ -23,6 +23,14 @@ public class ControleAtividade {
         if (duracaoEstimada == null)
             return Mensagens.ERRO + "Duração estimada inválida. Formato: dd/MM/yyyy";
 
+        int codigoProjeto;
+        try {
+            codigoProjeto = Integer.parseInt(dados.get("codigoProjeto").toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Mensagens.ERRO + "Projeto inválido";
+        }
+
         Atividade a = new Atividade();
 
         a.setTitulo(dados.get("titulo").toString());
@@ -31,7 +39,7 @@ public class ControleAtividade {
         a.setDuracaoEstimada(duracaoEstimada);
 
         if (dados.get("codigo").equals("")) {
-            String msg = DaoAtividade.inserir(a);
+            String msg = DaoAtividade.inserir(a, codigoProjeto);
             dados.put("codigo", a.getCodigo());
             return msg;
         } else {

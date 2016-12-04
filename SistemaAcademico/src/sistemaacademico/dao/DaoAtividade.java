@@ -13,11 +13,12 @@ import sistemaacademico.modelo.Atividade;
 
 public class DaoAtividade {
 
-    public static String inserir(Atividade a) {
+    public static String inserir(Atividade a, int codigoProjeto) {
         String sql
                 = "INSERT INTO atividade "
-                + "     (titulo_atv, dataini_atv, datafim_atv, duracaoestimada_atv) "
-                + "VALUES (?, ?, ?, ?)";
+                + "     (titulo_atv, dataini_atv, datafim_atv, duracaoestimada_atv, "
+                + "      projeto) "
+                + "VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
 
         try {
@@ -28,6 +29,7 @@ public class DaoAtividade {
             stmt.setDate(2, new java.sql.Date(a.getDataInicio().getTime()));
             stmt.setDate(3, new java.sql.Date(a.getDataTermino().getTime()));
             stmt.setDate(4, new java.sql.Date(a.getDuracaoEstimada().getTime()));
+            stmt.setInt(5, codigoProjeto);
 
             stmt.executeUpdate();
 
