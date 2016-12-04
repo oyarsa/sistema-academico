@@ -7,7 +7,11 @@ package sistemaacademico.visao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sistemaacademico.Util.Mensagens;
 import sistemaacademico.controle.ControleColaborador;
+import sistemaacademico.controle.ControleTarefa;
 import sistemaacademico.controle.ControleTipoTrabalho;
 
 /**
@@ -20,6 +24,39 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private HashMap<Integer, String> codToTipo;
     private HashMap<String, Integer> colabToCod;
     private HashMap<String, Integer> tipoToCod;
+
+    private void limparControles() {
+        textCodigo.setText("");
+        textHoraInicio.setText("");
+        comboColaboradores.setSelectedIndex(0);
+        comboTipo.setSelectedIndex(0);
+        taObservacao.setText("");
+        tableTarefas.clearSelection();
+    }
+
+    private void toggleControles(boolean ativo) {
+        textHoraFim.setEditable(ativo);
+        textHoraInicio.setEditable(ativo);
+        comboColaboradores.setEnabled(ativo);
+        comboTipo.setEnabled(ativo);
+        taObservacao.setEnabled(ativo);
+
+        btnGravarTipoTrab.setEnabled(ativo);
+        btnCancelarTipoTrab.setEnabled(ativo);
+
+        tableTarefas.setEnabled(!ativo);
+        btnEditarTipoTrab.setEnabled(!ativo);
+        btnExcluirTipoTrab.setEnabled(!ativo);
+        btnNovoTipoTrab.setEnabled(!ativo);
+    }
+
+    private void habilitaControles() {
+        toggleControles(true);
+    }
+
+    private void desabilitaControles() {
+        toggleControles(false);
+    }
 
     /**
      * Creates new form VisaoTarefa
@@ -91,6 +128,8 @@ public class VisaoTarefa extends javax.swing.JFrame {
         );
 
         jLabel2.setText("Código");
+
+        textCodigo.setEditable(false);
 
         jLabel3.setText("Hora Inicio");
 
@@ -166,14 +205,39 @@ public class VisaoTarefa extends javax.swing.JFrame {
         );
 
         btnNovoTipoTrab.setText("Novo");
+        btnNovoTipoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoTipoTrabActionPerformed(evt);
+            }
+        });
 
         btnEditarTipoTrab.setText("Editar");
+        btnEditarTipoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarTipoTrabActionPerformed(evt);
+            }
+        });
 
         btnGravarTipoTrab.setText("Gravar");
+        btnGravarTipoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarTipoTrabActionPerformed(evt);
+            }
+        });
 
         btnCancelarTipoTrab.setText("Cancelar");
+        btnCancelarTipoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarTipoTrabActionPerformed(evt);
+            }
+        });
 
         btnExcluirTipoTrab.setText("Excluir");
+        btnExcluirTipoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirTipoTrabActionPerformed(evt);
+            }
+        });
 
         tableTarefas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,6 +253,11 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tableTarefas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTarefasMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tableTarefas);
@@ -238,8 +307,92 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         initTiposTrabalho();
+        configComboTipos();
         initColaboradores();
+        configComboColabs();
     }//GEN-LAST:event_formWindowOpened
+
+    private void tableTarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTarefasMouseClicked
+        int linha = tableTarefas.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", (Integer) tableTarefas.getValueAt(linha, 0));
+
+        HashMap<String, Object> tarefa = ControleTarefa.recuperar(dados);
+        textCodigo.setText(tarefa.get("codigo").toString());
+        textHoraFim.setText(tarefa.get("horaFim").toString());
+        textHoraInicio.setText(tarefa.get("horaInicio").toString());
+        taObservacao.setText(tarefa.get("observacao").toString());
+        comboColaboradores.setSelectedItem(codToColab.get((Integer) tarefa.get("responsavel")));
+        comboTipo.setSelectedItem(codToTipo.get((Integer) tarefa.get("tipoTrabalho")));
+    }//GEN-LAST:event_tableTarefasMouseClicked
+
+    private void btnCancelarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTipoTrabActionPerformed
+        desabilitaControles();
+        limparControles();
+    }//GEN-LAST:event_btnCancelarTipoTrabActionPerformed
+
+    private void btnEditarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTipoTrabActionPerformed
+        if (tableTarefas.getSelectedRow() != -1)
+            habilitaControles();
+    }//GEN-LAST:event_btnEditarTipoTrabActionPerformed
+
+    private void btnNovoTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoTipoTrabActionPerformed
+        limparControles();
+        habilitaControles();
+    }//GEN-LAST:event_btnNovoTipoTrabActionPerformed
+
+    private void btnExcluirTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTipoTrabActionPerformed
+        desabilitaControles();
+
+        int linha = tableTarefas.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar essa Tarefa?",
+                "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("codigo", tableTarefas.getValueAt(linha, 0));
+
+        String msg = ControleTarefa.apagar(dados);
+        JOptionPane.showMessageDialog(this, msg, "Exclusão", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO)) {
+            ((DefaultTableModel) tableTarefas.getModel()).removeRow(linha);
+        }
+
+        limparControles();
+    }//GEN-LAST:event_btnExcluirTipoTrabActionPerformed
+
+    private void btnGravarTipoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarTipoTrabActionPerformed
+        desabilitaControles();
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("codigo", textCodigo.getText());
+        dados.put("horaInicio", textHoraInicio.getText());
+        dados.put("horaFim", textHoraFim.getText());
+        dados.put("responsavel", colabToCod.get(comboColaboradores.getSelectedItem().toString()));
+        dados.put("tipoTrabalho", tipoToCod.get(comboTipo.getSelectedItem().toString()));
+        dados.put("observacao", taObservacao.getText());
+
+        String msg = ControleTarefa.salvar(dados);
+        JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
+
+        if (msg.equals(Mensagens.SUCESSO)) {
+            limparControles();
+            int linha = tableTarefas.getSelectedRow();
+            atualizarTabela(linha, dados);
+        } else {
+            habilitaControles();
+        }
+    }//GEN-LAST:event_btnGravarTipoTrabActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,5 +475,33 @@ public class VisaoTarefa extends javax.swing.JFrame {
             codToTipo.put((Integer) t.get("codigo"), (String) t.get("descricao"));
             tipoToCod.put((String) t.get("descricao"), (Integer) t.get("codigo"));
         }
+    }
+
+    private void configComboTipos() {
+        comboTipo.removeAllItems();
+        for (String s : tipoToCod.keySet()) {
+            comboTipo.addItem(s);
+        }
+    }
+
+    private void configComboColabs() {
+        comboColaboradores.removeAllItems();
+        for (String s : colabToCod.keySet()) {
+            comboColaboradores.addItem(s);
+        }
+    }
+
+    private void atualizarTabela(int linha, HashMap<String, Object> dados) {
+        if (linha == -1) {
+            ((DefaultTableModel) tableTarefas.getModel())
+                    .addRow(new Object[]{});
+            linha = tableTarefas.getRowCount() - 1;
+        }
+
+        tableTarefas.setValueAt(dados.get("codigo"), linha, 0);
+        tableTarefas.setValueAt(dados.get("horaInicio"), linha, 1);
+        tableTarefas.setValueAt(dados.get("horaFim"), linha, 2);
+        tableTarefas.setValueAt(codToTipo.get((Integer) dados.get("tipoTarefa")), linha, 3);
+        tableTarefas.setValueAt(dados.get("observacao"), linha, 4);
     }
 }
