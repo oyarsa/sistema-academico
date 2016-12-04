@@ -118,4 +118,14 @@ public class ControleProjeto {
         return rv;
     }
 
+    public static ArrayList<HashMap<String, Object>> recuperarTodos() {
+        ArrayList<Projeto> projetos = DaoProjeto.recuperarTodos();
+        ArrayList<HashMap<String, Object>> rv = new ArrayList<>();
+
+        for (Projeto p : projetos) {
+            rv.add(p.toHashMap());
+        }
+        return rv;
+    }
+
 }
