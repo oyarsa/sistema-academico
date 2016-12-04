@@ -59,7 +59,7 @@ public class DaoTipoTrabalho {
 
             stmt.setString(1, t.getDescricao());
             stmt.setInt(2, t.getCodigo());
-
+            stmt.executeUpdate();
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
             Logger.getLogger(DaoTipoTrabalho.class.getName()).log(Level.SEVERE, null, ex);

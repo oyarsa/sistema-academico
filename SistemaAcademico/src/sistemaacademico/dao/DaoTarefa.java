@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sistemaacademico.Util.Mensagens;
@@ -55,7 +56,7 @@ public class DaoTarefa {
         String sql
                 = "UPDATE tarefa "
                 + "SET horain_trf =?, horaterm_trf=?, observacao_trf=?, tipo_trabalho=?, "
-                + "colaborador=?, atividade=?"
+                + "    colaborador=?, atividade=? "
                 + "WHERE cod_trf = ?";
         PreparedStatement stmt = null;
 
@@ -70,6 +71,8 @@ public class DaoTarefa {
             stmt.setInt(5, t.getResponsavel().getCodigo());
             stmt.setInt(6, codigoAtividade);
             stmt.setInt(7, t.getCodigo());
+
+            stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
@@ -139,8 +142,8 @@ public class DaoTarefa {
                 Tarefa t = new Tarefa();
 
                 t.setCodigo(rs.getInt("cod_trf"));
-                t.setHoraInicio(rs.getDate("horain_trf"));
-                t.setHoraTermino(rs.getDate("horaterm_trf"));
+                t.setHoraInicio(new Date(rs.getDate("horain_trf").getTime()));
+                t.setHoraTermino(new Date(rs.getDate("horaterm_trf").getTime()));
                 t.setObservacao(rs.getString("observacao_trf"));
                 t.setTipo(DaoTipoTrabalho.recuperar(rs.getInt("tipo_trabalho")));
                 t.setResponsavel(DaoColaborador.recuperar(rs.getInt("colaborador")));
