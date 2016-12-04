@@ -170,6 +170,12 @@ public class ControleColaborador {
     }
 
     public static String salvarTelefone(HashMap<String, Object> dados) {
+        int codigoColaborador;
+        try {
+            codigoColaborador = Integer.parseInt(dados.get("colaborador").toString());
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Colaborador inválido";
+        }
         sistemaacademico.modelo.Telefone t = new Telefone();
 
         t.setDdd(dados.get("ddd").toString());
@@ -179,7 +185,7 @@ public class ControleColaborador {
 
         String sCodigo = dados.get("codigo").toString();
         if (sCodigo.equals("")) {
-            String msg = sistemaacademico.dao.DaoTelefone.inserir(t, t.getCodigo());
+            String msg = sistemaacademico.dao.DaoTelefone.inserir(t, codigoColaborador);
             if (msg.equals(Mensagens.SUCESSO)) {
                 dados.put("codigo", t.getCodigo());
             }

@@ -120,7 +120,7 @@ public class DaoTelefone {
 
     public static ArrayList<Telefone> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_tel, ddi_tel, ddd_tel, numero_tel, operadora_tel, "
+                = "SELECT cod_tel, ddi_tel, ddd_tel, numero_tel, operadora_tel "
                 + "FROM telefone "
                 + where;
         Statement stmt = null;
