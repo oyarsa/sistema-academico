@@ -1029,14 +1029,12 @@ public class VisaoColaborador extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_tabelaProjetosGerenciadosMouseClicked
 
-    //CONFERIDO
     //CODIGO PARA TELEFONE
     private void botaoCancelarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarTelefoneActionPerformed
         limparComponentesColaboradorTelefone();
         desabilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoCancelarTelefoneActionPerformed
 
-    //CONFERIDO
     private void botaoExcluirTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirTelefoneActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar esse telefone?",
                 "Confirmação de exclusao", JOptionPane.YES_NO_OPTION);
@@ -1063,20 +1061,20 @@ public class VisaoColaborador extends javax.swing.JFrame {
             mTelefone.removeRow(linha);
         }
     }//GEN-LAST:event_botaoExcluirTelefoneActionPerformed
-//CONFERIDO
+
     private void botaoNovoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoTelefoneActionPerformed
         limparComponentesColaboradorTelefone();
         textCodigoTelefone.setText("");
         tabelaTelefones.clearSelection();
         habilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoNovoTelefoneActionPerformed
-//CONFERIDO
+
     private void botaoEditarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarTelefoneActionPerformed
         if (tabelaTelefones.getSelectedRow() != -1) {
             habilitarControlesColaboradorTelefone();
         }
     }//GEN-LAST:event_botaoEditarTelefoneActionPerformed
-//CONFERIDO
+
     private void botaoGravarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGravarTelefoneActionPerformed
         desabilitarControlesColaboradorTelefone();
 
@@ -1114,7 +1112,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         HashMap<String, Object> t = ControleColaborador.carregarTelefone(dados);
         if (t == null) {
-            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
+            JOptionPane.showMessageDialog(this, "Erro ao recuperar o telefone selecionado",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -1207,7 +1205,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         HashMap<String, Object> t = ControleColaborador.carregarEstado(dados);
         if (t == null) {
-            JOptionPane.showMessageDialog(this, "Erro ao recuperar o colaborador selecionado",
+            JOptionPane.showMessageDialog(this, "Erro ao recuperar o histórico selecionado",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
 

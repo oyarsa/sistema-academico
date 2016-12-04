@@ -226,7 +226,7 @@ public class ControleColaborador {
             return null;
         }
 
-        sistemaacademico.modelo.Estado e = sistemaacademico.dao.DaoEstado.recuperar(codigo);//ADAPTAR PARA ESTADO
+        sistemaacademico.modelo.Estado e = sistemaacademico.dao.DaoEstado.recuperar(codigo);
         if (e == null) {
             return null;
         } else {
@@ -271,7 +271,7 @@ public class ControleColaborador {
         }
 
         ArrayList<sistemaacademico.modelo.Estado> estados
-                = sistemaacademico.dao.DaoEstado.recuperarTodos(codigo);//ADAPTAR PARA ESTADO
+                = sistemaacademico.dao.DaoEstado.recuperarTodos(codigo);
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
 
         for (Estado e : estados) {
