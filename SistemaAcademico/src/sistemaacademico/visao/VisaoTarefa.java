@@ -256,9 +256,16 @@ public class VisaoTarefa extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tableTarefas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -326,7 +333,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
             return;
 
         HashMap<String, Object> dados = new HashMap<>();
-        dados.put("codigo", (Integer) tableTarefas.getValueAt(linha, 0));
+        dados.put("codigo", tableTarefas.getValueAt(linha, 0));
 
         HashMap<String, Object> tarefa = ControleTarefa.recuperar(dados);
         textCodigo.setText(tarefa.get("codigo").toString());
@@ -512,8 +519,8 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         tableTarefas.setValueAt(dados.get("codigo"), linha, 0);
         tableTarefas.setValueAt(dados.get("horaInicio"), linha, 1);
-        tableTarefas.setValueAt(dados.get("horaFim"), linha, 2);
-        tableTarefas.setValueAt(codToTipo.get((Integer) dados.get("tipoTarefa")), linha, 3);
+        tableTarefas.setValueAt(dados.get("horaTermino"), linha, 2);
+        tableTarefas.setValueAt(codToTipo.get((Integer) dados.get("tipoTrabalho")), linha, 3);
         tableTarefas.setValueAt(dados.get("observacao"), linha, 4);
     }
 
@@ -524,7 +531,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         for (HashMap<String, Object> t : tarefas) {
             m.addRow(new Object[]{t.get("codigo"), t.get("horaInicio"),
-                t.get("horaFim"), codToTipo.get((Integer) t.get("tipoTarefa")),
+                t.get("horaTermino"), codToTipo.get((Integer) t.get("tipoTrabalho")),
                 t.get("observacao")});
         }
     }

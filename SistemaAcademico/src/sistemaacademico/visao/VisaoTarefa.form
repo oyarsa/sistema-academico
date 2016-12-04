@@ -312,11 +312,11 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
-                <Column editable="true" title="Hora In&#xed;cio" type="java.lang.Object"/>
-                <Column editable="true" title="Hora Fim" type="java.lang.Object"/>
-                <Column editable="true" title="Tipo Tarefa" type="java.lang.Object"/>
-                <Column editable="true" title="Observa&#xe7;&#xe3;o" type="java.lang.String"/>
+                <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
+                <Column editable="false" title="Hora In&#xed;cio" type="java.lang.Object"/>
+                <Column editable="false" title="Hora Fim" type="java.lang.Object"/>
+                <Column editable="false" title="Tipo Tarefa" type="java.lang.Object"/>
+                <Column editable="false" title="Observa&#xe7;&#xe3;o" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
