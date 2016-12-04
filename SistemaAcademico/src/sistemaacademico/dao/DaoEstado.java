@@ -118,7 +118,7 @@ public class DaoEstado {
 
     public static ArrayList<Estado> recuperarQuery(String where) {
         String sql
-                = "SELECT cod_est, nome_est, dataini_est, datafim_est"
+                = "SELECT cod_est, nome_est, dataini_est, datafim_est "
                 + "FROM estado "
                 + where;
         Statement stmt = null;
@@ -137,7 +137,6 @@ public class DaoEstado {
                 e.setNome(rs.getString("nome_est"));
                 e.setDataInicio(rs.getDate("dataini_est"));
                 e.setDataTermino(rs.getDate("datafim_est"));
-          
 
                 estados.add(e);
             }

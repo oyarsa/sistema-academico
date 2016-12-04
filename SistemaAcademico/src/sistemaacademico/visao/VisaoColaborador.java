@@ -1521,7 +1521,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     private void carregarEstado() {
         HashMap<String, Object> dados = new HashMap<>();
-        dados.put("codigo", textCodigoEstado.getText());
+        dados.put("codigo", textCodigo.getText());
 
         ArrayList<HashMap<String, Object>> estados = ControleColaborador.carregarEstados(dados);
         DefaultTableModel m = (DefaultTableModel) tabelaEstados.getModel();
