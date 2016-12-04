@@ -44,4 +44,8 @@ public class Helper {
     public static String timeDateToString(Date time) {
         return dateToFormatStr(FORMATO_HORA, time);
     }
+
+    public static boolean isInteiro(String str) {
+        return str.matches("-?[0-9]+");
+    }
 }

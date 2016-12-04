@@ -173,14 +173,20 @@ public class ControleColaborador {
         String ddd = dados.get("ddd").toString();
         if (ddd.length() > 3)
             return Mensagens.ERRO + "Tamanho inválido para o DDD (máx. 3 caracteres)";
+        if (!Helper.isInteiro(ddd))
+            return Mensagens.ERRO + "DDD deve ser um número";
 
         String ddi = dados.get("ddi").toString();
         if (ddi.length() > 3)
             return Mensagens.ERRO + "Tamanho inválido para o DDI (máx. 3 caracteres)";
+        if (!Helper.isInteiro(ddi))
+            return Mensagens.ERRO + "DDI deve ser um número";
 
         String numero = dados.get("numero").toString();
         if (numero.length() > 9)
             return Mensagens.ERRO + "Tamanho inválido para o Número (máx. 9 caracteres)";
+        if (!Helper.isInteiro(numero))
+            return Mensagens.ERRO + "Número do telefone deve ser um número";
 
         int codigoColaborador;
         try {
