@@ -1119,7 +1119,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
         }
 
         textCodigoTelefone.setText(t.get("codigo").toString());
-        textCodigo.setText(t.get("colaborador").toString());
         textDDITelefone.setText(t.get("ddi").toString());
         textDDDTelefone.setText(t.get("ddd").toString());
         textOperadoraTelefone.setText(t.get("operadora").toString());
