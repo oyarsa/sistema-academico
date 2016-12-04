@@ -279,6 +279,11 @@ public class VisaoProjeto extends javax.swing.JFrame {
         });
 
         btnTarefas.setText("Tarefas");
+        btnTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTarefasActionPerformed(evt);
+            }
+        });
 
         tabelaAtividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -357,33 +362,32 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(painelAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(painelAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(painelAtividadesLayout.createSequentialGroup()
-                            .addComponent(labelCodAtividade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textCodAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelTituloAtividade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textTituloAtividade))
-                        .addGroup(painelAtividadesLayout.createSequentialGroup()
-                            .addGap(152, 152, 152)
-                            .addComponent(btnDependencias)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnTarefas)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(painelAtividadesLayout.createSequentialGroup()
-                            .addComponent(labelDataInicioAtividade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textDataInicioAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelDataFimAtividade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textDataFimAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelDuracaoEstimadaAtividade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textDuracaoEstimadaAtividade)))
+                    .addGroup(painelAtividadesLayout.createSequentialGroup()
+                        .addComponent(labelCodAtividade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textCodAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelTituloAtividade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textTituloAtividade))
+                    .addGroup(painelAtividadesLayout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnDependencias)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTarefas)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(painelAtividadesLayout.createSequentialGroup()
+                        .addComponent(labelDataInicioAtividade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textDataInicioAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelDataFimAtividade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textDataFimAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelDuracaoEstimadaAtividade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textDuracaoEstimadaAtividade))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAtividadesLayout.createSequentialGroup()
                         .addComponent(btnNovoAtiv)
                         .addGap(67, 67, 67)
@@ -694,6 +698,17 @@ public class VisaoProjeto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnAddColabActionPerformed
+
+    private void btnTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarefasActionPerformed
+        int linha = tabelaAtividades.getSelectedRow();
+        if (linha == -1)
+            return;
+
+        HashMap<String, Object> dadosAtv = new HashMap<>();
+        dadosAtv.put("codigo", tabelaAtividades.getValueAt(linha, 0));
+        VisaoTarefa vt = new VisaoTarefa(dadosAtv);
+        vt.setVisible(true);
+    }//GEN-LAST:event_btnTarefasActionPerformed
 
     /**
      * @param args the command line arguments

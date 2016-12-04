@@ -13,11 +13,11 @@ import sistemaacademico.modelo.Tarefa;
 
 public class DaoTarefa {
 
-    public static String inserir(Tarefa t) {
+    public static String inserir(Tarefa t, int codigoAtividade) {
         String sql
                 = "INSERT INTO tarefa "
-                + "(horain_trf, horaterm_trf, observacao_trf, tipo_trabalho, colaborador) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "(horain_trf, horaterm_trf, observacao_trf, tipo_trabalho, colaborador, atividade) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
 
         try {
@@ -29,6 +29,7 @@ public class DaoTarefa {
             stmt.setString(3, t.getObservacao());
             stmt.setInt(4, t.getTipo().getCodigo());
             stmt.setInt(5, t.getResponsavel().getCodigo());
+            stmt.setInt(6, codigoAtividade);
 
             stmt.executeUpdate();
 
@@ -50,10 +51,11 @@ public class DaoTarefa {
         }
     }
 
-    public static String atualizar(Tarefa t) {
+    public static String atualizar(Tarefa t, int codigoAtividade) {
         String sql
                 = "UPDATE tarefa "
-                + "SET horain_trf =?, horaterm_trf=?, observacao_trf=?, tipo_trabalho=?, colaborador=?"
+                + "SET horain_trf =?, horaterm_trf=?, observacao_trf=?, tipo_trabalho=?, "
+                + "colaborador=?, atividade=?"
                 + "WHERE cod_trf = ?";
         PreparedStatement stmt = null;
 
@@ -66,7 +68,8 @@ public class DaoTarefa {
             stmt.setString(3, t.getObservacao());
             stmt.setInt(4, t.getTipo().getCodigo());
             stmt.setInt(5, t.getResponsavel().getCodigo());
-            stmt.setInt(6, t.getCodigo());
+            stmt.setInt(6, codigoAtividade);
+            stmt.setInt(7, t.getCodigo());
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
@@ -114,8 +117,8 @@ public class DaoTarefa {
         }
     }
 
-    public static ArrayList<Tarefa> recuperarTodos() {
-        return recuperarQuery("");
+    public static ArrayList<Tarefa> recuperarTodos(int codigo) {
+        return recuperarQuery("WHERE atividade = " + codigo);
     }
 
     private static ArrayList<Tarefa> recuperarQuery(String where) {

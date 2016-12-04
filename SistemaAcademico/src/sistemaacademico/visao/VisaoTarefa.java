@@ -24,6 +24,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
     private HashMap<Integer, String> codToTipo;
     private HashMap<String, Integer> colabToCod;
     private HashMap<String, Integer> tipoToCod;
+    private final HashMap<String, Object> atividade;
 
     private void limparControles() {
         textCodigo.setText("");
@@ -62,6 +63,12 @@ public class VisaoTarefa extends javax.swing.JFrame {
      * Creates new form VisaoTarefa
      */
     public VisaoTarefa() {
+        this.atividade = new HashMap<>();
+        initComponents();
+    }
+
+    public VisaoTarefa(HashMap<String, Object> atividade) {
+        this.atividade = atividade;
         initComponents();
     }
 
@@ -310,6 +317,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
         configComboTipos();
         initColaboradores();
         configComboColabs();
+        carregarTarefas();
     }//GEN-LAST:event_formWindowOpened
 
     private void tableTarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTarefasMouseClicked
@@ -381,6 +389,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
         dados.put("responsavel", colabToCod.get(comboColaboradores.getSelectedItem().toString()));
         dados.put("tipoTrabalho", tipoToCod.get(comboTipo.getSelectedItem().toString()));
         dados.put("observacao", taObservacao.getText());
+        dados.put("atividade", atividade.get("codigo"));
 
         String msg = ControleTarefa.salvar(dados);
         JOptionPane.showMessageDialog(this, msg, "Gravação", JOptionPane.INFORMATION_MESSAGE);
@@ -503,5 +512,17 @@ public class VisaoTarefa extends javax.swing.JFrame {
         tableTarefas.setValueAt(dados.get("horaFim"), linha, 2);
         tableTarefas.setValueAt(codToTipo.get((Integer) dados.get("tipoTarefa")), linha, 3);
         tableTarefas.setValueAt(dados.get("observacao"), linha, 4);
+    }
+
+    private void carregarTarefas() {
+        DefaultTableModel m = (DefaultTableModel) tableTarefas.getModel();
+        ArrayList<HashMap<String, Object>> tarefas = ControleTarefa.recuperarTodos(atividade);
+        m.setRowCount(0);
+
+        for (HashMap<String, Object> t : tarefas) {
+            m.addRow(new Object[]{t.get("codigo"), t.get("horaInicio"),
+                t.get("horaFim"), codToTipo.get((Integer) t.get("tipoTarefa")),
+                t.get("observacao")});
+        }
     }
 }

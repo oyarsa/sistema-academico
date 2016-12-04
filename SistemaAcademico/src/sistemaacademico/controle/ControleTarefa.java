@@ -12,7 +12,7 @@ import sistemaacademico.modelo.Tarefa;
 public class ControleTarefa {
 
     public static String salvar(HashMap<String, Object> dados) {
-        int codigoTipoTrabalho, codigoColaborador;
+        int codigoTipoTrabalho, codigoColaborador, codigoAtividade;
 
         try {
             codigoTipoTrabalho = Integer.parseInt(dados.get("tipoTrabalho").toString());
@@ -26,6 +26,12 @@ public class ControleTarefa {
             return Mensagens.ERRO + "Colaborador responsável inválido";
         }
 
+        try {
+            codigoAtividade = Integer.parseInt(dados.get("atividade").toString());
+        } catch (Exception ex) {
+            return Mensagens.ERRO + "Atividade inválida";
+        }
+
         Tarefa t = new Tarefa();
 
         t.setHoraInicio(Helper.stringToTimeDate(dados.get("horaInicio").toString()));
@@ -35,13 +41,13 @@ public class ControleTarefa {
         t.setResponsavel(DaoColaborador.recuperar(codigoColaborador));
 
         if (dados.get("codigo").equals("")) {
-            String msg = DaoTarefa.inserir(t);
+            String msg = DaoTarefa.inserir(t, codigoAtividade);
             dados.put("codigo", t.getCodigo());
             return msg;
         } else {
             try {
                 t.setCodigo(Integer.parseInt(dados.get("codigo").toString()));
-                return DaoTarefa.atualizar(t);
+                return DaoTarefa.atualizar(t, codigoAtividade);
             } catch (Exception ex) {
                 System.err.println("Erro ao atualizar uma Tarefa");
                 return Mensagens.ERRO + "Código inválido";
@@ -77,8 +83,17 @@ public class ControleTarefa {
         }
     }
 
-    public static ArrayList<HashMap<String, Object>> recuperarTodos() {
-        ArrayList<Tarefa> tarefas = DaoTarefa.recuperarTodos();
+    public static ArrayList<HashMap<String, Object>> recuperarTodos(HashMap<String, Object> atividade) {
+        int codigo;
+        try {
+            codigo = Integer.parseInt(atividade.get("codigo").toString());
+        } catch (Exception ex) {
+            System.err.println("Erro ao recuperar tarefas de uma atividade");
+            System.err.println(ex.getMessage());
+            return null;
+        }
+
+        ArrayList<Tarefa> tarefas = DaoTarefa.recuperarTodos(codigo);
         ArrayList<HashMap<String, Object>> rv = new ArrayList<>();
 
         for (Tarefa t : tarefas) {
