@@ -27,11 +27,14 @@ CREATE TABLE `tarefa` (
   `horain_trf` date DEFAULT NULL,
   `horaterm_trf` date DEFAULT NULL,
   `observacao_trf` varchar(45) DEFAULT NULL,
-  `tipo_trabalho` int(11) DEFAULT NULL,
-  `colaborador` int(11) DEFAULT NULL,
+  `tipo_trabalho` int(11) NOT NULL,
+  `colaborador` int(11) NOT NULL,
+  `atividade` int(11) NOT NULL,
   PRIMARY KEY (`cod_trf`),
-  UNIQUE KEY `tipo_trabalho_UNIQUE` (`tipo_trabalho`),
-  UNIQUE KEY `colaborador_UNIQUE` (`colaborador`),
+  KEY `FK_Atividade_idx` (`atividade`),
+  KEY `FK_Colaborador` (`colaborador`),
+  KEY `FK_TipoTrabalho` (`tipo_trabalho`),
+  CONSTRAINT `FK_Atividade` FOREIGN KEY (`atividade`) REFERENCES `atividade` (`cod_atv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Colaborador` FOREIGN KEY (`colaborador`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_TipoTrabalho` FOREIGN KEY (`tipo_trabalho`) REFERENCES `tipo_trabalho` (`cod_tt`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -55,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:21
+-- Dump completed on 2016-12-03 23:36:31
