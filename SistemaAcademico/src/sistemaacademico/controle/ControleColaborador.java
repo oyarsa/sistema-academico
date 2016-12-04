@@ -170,6 +170,18 @@ public class ControleColaborador {
     }
 
     public static String salvarTelefone(HashMap<String, Object> dados) {
+        String ddd = dados.get("ddd").toString();
+        if (ddd.length() > 3)
+            return Mensagens.ERRO + "Tamanho inválido para o DDD (máx. 3 caracteres)";
+
+        String ddi = dados.get("ddi").toString();
+        if (ddi.length() > 3)
+            return Mensagens.ERRO + "Tamanho inválido para o DDI (máx. 3 caracteres)";
+
+        String numero = dados.get("numero").toString();
+        if (numero.length() > 9)
+            return Mensagens.ERRO + "Tamanho inválido para o Número (máx. 9 caracteres)";
+
         int codigoColaborador;
         try {
             codigoColaborador = Integer.parseInt(dados.get("colaborador").toString());
@@ -178,9 +190,9 @@ public class ControleColaborador {
         }
         sistemaacademico.modelo.Telefone t = new Telefone();
 
-        t.setDdd(dados.get("ddd").toString());
-        t.setDdi(dados.get("ddi").toString());
-        t.setNumero(dados.get("numero").toString());
+        t.setDdd(ddd);
+        t.setDdi(ddi);
+        t.setNumero(numero);
         t.setOperadora(dados.get("operadora").toString());
 
         String sCodigo = dados.get("codigo").toString();
