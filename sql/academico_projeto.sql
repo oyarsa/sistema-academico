@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `projeto`;
 CREATE TABLE `projeto` (
   `cod_proj` int(11) NOT NULL AUTO_INCREMENT,
   `nome_proj` varchar(60) DEFAULT NULL,
-  `objetivo_proj` varchar(60) DEFAULT NULL,
-  `recursos_proj` varchar(60) DEFAULT NULL,
+  `objetivo_proj` varchar(1000) DEFAULT NULL,
+  `recursos_proj` varchar(1000) DEFAULT NULL,
   `gerente_proj` int(11) DEFAULT NULL,
   PRIMARY KEY (`cod_proj`),
   KEY `FK_gerente_proj_idx` (`gerente_proj`),
   CONSTRAINT `FK_gerente_proj` FOREIGN KEY (`gerente_proj`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `projeto` (
 
 LOCK TABLES `projeto` WRITE;
 /*!40000 ALTER TABLE `projeto` DISABLE KEYS */;
+INSERT INTO `projeto` VALUES (1,'Geração de Horários','Elaborar um algoritmo de geração de horários automaticamente usando um Algoritmo Genético.','IBM CPLEX',1);
 /*!40000 ALTER TABLE `projeto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:20
+-- Dump completed on 2016-12-04 20:53:38

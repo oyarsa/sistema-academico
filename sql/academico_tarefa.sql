@@ -37,7 +37,7 @@ CREATE TABLE `tarefa` (
   CONSTRAINT `FK_Atividade` FOREIGN KEY (`atividade`) REFERENCES `atividade` (`cod_atv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Colaborador` FOREIGN KEY (`colaborador`) REFERENCES `colaborador` (`cod_col`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_TipoTrabalho` FOREIGN KEY (`tipo_trabalho`) REFERENCES `tipo_trabalho` (`cod_tt`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 23:36:31
+-- Dump completed on 2016-12-04 20:53:39

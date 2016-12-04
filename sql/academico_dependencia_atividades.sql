@@ -38,6 +38,7 @@ CREATE TABLE `dependencia_atividades` (
 
 LOCK TABLES `dependencia_atividades` WRITE;
 /*!40000 ALTER TABLE `dependencia_atividades` DISABLE KEYS */;
+INSERT INTO `dependencia_atividades` VALUES (3,4);
 /*!40000 ALTER TABLE `dependencia_atividades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:19
+-- Dump completed on 2016-12-04 20:53:38

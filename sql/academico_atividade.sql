@@ -31,7 +31,7 @@ CREATE TABLE `atividade` (
   `projeto` int(11) NOT NULL,
   PRIMARY KEY (`cod_atv`),
   KEY `FK_Atividade_Projeto_idx` (`projeto`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1,'2015-02-01','2016-03-01','2015-02-01','asdasdasd',0),(2,'2015-01-01','2015-02-01','2015-01-01','asdasdsad',0);
+INSERT INTO `atividade` VALUES (1,'2015-02-01','2016-03-01','2015-02-01','asdasdasd',0),(2,'2015-01-01','2015-02-01','2015-01-01','asdasdsad',0),(3,'2015-01-01','1970-01-01','1970-01-01','asdasdasd',1),(4,'1969-12-31','1970-01-01','1970-01-01','oieeeee',1);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-04 14:59:08
+-- Dump completed on 2016-12-04 20:53:37

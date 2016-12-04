@@ -39,7 +39,7 @@ CREATE TABLE `registro_academico` (
 
 LOCK TABLES `registro_academico` WRITE;
 /*!40000 ALTER TABLE `registro_academico` DISABLE KEYS */;
-INSERT INTO `registro_academico` VALUES ('1111','asd','asd',1);
+INSERT INTO `registro_academico` VALUES ('7781-2','Computação','6',2);
 /*!40000 ALTER TABLE `registro_academico` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:19
+-- Dump completed on 2016-12-04 20:53:37

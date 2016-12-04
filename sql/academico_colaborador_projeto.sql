@@ -38,6 +38,7 @@ CREATE TABLE `colaborador_projeto` (
 
 LOCK TABLES `colaborador_projeto` WRITE;
 /*!40000 ALTER TABLE `colaborador_projeto` DISABLE KEYS */;
+INSERT INTO `colaborador_projeto` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `colaborador_projeto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-03 22:24:20
+-- Dump completed on 2016-12-04 20:53:38
