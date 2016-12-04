@@ -12,6 +12,7 @@ import sistemaacademico.Util.Mensagens;
 import sistemaacademico.modelo.Telefone;
 
 public class DaoTelefone {
+
     public static String inserir(sistemaacademico.modelo.Telefone t, int codigo) {
         String sql
                 = "INSERT INTO telefone "
@@ -28,7 +29,7 @@ public class DaoTelefone {
             stmt.setString(2, t.getDdd());
             stmt.setString(3, t.getNumero());
             stmt.setString(4, t.getOperadora());
-            stmt.setInt(4, codigo);
+            stmt.setInt(5, codigo);
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
@@ -139,7 +140,6 @@ public class DaoTelefone {
                 t.setDdi(rs.getString("ddi_tel"));
                 t.setNumero(rs.getString("numero_tel"));
                 t.setOperadora(rs.getString("operadora_tel"));
-          
 
                 telefones.add(t);
             }
