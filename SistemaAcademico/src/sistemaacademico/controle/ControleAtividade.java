@@ -11,12 +11,24 @@ import sistemaacademico.modelo.Atividade;
 public class ControleAtividade {
 
     public static String salvar(HashMap<String, Object> dados) {
+        Date dataInicio = Helper.stringToDate(dados.get("dataInicio").toString());
+        if (dataInicio == null)
+            return Mensagens.ERRO + "Data de início inválida. Formato: dd/MM/yyyy";
+
+        Date dataTermino = Helper.stringToDate(dados.get("dataFim").toString());
+        if (dataTermino == null)
+            return Mensagens.ERRO + "Data de término inválida. Formato: dd/MM/yyyy";
+
+        Date duracaoEstimada = Helper.stringToDate(dados.get("duracaoEstimada").toString());
+        if (duracaoEstimada == null)
+            return Mensagens.ERRO + "Duração estimada inválida. Formato: dd/MM/yyyy";
+
         Atividade a = new Atividade();
 
         a.setTitulo(dados.get("titulo").toString());
-        a.setDataInicio(Helper.stringToDate(dados.get("dataInicio").toString()));
-        a.setDataTermino(Helper.stringToDate(dados.get("dataFim").toString()));
-        a.setDuracaoEstimada(Helper.stringToDate(dados.get("duracaoEstimada").toString()));
+        a.setDataInicio(dataInicio);
+        a.setDataTermino(dataTermino);
+        a.setDuracaoEstimada(duracaoEstimada);
 
         if (dados.get("codigo").equals("")) {
             String msg = DaoAtividade.inserir(a);
@@ -61,9 +73,17 @@ public class ControleAtividade {
     }
 
     private static void converteDatas(HashMap<String, Object> dados) {
-        dados.put("dataIncio", Helper.dateToString((Date) dados.get("dataInicio")));
-        dados.put("dataFim", Helper.dateToString((Date) dados.get("dataFim")));
-        dados.put("duracaoEstimada", Helper.dateToString((Date) dados.get("duracaoEstimada")));
+        Date dataInicio = (Date) dados.get("dataInicio");
+        dados.remove("dataInicio");
+        dados.put("dataInicio", Helper.dateToString(dataInicio));
+
+        Date dataFim = (Date) dados.get("dataFim");
+        dados.remove("dataFim");
+        dados.put("dataFim", Helper.dateToString(dataFim));
+
+        Date duracaoEstimada = (Date) dados.get("duracaoEstimada");
+        dados.remove("duracaoEstimada");
+        dados.put("duracaoEstimada", Helper.dateToString(duracaoEstimada));
     }
 
     public static ArrayList<HashMap<String, Object>> recuperarTodos() {

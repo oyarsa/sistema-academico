@@ -10,6 +10,9 @@ public class Helper {
     private static final String FORMATO_HORA = "HH:mm";
 
     private static Date formatStrToDate(String format, String dateStr) {
+        if (dateStr.trim().equals("")) {
+            return new Date(0);
+        }
         try {
             SimpleDateFormat curFormater = new SimpleDateFormat(format);
             return curFormater.parse(dateStr);
@@ -20,6 +23,8 @@ public class Helper {
     }
 
     private static String dateToFormatStr(String format, Date date) {
+        if (date.getTime() == 0)
+            return "";
         SimpleDateFormat ft = new SimpleDateFormat(format);
         return ft.format(date);
     }

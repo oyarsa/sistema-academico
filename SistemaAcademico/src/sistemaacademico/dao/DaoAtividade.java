@@ -65,6 +65,9 @@ public class DaoAtividade {
             stmt.setDate(2, new java.sql.Date(a.getDataInicio().getTime()));
             stmt.setDate(3, new java.sql.Date(a.getDataTermino().getTime()));
             stmt.setDate(4, new java.sql.Date(a.getDuracaoEstimada().getTime()));
+            stmt.setInt(5, a.getCodigo());
+
+            stmt.executeUpdate();
 
             return Mensagens.SUCESSO;
         } catch (SQLException ex) {
@@ -161,7 +164,6 @@ public class DaoAtividade {
         return atividades;
     }
 
-  
     private static ArrayList<Integer> carregarCodigoDependencias(int codigo) {
         String sql
                 = "SELECT cod_dependencia FROM dependencia_atividades "

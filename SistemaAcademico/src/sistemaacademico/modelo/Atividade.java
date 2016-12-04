@@ -89,7 +89,8 @@ public class Atividade {
 
         rv.put("codigo", codigo);
         rv.put("titulo", titulo);
-        rv.put("dataInicio", dataTermino);
+        rv.put("dataInicio", dataInicio);
+        rv.put("dataFim", dataTermino);
         rv.put("duracaoEstimada", duracaoEstimada);
 
         return rv;
