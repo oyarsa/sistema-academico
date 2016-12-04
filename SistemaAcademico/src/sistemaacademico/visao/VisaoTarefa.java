@@ -317,6 +317,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
         initColaboradores();
         configComboColabs();
         carregarTarefas();
+        desabilitaControles();
     }//GEN-LAST:event_formWindowOpened
 
     private void tableTarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTarefasMouseClicked
