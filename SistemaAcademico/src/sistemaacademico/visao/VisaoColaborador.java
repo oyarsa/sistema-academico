@@ -1442,6 +1442,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     private void inicializarColaboradoresTelefone() {
         desabilitarControlesColaboradorTelefone();
+        textColaboradorTelefone.setText(textNome.getText());
     }
 
     private void atualizarTabelaTelefone(int linha, HashMap<String, Object> dados) {
