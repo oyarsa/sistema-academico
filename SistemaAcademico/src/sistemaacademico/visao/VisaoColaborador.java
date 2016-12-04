@@ -457,11 +457,11 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód", "Colaborador", "DDI", "DDD", "Operadora", "Número"
+                "Cód", "DDI", "DDD", "Operadora", "Número"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1033,6 +1033,7 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
     //CODIGO PARA TELEFONE
     private void botaoCancelarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarTelefoneActionPerformed
+        tabelaTelefones.clearSelection();
         limparComponentesColaboradorTelefone();
         desabilitarControlesColaboradorTelefone();
     }//GEN-LAST:event_botaoCancelarTelefoneActionPerformed
@@ -1108,9 +1109,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
             return;
         }
 
-        int codigo = (Integer) m.getValueAt(linha, 0);
         HashMap<String, Object> dados = new HashMap<>();
-        dados.put("codigo", codigo);
+        dados.put("codigo", m.getValueAt(linha, 0));
 
         HashMap<String, Object> t = ControleColaborador.carregarTelefone(dados);
         if (t == null) {
@@ -1410,7 +1410,6 @@ public class VisaoColaborador extends javax.swing.JFrame {
 // CÓDIGOS DA ABA TELEFONE
 
     private void limparComponentesColaboradorTelefone() {
-
         textDDITelefone.setText("");
         textDDDTelefone.setText("");
         textNumeroTelefone.setText("");
@@ -1455,11 +1454,10 @@ public class VisaoColaborador extends javax.swing.JFrame {
         }
 
         tabelaTelefones.setValueAt(dados.get("codigo"), linha, 0);
-        tabelaTelefones.setValueAt(dados.get("colaborador"), linha, 1);
-        tabelaTelefones.setValueAt(dados.get("ddi"), linha, 2);
-        tabelaTelefones.setValueAt(dados.get("ddd"), linha, 3);
-        tabelaTelefones.setValueAt(dados.get("operadora"), linha, 4);
-        tabelaTelefones.setValueAt(dados.get("numero"), linha, 5);
+        tabelaTelefones.setValueAt(dados.get("ddi"), linha, 1);
+        tabelaTelefones.setValueAt(dados.get("ddd"), linha, 2);
+        tabelaTelefones.setValueAt(dados.get("operadora"), linha, 3);
+        tabelaTelefones.setValueAt(dados.get("numero"), linha, 4);
     }
 
     private void carregarTelefones() {
@@ -1471,13 +1469,13 @@ public class VisaoColaborador extends javax.swing.JFrame {
         m.setRowCount(0);
 
         for (HashMap<String, Object> t : telefones) {
-            m.addRow(new Object[]{t.get("codigo"), t.get("colaborador"), t.get("ddi"), t.get("ddd"), t.get("operadora"), t.get("numero")});
+            m.addRow(new Object[]{t.get("codigo"), t.get("ddi"), t.get("ddd"), t.get("operadora"), t.get("numero")});
         }
     }
 
     //CÓDIGOS DA ABA HISTÓRICO
     private void limparComponentesColaboradorEstado() {
-
+        tabelaTelefones.clearSelection();
         textNomeEstado.setText("");
         textDataIniEstado.setText("");
         textDataTerEstado.setText("");
