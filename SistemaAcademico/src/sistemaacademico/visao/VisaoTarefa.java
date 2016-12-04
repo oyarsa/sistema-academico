@@ -141,7 +141,7 @@ public class VisaoTarefa extends javax.swing.JFrame {
 
         jLabel4.setText("Hora Fim");
 
-        jLabel5.setText("Tipo de Tarefa");
+        jLabel5.setText("Tipo de Trabalho");
 
         jLabel6.setText("Observação");
 
