@@ -512,6 +512,8 @@ public class VisaoColaborador extends javax.swing.JFrame {
 
         jLabel6.setText("Código");
 
+        textCodigoTelefone.setEditable(false);
+
         javax.swing.GroupLayout painelTelefonesLayout = new javax.swing.GroupLayout(painelTelefones);
         painelTelefones.setLayout(painelTelefonesLayout);
         painelTelefonesLayout.setHorizontalGroup(

@@ -160,6 +160,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
 
         labelCodigo.setText("Código");
 
+        textCodigo.setEditable(false);
+
         labelNome.setText("Nome");
 
         labelGerente.setText("Gerente");
@@ -263,6 +265,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
         painelColaboradores.addTab("Principal", painelPrincipal);
 
         labelCodAtividade.setText("Código");
+
+        textCodAtividade.setEditable(false);
 
         labelTituloAtividade.setText("Título");
 
@@ -452,7 +456,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
