@@ -1021,12 +1021,12 @@ public class VisaoColaborador extends javax.swing.JFrame {
             return;
         }
 
-        int linha = tabelaProjetos.getSelectedRow();
+        int linha = tabelaProjetosGerenciados.getSelectedRow();
         if (linha == -1) {
             return;
         }
 
-        int codigo = (Integer) tabelaProjetos.getValueAt(linha, 0);
+        int codigo = (Integer) tabelaProjetosGerenciados.getValueAt(linha, 0);
 
         VisaoProjeto p = new VisaoProjeto(codigo);
         p.setVisible(true);

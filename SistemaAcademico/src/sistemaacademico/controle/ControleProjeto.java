@@ -26,8 +26,9 @@ public class ControleProjeto {
 
         try {
             p.setGerente(DaoColaborador.recuperar(
-                    Integer.parseInt((String) dados.get("codigoGerente"))));
+                    Integer.parseInt(dados.get("codigoGerente").toString())));
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.err.println(ex.getMessage());
             return Mensagens.ERRO + "Gerente inválido";
         }
@@ -76,20 +77,20 @@ public class ControleProjeto {
         return DaoColaboradorProjeto.remover(codigoProjeto, codigoColaborador);
     }
 
-    public static String adicionarColaborador(HashMap<String, Object> dados, HashMap<String, Object> dadosColab) {
+    public static String adicionarColaborador(HashMap<String, Object> dadosColab) {
         int codigoProjeto, codigoColaborador;
 
         try {
-            codigoProjeto = Integer.parseInt(dados.get("codigoProjeto").toString());
+            codigoProjeto = Integer.parseInt(dadosColab.get("codigoProjeto").toString());
         } catch (Exception ex) {
-            System.err.println(ex);
+            ex.printStackTrace();
             return Mensagens.ERRO + "Erro ao recuperar código do projeto";
         }
 
         try {
-            codigoColaborador = Integer.parseInt(dados.get("codigoColaborador").toString());
+            codigoColaborador = Integer.parseInt(dadosColab.get("codigoColaborador").toString());
         } catch (Exception ex) {
-            System.err.println(ex);
+            ex.printStackTrace();
             return Mensagens.ERRO + "Erro ao recuperar código do colaborador";
         }
 

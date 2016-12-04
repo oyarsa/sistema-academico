@@ -43,7 +43,7 @@ public class DaoColaboradorProjeto {
     public static String remover(int codProjeto, int codColaborador) {
         String sql
                 = "DELETE FROM colaborador_projeto "
-                + "WHERE cod_proj = ?, cod_col = ?";
+                + "WHERE cod_proj = ? AND cod_col = ?";
         PreparedStatement stmt = null;
 
         try {

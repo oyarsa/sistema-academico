@@ -29,6 +29,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
     }
 
     public VisaoProjeto(int codigoProjeto) {
+        initComponents();
         this.dados = ControleProjeto.recuperar(codigoProjeto);
         inicializar();
     }
@@ -692,7 +693,7 @@ public class VisaoProjeto extends javax.swing.JFrame {
                 dadosColab.put("codigoProjeto", dados.get("codigo"));
                 dadosColab.put("codigoColaborador", c.get("codigo"));
 
-                String msg = ControleProjeto.adicionarColaborador(dados, dadosColab);
+                String msg = ControleProjeto.adicionarColaborador(dadosColab);
                 if (msg.equals(Mensagens.SUCESSO)) {
                     ((DefaultTableModel) tableColaboradores.getModel()).addRow(
                             new Object[]{c.get("codigo"), c.get("nome")}
