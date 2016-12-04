@@ -921,6 +921,8 @@ public class VisaoProjeto extends javax.swing.JFrame {
     }
 
     private void carregarAtividades() {
+        desabilitaControlesAtividade();
+
         DefaultTableModel m = (DefaultTableModel) tabelaAtividades.getModel();
         m.setRowCount(0);
         ArrayList<HashMap<String, Object>> atividades = ControleAtividade.recuperarTodos(dadosProjeto);
